@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		                   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+		                   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		                   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		                   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	<context:property-placeholder location="classpath*:*-conf.properties" />
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName">
+			<value>${source.jdbc.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${source.jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${source.jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${source.jdbc.password}</value>
+		</property>
+	</bean>
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="classpath:sqlmap-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="singleTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>	
+	<bean id="VwSearchSupplyDAO" class="com.qianyan.search.db.model.VwSearchSupplyDAO">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="SupplyIndexBuild" class="com.qianyan.search.express.index.v1.IndexMakeImpl">
+		<constructor-arg index="0">
+			<value>
+				<![CDATA[/Users/jock/work/express/index/index0]]>
+			</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="Analyzer" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="VwSearchSupplyDAO" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="DocumentParser" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<value>
+				<![CDATA[Supplyid]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	<bean id="SupplyIndexDescBuild" class="com.qianyan.search.express.index.v1.IndexMakeImpl">
+		<constructor-arg index="0">
+			<value>
+				<![CDATA[/Users/jock/work/express/index/index10]]>
+			</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="Analyzer" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="VwSearchSupplyDAO" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="DocumentParser" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<value>
+				<![CDATA[ReSupplyid]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	<bean id="PatentIndexBuild" class="com.qianyan.search.zhuanli.index.v1.IndexMakeImpl">
+		<constructor-arg index="0">
+			<value>
+				<![CDATA[/Users/jock/work/express/index/patent1]]>
+			</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="Analyzer" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="VwSearchPatentDAO" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="PatentParser" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<value>
+				<![CDATA[Patentid]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	<bean id="ComIndexBuild"
+		class="com.qianyan.search.express.index.v1.CompanyIndexMakeImpl">
+		<constructor-arg index="0">
+			<value>
+				<![CDATA[/Users/jock/work/express/index/comindex1]]>
+			</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="Analyzer" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="VwSearchComsDAO" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="DocumentParser" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<value>
+				<![CDATA[Comsid]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	<bean id="ComIndexBuild2"
+		class="com.qianyan.search.express.index.v1.CompanyIndexMakeImpl2">
+		<constructor-arg index="0">
+			<value>
+				<![CDATA[/Users/jock/work/express/index/comindex2]]>
+			</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="Analyzer" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="VwSearchComsDAO" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="DocumentParser" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<value>
+				<![CDATA[Comsid2]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	<bean id="ProductIndexBuild"
+		class="com.qianyan.search.express.index.v1.ProductIndexMakeImpl">
+		<constructor-arg index="0">
+			<value>
+				<![CDATA[/Users/jock/work/express/index/proindex]]>
+			</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="Analyzer" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="VwSearchProductDAO" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="DocumentParser" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<value>
+				<![CDATA[Productid]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	<bean id="AdIndexBuild" class="com.qianyan.search.express.index.v1.AdIndexMakeImpl">
+		<constructor-arg index="0">
+			<value>
+				<![CDATA[/Users/jock/work/express/index/adindex]]>
+			</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="Analyzer" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="BusiOrderDAO" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="DocumentParser" />
+		</constructor-arg>
+		<property name="sdao">
+			<ref bean="VwSearchSupplyDAO" />
+		</property>
+		<property name="cdao">
+			<ref bean="VwSearchComsDAO" />
+		</property>
+		<property name="pdao">
+			<ref bean="VwSearchProductDAO" />
+		</property>
+	</bean>
+	<bean id="CompanyDelete" class="com.qianyan.search.express.index.IndexModify">
+		<property name="dao">
+			<ref bean="VwSearchCompanyDelDAO" />
+		</property>
+		<property name="indexdir">
+			<list>
+				<value>/Users/jock/work/express/index/comindex1</value>
+				<value>/Users/jock/work/express/index/comindex2</value>
+			</list>
+		</property>
+		<property name="analyzer">
+			<ref bean="Analyzer" />
+		</property>
+	</bean>
+	<bean id="SupplyDelete" class="com.qianyan.search.express.index.IndexModify">
+		<property name="dao">
+			<ref bean="VwSearchSupplyDelDAO" />
+		</property>
+		<property name="indexdir">
+			<list>
+				<value>/Users/jock/work/express/index/index0</value>
+				<value>/Users/jock/work/express/index/index1</value>
+				<value>/Users/jock/work/express/index/index2</value>
+				<value>/Users/jock/work/express/index/index3</value>
+				<value>/Users/jock/work/express/index/index4</value>
+			</list>
+		</property>
+		<property name="analyzer">
+			<ref bean="Analyzer" />
+		</property>
+	</bean>
+	<bean id="ProductDelete" class="com.qianyan.search.express.index.IndexModify">
+		<property name="dao">
+			<ref bean="VwSearchProductDelDAO" />
+		</property>
+		<property name="indexdir">
+			<list>
+				<value>/Users/jock/work/express/index/proindex</value>
+			</list>
+		</property>
+		<property name="analyzer">
+			<ref bean="Analyzer" />
+		</property>
+	</bean>
+	<bean id="CompanyFileDelete" class="com.qianyan.search.express.index.IndexDelete">
+		<property name="idfiles">
+			<value>data</value>
+		</property>
+		<property name="indexdir">
+			<list>
+				<value>/Users/jock/work/express/index/comindex1</value>
+				<value>/Users/jock/work/express/index/comindex2</value>
+			</list>
+		</property>
+		<property name="analyzer">
+			<ref bean="Analyzer" />
+		</property>
+	</bean>
+	<bean id="PatentFileDelete" class="com.qianyan.search.zhuanli.index.IndexDelete">
+		<property name="idfiles">
+			<value>patentdata</value>
+		</property>
+		<property name="indexdir">
+			<list>
+				<value>/Users/jock/work/express/index/patent1</value>
+				<value>/Users/jock/work/express/index/patent2</value>
+			</list>
+		</property>
+		<property name="analyzer">
+			<ref bean="Analyzer" />
+		</property>
+	</bean>
+	<bean id="SupplyFileDelete" class="com.qianyan.search.express.index.IndexDelete">
+		<property name="idfiles">
+			<value>data.txt</value>
+		</property>
+		<property name="indexdir">
+			<list>
+				<value>/Users/jock/work/express/index/index0</value>
+				<value>/Users/jock/work/express/index/index1</value>
+				<value>/Users/jock/work/express/index/index2</value>
+				<value>/Users/jock/work/express/index/ndex3</value>
+			</list>
+		</property>
+		<property name="analyzer">
+			<ref bean="Analyzer" />
+		</property>
+	</bean>
+	<bean id="ProductFileDelete" class="com.qianyan.search.express.index.IndexDelete">
+		<property name="idfiles">
+			<value>data</value>
+		</property>
+		<property name="indexdir">
+			<list>
+				<value>/Users/jock/work/express/index/proindex</value>
+			</list>
+		</property>
+		<property name="analyzer">
+			<ref bean="Analyzer" />
+		</property>
+	</bean>
+	<bean id="ReleatedIndexBuild"
+		class="com.qianyan.search.express.index.v1.ReleateKeywordIndexImpl">
+		<constructor-arg index="0">
+			<value>
+				<![CDATA[/Users/jock/work/express/index/releatedindex]]>
+			</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="Analyzer" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<value>
+				<![CDATA[/Users/Jock/work/express/src/main/resources/comwordlib.lib]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	<bean id="VwSearchComsDAO" class="com.qianyan.search.db.model.VwSearchComsDAO">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="VwSearchProductDAO" class="com.qianyan.search.db.model.VwSearchProductDAO">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="BusiOrderDAO" class="com.qianyan.search.db.model.BusiOrderDAO">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="VwSearchRegionDAO" class="com.qianyan.search.db.model.VwSearchRegionDAO">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="VwSearchPatentDAO" class="com.qianyan.search.db.model.VwSearchPatentDAO">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="RegionFileMake" class="com.qianyan.search.express.index.RegionFileMake">
+		<property name="dao">
+			<ref bean="VwSearchRegionDAO" />
+		</property>
+	</bean>
+	<bean id="ForbidKeywordsDAO" class="com.qianyan.search.db.model.ForbidKeywordsDAO">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="BlackWords" class="com.qianyan.search.express.index.BlackWords">
+		<property name="dao">
+			<ref bean="ForbidKeywordsDAO" />
+		</property>
+	</bean>
+	<bean id="VwSearchProductDelDAO" class="com.qianyan.search.db.model.VwSearchProductDelDAO">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="VwSearchCompanyDelDAO" class="com.qianyan.search.db.model.VwSearchCompanyDelDAO">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="VwSearchSupplyDelDAO" class="com.qianyan.search.db.model.VwSearchSupplyDelDAO">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+</beans>

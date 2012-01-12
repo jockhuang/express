@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="Analyzer"
+		class="org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer">
+		<constructor-arg>
+			<value>LUCENE_35</value>
+		</constructor-arg>
+	</bean>
+	<bean id="BinaryAnalyzer"
+		class="org.apache.lucene.analysis.cjk.CJKAnalyzer">
+		<constructor-arg>
+			<value>LUCENE_35</value>
+		</constructor-arg>
+	</bean>
+	<bean id="HighLighter"
+		class="com.qianyan.search.express.query.HighLighter">
+		<property name="color" value="#FF0000" />
+		<property name="length" value="78" />
+	</bean>
+	<bean id="DocumentParser"
+		class="com.qianyan.search.express.document.DocumentParser">
+	</bean>
+	<bean id="PatentParser"
+		class="com.qianyan.search.zhuanli.document.DocumentParser">
+	</bean>
+	<bean id="QueryParser"
+		class="com.qianyan.search.express.query.ExpressQueryParser">
+		<constructor-arg index="0">
+			<ref bean="Analyzer" />
+		</constructor-arg>
+	</bean>
+	<bean id="PatentQueryParser"
+		class="com.qianyan.search.zhuanli.query.PatentQueryParser">
+
+		<constructor-arg index="0">
+			<ref bean="Analyzer" />
+		</constructor-arg>
+	</bean>
+	<bean id="Searcher"
+		class="com.qianyan.search.express.query.v1.ExpressSearcherImpl">
+		<constructor-arg index="0">
+			<list>
+				<value>/Users/jock/work/express/index/index0</value>
+				
+				<value>/Users/jock/work/express/index/comindex1</value>
+				<value>/Users/jock/work/express/index/comindex2</value>
+				<value>/Users/jock/work/express/index/proindex</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="QueryParser" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="DocumentParser" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="HighLighter" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="PatentSearcher"
+		class="com.qianyan.search.zhuanli.query.v1.PatentSearchImpl">
+		<constructor-arg index="0">
+			<list>
+				<value>/Users/jock/work/express/index/patent1</value>
+				<value>/Users/jock/work/express/index/patent2</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="PatentQueryParser" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="PatentParser" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="HighLighter" />
+		</constructor-arg>
+	</bean>
+	<bean id="RegionSelect"
+		class="com.qianyan.search.express.web.util.RegionSelect">
+
+	</bean>
+	<bean id="AdSearcher"
+		class="com.qianyan.search.express.query.v1.AdSearcherImpl">
+		<constructor-arg index="0">
+			<list>
+				<value>/Users/jock/work/express/index/adindex</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="Analyzer" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="DocumentParser" />
+		</constructor-arg>
+	</bean>
+	<bean id="ReleatedSearcher"
+		class="com.qianyan.search.express.query.v1.ReleatedSearcherImpl">
+		<constructor-arg index="0">
+			<list>
+				<value>/Users/jock/work/express/index/releatedindex</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="Analyzer" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="DocumentParser" />
+		</constructor-arg>
+	</bean>
+	<bean name="/search"
+		class="com.qianyan.search.express.web.action.SearchAction"
+		scope="prototype">
+		<property name="searcher">
+			<ref bean="Searcher" />
+		</property>
+		<property name="adsearcher">
+			<ref bean="AdSearcher" />
+		</property>
+		<property name="releatedsearcher">
+			<ref bean="ReleatedSearcher" />
+		</property>
+		<property name="regionselect">
+			<ref bean="RegionSelect" />
+		</property>
+	</bean>
+	<bean name="/patent"
+		class="com.qianyan.search.express.web.action.PatentAction"
+		scope="prototype">
+		<property name="searcher">
+			<ref bean="PatentSearcher" />
+		</property>
+		<property name="releatedsearcher">
+			<ref bean="ReleatedSearcher" />
+		</property>
+		<property name="regionselect">
+			<ref bean="RegionSelect" />
+		</property>
+	</bean>
+	<bean name="/redo"
+		class="com.qianyan.search.express.web.action.RedoAction"
+		scope="prototype">
+		<property name="searcher">
+			<ref bean="Searcher" />
+		</property>
+	</bean>
+	<bean name="/blackword"
+		class="com.qianyan.search.express.web.action.BlackwordAction"
+		scope="prototype">
+
+	</bean>
+	<bean name="/releate"
+		class="com.qianyan.search.express.web.action.ReleateAction"
+		scope="prototype">
+		<property name="analyzer">
+			<ref bean="Analyzer" />
+		</property>
+		<property name="psearcher">
+			<ref bean="PatentSearcher" />
+		</property>
+		<property name="searcher">
+			<ref bean="Searcher" />
+		</property>
+	</bean>
+</beans>

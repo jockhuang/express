@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="company" >
+  	
+  <typeAlias type="com.qianyan.search.db.model.VwSearchComs" alias="Company" />
+  	
+  <resultMap id="companyBean" class="Company" >
+    <result column="id" property="id"/>
+    <result column="url" property="url"/>
+    <result column="title" property="title"/>
+    <result column="classkey" property="classkey"/>
+    <result column="regionkey" property="regionkey"/>
+    <result column="infotype" property="infotype"/>
+    <result column="createdate" property="createdate"/>
+    <result column="brief" property="brief"/>
+    <result column="content" property="content"/>
+    <result column="keywords" property="keywords"/>
+    <result column="itemname" property="itemname"/>
+    <result column="picurl" property="picurl"/>
+    <result column="comurl" property="comurl"/>
+    <result column="credit" property="credit"/>
+    <result column="regionname" property="regionname"/>
+    <result column="contact" property="contact"/>
+    <result column="address" property="address"/>
+    <result column="zipcode" property="zipcode"/>
+    <result column="phonecountry" property="phonecountry"/>
+    <result column="phonearea" property="phonearea"/>
+    <result column="tel" property="tel"/>
+    <result column="faxcountry" property="faxcountry"/>
+    <result column="faxarea" property="faxarea"/>
+    <result column="fax" property="fax"/>
+    <result column="email" property="email"/>
+    <result column="route" property="route"/>
+    <result column="mobile" property="mobile"/>
+    <result column="price" property="price"/>
+    <result column="quantity" property="quantity"/>
+    <result column="qqcode" property="qqcode"/>
+    <result column="msncode" property="msncode"/>
+    <result column="fullPath" property="fullPath"/>
+    <result column="comid" property="comid"/>
+    <result column="mainmode" property="mainmode"/>
+    <result column="maintrade" property="maintrade"/>
+   
+  </resultMap>
+  
+  <select id="getCompanyList" parameterClass="int" resultMap="companyBean">
+	select top 500 * from vw_search_coms where <![CDATA[  id>=#id# ]]> order by id
+  </select>
+	 	
+  
+  
+</sqlMap>
