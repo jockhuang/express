@@ -36,7 +36,7 @@
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
 
-	<bean id="SupplyIndexBuild" class="biz.qianyan.search.express.index.v1.IndexMakeImpl">
+	<bean id="SupplyIndexBuild" class="biz.qianyan.search.express.index.v2.IndexMakeImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/index0]]>
@@ -57,7 +57,7 @@
 			</value>
 		</constructor-arg>
 	</bean>
-	<bean id="SupplyIndexDescBuild" class="biz.qianyan.search.express.index.v1.IndexMakeImpl">
+	<bean id="SupplyIndexDescBuild" class="biz.qianyan.search.express.index.v2.IndexMakeImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/index10]]>
@@ -78,7 +78,7 @@
 			</value>
 		</constructor-arg>
 	</bean>
-	<bean id="PatentIndexBuild" class="biz.qianyan.search.patent.index.v1.IndexMakeImpl">
+	<bean id="PatentIndexBuild" class="biz.qianyan.search.patent.index.v2.IndexMakeImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/patent1]]>
@@ -100,7 +100,7 @@
 		</constructor-arg>
 	</bean>
 	<bean id="ComIndexBuild"
-		class="biz.qianyan.search.express.index.v1.CompanyIndexMakeImpl">
+		class="biz.qianyan.search.express.index.v2.CompanyIndexMakeImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/comindex1]]>
@@ -122,7 +122,7 @@
 		</constructor-arg>
 	</bean>
 	<bean id="ComIndexBuild2"
-		class="biz.qianyan.search.express.index.v1.CompanyIndexMakeImpl2">
+		class="biz.qianyan.search.express.index.v2.CompanyIndexMakeImpl2">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/comindex2]]>
@@ -144,7 +144,7 @@
 		</constructor-arg>
 	</bean>
 	<bean id="ProductIndexBuild"
-		class="biz.qianyan.search.express.index.v1.ProductIndexMakeImpl">
+		class="biz.qianyan.search.express.index.v2.ProductIndexMakeImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/proindex]]>
@@ -165,7 +165,7 @@
 			</value>
 		</constructor-arg>
 	</bean>
-	<bean id="AdIndexBuild" class="biz.qianyan.search.express.index.v1.AdIndexMakeImpl">
+	<bean id="AdIndexBuild" class="biz.qianyan.search.express.index.v2.AdIndexMakeImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/adindex]]>
@@ -292,7 +292,7 @@
 		</property>
 	</bean>
 	<bean id="ReleatedIndexBuild"
-		class="biz.qianyan.search.express.index.v1.ReleateKeywordIndexImpl">
+		class="biz.qianyan.search.express.index.v2.ReleateKeywordIndexImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/releatedindex]]>

@@ -39,7 +39,7 @@
 		</constructor-arg>
 	</bean>
 	<bean id="Searcher"
-		class="biz.qianyan.search.express.query.v1.ExpressSearcherImpl">
+		class="biz.qianyan.search.express.query.v2.ExpressSearcherImpl">
 		<constructor-arg index="0">
 			<list>
 				<value>/Users/jock/work/express/index/index0</value>
@@ -61,7 +61,7 @@
 	</bean>
 	
 	<bean id="PatentSearcher"
-		class="biz.qianyan.search.patent.query.v1.PatentSearchImpl">
+		class="biz.qianyan.search.patent.query.v2.PatentSearchImpl">
 		<constructor-arg index="0">
 			<list>
 				<value>/Users/jock/work/express/index/patent1</value>
@@ -83,7 +83,7 @@
 
 	</bean>
 	<bean id="AdSearcher"
-		class="biz.qianyan.search.express.query.v1.AdSearcherImpl">
+		class="biz.qianyan.search.express.query.v2.AdSearcherImpl">
 		<constructor-arg index="0">
 			<list>
 				<value>/Users/jock/work/express/index/adindex</value>
@@ -97,7 +97,7 @@
 		</constructor-arg>
 	</bean>
 	<bean id="ReleatedSearcher"
-		class="biz.qianyan.search.express.query.v1.ReleatedSearcherImpl">
+		class="biz.qianyan.search.express.query.v2.ReleatedSearcherImpl">
 		<constructor-arg index="0">
 			<list>
 				<value>/Users/jock/work/express/index/releatedindex</value>
