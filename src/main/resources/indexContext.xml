@@ -32,11 +32,11 @@
 	<bean id="singleTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>	
-	<bean id="VwSearchSupplyDAO" class="com.qianyan.search.db.model.VwSearchSupplyDAO">
+	<bean id="VwSearchSupplyDAO" class="biz.qianyan.search.db.model.VwSearchSupplyDAO">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
 
-	<bean id="SupplyIndexBuild" class="com.qianyan.search.express.index.v1.IndexMakeImpl">
+	<bean id="SupplyIndexBuild" class="biz.qianyan.search.express.index.v1.IndexMakeImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/index0]]>
@@ -57,7 +57,7 @@
 			</value>
 		</constructor-arg>
 	</bean>
-	<bean id="SupplyIndexDescBuild" class="com.qianyan.search.express.index.v1.IndexMakeImpl">
+	<bean id="SupplyIndexDescBuild" class="biz.qianyan.search.express.index.v1.IndexMakeImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/index10]]>
@@ -78,7 +78,7 @@
 			</value>
 		</constructor-arg>
 	</bean>
-	<bean id="PatentIndexBuild" class="com.qianyan.search.zhuanli.index.v1.IndexMakeImpl">
+	<bean id="PatentIndexBuild" class="biz.qianyan.search.zhuanli.index.v1.IndexMakeImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/patent1]]>
@@ -100,7 +100,7 @@
 		</constructor-arg>
 	</bean>
 	<bean id="ComIndexBuild"
-		class="com.qianyan.search.express.index.v1.CompanyIndexMakeImpl">
+		class="biz.qianyan.search.express.index.v1.CompanyIndexMakeImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/comindex1]]>
@@ -122,7 +122,7 @@
 		</constructor-arg>
 	</bean>
 	<bean id="ComIndexBuild2"
-		class="com.qianyan.search.express.index.v1.CompanyIndexMakeImpl2">
+		class="biz.qianyan.search.express.index.v1.CompanyIndexMakeImpl2">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/comindex2]]>
@@ -144,7 +144,7 @@
 		</constructor-arg>
 	</bean>
 	<bean id="ProductIndexBuild"
-		class="com.qianyan.search.express.index.v1.ProductIndexMakeImpl">
+		class="biz.qianyan.search.express.index.v1.ProductIndexMakeImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/proindex]]>
@@ -165,7 +165,7 @@
 			</value>
 		</constructor-arg>
 	</bean>
-	<bean id="AdIndexBuild" class="com.qianyan.search.express.index.v1.AdIndexMakeImpl">
+	<bean id="AdIndexBuild" class="biz.qianyan.search.express.index.v1.AdIndexMakeImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/adindex]]>
@@ -190,7 +190,7 @@
 			<ref bean="VwSearchProductDAO" />
 		</property>
 	</bean>
-	<bean id="CompanyDelete" class="com.qianyan.search.express.index.IndexModify">
+	<bean id="CompanyDelete" class="biz.qianyan.search.express.index.IndexModify">
 		<property name="dao">
 			<ref bean="VwSearchCompanyDelDAO" />
 		</property>
@@ -204,7 +204,7 @@
 			<ref bean="Analyzer" />
 		</property>
 	</bean>
-	<bean id="SupplyDelete" class="com.qianyan.search.express.index.IndexModify">
+	<bean id="SupplyDelete" class="biz.qianyan.search.express.index.IndexModify">
 		<property name="dao">
 			<ref bean="VwSearchSupplyDelDAO" />
 		</property>
@@ -221,7 +221,7 @@
 			<ref bean="Analyzer" />
 		</property>
 	</bean>
-	<bean id="ProductDelete" class="com.qianyan.search.express.index.IndexModify">
+	<bean id="ProductDelete" class="biz.qianyan.search.express.index.IndexModify">
 		<property name="dao">
 			<ref bean="VwSearchProductDelDAO" />
 		</property>
@@ -234,7 +234,7 @@
 			<ref bean="Analyzer" />
 		</property>
 	</bean>
-	<bean id="CompanyFileDelete" class="com.qianyan.search.express.index.IndexDelete">
+	<bean id="CompanyFileDelete" class="biz.qianyan.search.express.index.IndexDelete">
 		<property name="idfiles">
 			<value>data</value>
 		</property>
@@ -248,7 +248,7 @@
 			<ref bean="Analyzer" />
 		</property>
 	</bean>
-	<bean id="PatentFileDelete" class="com.qianyan.search.zhuanli.index.IndexDelete">
+	<bean id="PatentFileDelete" class="biz.qianyan.search.zhuanli.index.IndexDelete">
 		<property name="idfiles">
 			<value>patentdata</value>
 		</property>
@@ -262,7 +262,7 @@
 			<ref bean="Analyzer" />
 		</property>
 	</bean>
-	<bean id="SupplyFileDelete" class="com.qianyan.search.express.index.IndexDelete">
+	<bean id="SupplyFileDelete" class="biz.qianyan.search.express.index.IndexDelete">
 		<property name="idfiles">
 			<value>data.txt</value>
 		</property>
@@ -278,7 +278,7 @@
 			<ref bean="Analyzer" />
 		</property>
 	</bean>
-	<bean id="ProductFileDelete" class="com.qianyan.search.express.index.IndexDelete">
+	<bean id="ProductFileDelete" class="biz.qianyan.search.express.index.IndexDelete">
 		<property name="idfiles">
 			<value>data</value>
 		</property>
@@ -292,7 +292,7 @@
 		</property>
 	</bean>
 	<bean id="ReleatedIndexBuild"
-		class="com.qianyan.search.express.index.v1.ReleateKeywordIndexImpl">
+		class="biz.qianyan.search.express.index.v1.ReleateKeywordIndexImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/releatedindex]]>
@@ -307,41 +307,41 @@
 			</value>
 		</constructor-arg>
 	</bean>
-	<bean id="VwSearchComsDAO" class="com.qianyan.search.db.model.VwSearchComsDAO">
+	<bean id="VwSearchComsDAO" class="biz.qianyan.search.db.model.VwSearchComsDAO">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
-	<bean id="VwSearchProductDAO" class="com.qianyan.search.db.model.VwSearchProductDAO">
+	<bean id="VwSearchProductDAO" class="biz.qianyan.search.db.model.VwSearchProductDAO">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
-	<bean id="BusiOrderDAO" class="com.qianyan.search.db.model.BusiOrderDAO">
+	<bean id="BusiOrderDAO" class="biz.qianyan.search.db.model.BusiOrderDAO">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
-	<bean id="VwSearchRegionDAO" class="com.qianyan.search.db.model.VwSearchRegionDAO">
+	<bean id="VwSearchRegionDAO" class="biz.qianyan.search.db.model.VwSearchRegionDAO">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
-	<bean id="VwSearchPatentDAO" class="com.qianyan.search.db.model.VwSearchPatentDAO">
+	<bean id="VwSearchPatentDAO" class="biz.qianyan.search.db.model.VwSearchPatentDAO">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
-	<bean id="RegionFileMake" class="com.qianyan.search.express.index.RegionFileMake">
+	<bean id="RegionFileMake" class="biz.qianyan.search.express.index.RegionFileMake">
 		<property name="dao">
 			<ref bean="VwSearchRegionDAO" />
 		</property>
 	</bean>
-	<bean id="ForbidKeywordsDAO" class="com.qianyan.search.db.model.ForbidKeywordsDAO">
+	<bean id="ForbidKeywordsDAO" class="biz.qianyan.search.db.model.ForbidKeywordsDAO">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
-	<bean id="BlackWords" class="com.qianyan.search.express.index.BlackWords">
+	<bean id="BlackWords" class="biz.qianyan.search.express.index.BlackWords">
 		<property name="dao">
 			<ref bean="ForbidKeywordsDAO" />
 		</property>
 	</bean>
-	<bean id="VwSearchProductDelDAO" class="com.qianyan.search.db.model.VwSearchProductDelDAO">
+	<bean id="VwSearchProductDelDAO" class="biz.qianyan.search.db.model.VwSearchProductDelDAO">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
-	<bean id="VwSearchCompanyDelDAO" class="com.qianyan.search.db.model.VwSearchCompanyDelDAO">
+	<bean id="VwSearchCompanyDelDAO" class="biz.qianyan.search.db.model.VwSearchCompanyDelDAO">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
-	<bean id="VwSearchSupplyDelDAO" class="com.qianyan.search.db.model.VwSearchSupplyDelDAO">
+	<bean id="VwSearchSupplyDelDAO" class="biz.qianyan.search.db.model.VwSearchSupplyDelDAO">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
 </beans>

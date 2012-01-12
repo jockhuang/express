@@ -15,31 +15,31 @@
 		</constructor-arg>
 	</bean>
 	<bean id="HighLighter"
-		class="com.qianyan.search.express.query.HighLighter">
+		class="biz.qianyan.search.express.query.HighLighter">
 		<property name="color" value="#FF0000" />
 		<property name="length" value="78" />
 	</bean>
 	<bean id="DocumentParser"
-		class="com.qianyan.search.express.document.DocumentParser">
+		class="biz.qianyan.search.express.document.DocumentParser">
 	</bean>
 	<bean id="PatentParser"
-		class="com.qianyan.search.zhuanli.document.DocumentParser">
+		class="biz.qianyan.search.zhuanli.document.DocumentParser">
 	</bean>
 	<bean id="QueryParser"
-		class="com.qianyan.search.express.query.ExpressQueryParser">
+		class="biz.qianyan.search.express.query.ExpressQueryParser">
 		<constructor-arg index="0">
 			<ref bean="Analyzer" />
 		</constructor-arg>
 	</bean>
 	<bean id="PatentQueryParser"
-		class="com.qianyan.search.zhuanli.query.PatentQueryParser">
+		class="biz.qianyan.search.zhuanli.query.PatentQueryParser">
 
 		<constructor-arg index="0">
 			<ref bean="Analyzer" />
 		</constructor-arg>
 	</bean>
 	<bean id="Searcher"
-		class="com.qianyan.search.express.query.v1.ExpressSearcherImpl">
+		class="biz.qianyan.search.express.query.v1.ExpressSearcherImpl">
 		<constructor-arg index="0">
 			<list>
 				<value>/Users/jock/work/express/index/index0</value>
@@ -61,7 +61,7 @@
 	</bean>
 	
 	<bean id="PatentSearcher"
-		class="com.qianyan.search.zhuanli.query.v1.PatentSearchImpl">
+		class="biz.qianyan.search.zhuanli.query.v1.PatentSearchImpl">
 		<constructor-arg index="0">
 			<list>
 				<value>/Users/jock/work/express/index/patent1</value>
@@ -79,11 +79,11 @@
 		</constructor-arg>
 	</bean>
 	<bean id="RegionSelect"
-		class="com.qianyan.search.express.web.util.RegionSelect">
+		class="biz.qianyan.search.express.web.util.RegionSelect">
 
 	</bean>
 	<bean id="AdSearcher"
-		class="com.qianyan.search.express.query.v1.AdSearcherImpl">
+		class="biz.qianyan.search.express.query.v1.AdSearcherImpl">
 		<constructor-arg index="0">
 			<list>
 				<value>/Users/jock/work/express/index/adindex</value>
@@ -97,7 +97,7 @@
 		</constructor-arg>
 	</bean>
 	<bean id="ReleatedSearcher"
-		class="com.qianyan.search.express.query.v1.ReleatedSearcherImpl">
+		class="biz.qianyan.search.express.query.v1.ReleatedSearcherImpl">
 		<constructor-arg index="0">
 			<list>
 				<value>/Users/jock/work/express/index/releatedindex</value>
@@ -111,7 +111,7 @@
 		</constructor-arg>
 	</bean>
 	<bean name="/search"
-		class="com.qianyan.search.express.web.action.SearchAction"
+		class="biz.qianyan.search.express.web.action.SearchAction"
 		scope="prototype">
 		<property name="searcher">
 			<ref bean="Searcher" />
@@ -127,7 +127,7 @@
 		</property>
 	</bean>
 	<bean name="/patent"
-		class="com.qianyan.search.express.web.action.PatentAction"
+		class="biz.qianyan.search.express.web.action.PatentAction"
 		scope="prototype">
 		<property name="searcher">
 			<ref bean="PatentSearcher" />
@@ -140,19 +140,19 @@
 		</property>
 	</bean>
 	<bean name="/redo"
-		class="com.qianyan.search.express.web.action.RedoAction"
+		class="biz.qianyan.search.express.web.action.RedoAction"
 		scope="prototype">
 		<property name="searcher">
 			<ref bean="Searcher" />
 		</property>
 	</bean>
 	<bean name="/blackword"
-		class="com.qianyan.search.express.web.action.BlackwordAction"
+		class="biz.qianyan.search.express.web.action.BlackwordAction"
 		scope="prototype">
 
 	</bean>
 	<bean name="/releate"
-		class="com.qianyan.search.express.web.action.ReleateAction"
+		class="biz.qianyan.search.express.web.action.ReleateAction"
 		scope="prototype">
 		<property name="analyzer">
 			<ref bean="Analyzer" />
