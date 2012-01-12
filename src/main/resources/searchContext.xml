@@ -23,7 +23,7 @@
 		class="biz.qianyan.search.express.document.DocumentParser">
 	</bean>
 	<bean id="PatentParser"
-		class="biz.qianyan.search.zhuanli.document.DocumentParser">
+		class="biz.qianyan.search.patent.document.DocumentParser">
 	</bean>
 	<bean id="QueryParser"
 		class="biz.qianyan.search.express.query.ExpressQueryParser">
@@ -32,7 +32,7 @@
 		</constructor-arg>
 	</bean>
 	<bean id="PatentQueryParser"
-		class="biz.qianyan.search.zhuanli.query.PatentQueryParser">
+		class="biz.qianyan.search.patent.query.PatentQueryParser">
 
 		<constructor-arg index="0">
 			<ref bean="Analyzer" />
@@ -61,7 +61,7 @@
 	</bean>
 	
 	<bean id="PatentSearcher"
-		class="biz.qianyan.search.zhuanli.query.v1.PatentSearchImpl">
+		class="biz.qianyan.search.patent.query.v1.PatentSearchImpl">
 		<constructor-arg index="0">
 			<list>
 				<value>/Users/jock/work/express/index/patent1</value>

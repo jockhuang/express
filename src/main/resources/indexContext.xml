@@ -78,7 +78,7 @@
 			</value>
 		</constructor-arg>
 	</bean>
-	<bean id="PatentIndexBuild" class="biz.qianyan.search.zhuanli.index.v1.IndexMakeImpl">
+	<bean id="PatentIndexBuild" class="biz.qianyan.search.patent.index.v1.IndexMakeImpl">
 		<constructor-arg index="0">
 			<value>
 				<![CDATA[/Users/jock/work/express/index/patent1]]>
@@ -248,7 +248,7 @@
 			<ref bean="Analyzer" />
 		</property>
 	</bean>
-	<bean id="PatentFileDelete" class="biz.qianyan.search.zhuanli.index.IndexDelete">
+	<bean id="PatentFileDelete" class="biz.qianyan.search.patent.index.IndexDelete">
 		<property name="idfiles">
 			<value>patentdata</value>
 		</property>
