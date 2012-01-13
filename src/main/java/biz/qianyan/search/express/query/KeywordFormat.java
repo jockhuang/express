@@ -7,16 +7,14 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 /**
  * @author Jock
  */
 public class KeywordFormat {
 
-    private static String       regEx     = "";
+    private static String regEx = "";
     private static List<String> blacklist = new ArrayList<String>();
-    private static String       file      = "/data/search/WEB-INF/blackword.txt";
+    private static String file = "/data/search/WEB-INF/blackword.txt";
 
     public static void add(String keyword) {
         try {
@@ -60,7 +58,8 @@ public class KeywordFormat {
         }
         String c = keyword.trim();
         for (String str : blacklist) {
-            if (c.equals(str)) return "";
+            if (c.equals(str))
+                return "";
         }
 
         return c;
@@ -96,8 +95,7 @@ public class KeywordFormat {
                 ret.append(tmpChar);
                 breakFlag = false;
                 firstOpt = false;
-            }
-            else {
+            } else {
                 // 是否在查询字符串的起始位置
                 if (!firstOpt && !breakFlag) {
                     // 保留第一个空格
@@ -137,7 +135,8 @@ public class KeywordFormat {
         String tmpStr = keyword.toLowerCase();
         String ret = "";
         int pos = tmpStr.indexOf(" and ");
-        if (pos == -1) return keyword;
+        if (pos == -1)
+            return keyword;
         while (pos >= 0) {
             ret = ret + keyword.substring(0, pos) + " ";
             keyword = keyword.substring(pos + 5, keyword.length());
@@ -152,7 +151,8 @@ public class KeywordFormat {
         String tmpStr = keyword.toLowerCase();
         String ret = "";
         int pos = tmpStr.indexOf(" or ");
-        if (pos == -1) return keyword;
+        if (pos == -1)
+            return keyword;
         while (pos >= 0) {
             ret = ret + keyword.substring(0, pos) + " | ";
             keyword = keyword.substring(pos + 4, keyword.length());

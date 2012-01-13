@@ -13,11 +13,10 @@ import org.apache.lucene.util.Version;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
 public class IndexDelete {
     private String[] indexdir;
     private Analyzer analyzer;
-    private String   idfiles;
+    private String idfiles;
 
     public void setIdfiles(String idfiles) {
         this.idfiles = idfiles;
@@ -33,7 +32,7 @@ public class IndexDelete {
         iwc.setOpenMode(OpenMode.CREATE_OR_APPEND);
         iwc.setRAMBufferSizeMB(256.0);
         for (int i = 0; i < indexdir.length; i++) {
-            reader[i] = new IndexWriter(FSDirectory.open(new File(indexdir[i])),iwc);
+            reader[i] = new IndexWriter(FSDirectory.open(new File(indexdir[i])), iwc);
         }
         RandomAccessFile rf = new RandomAccessFile(idfiles, "r");
         String str = null;

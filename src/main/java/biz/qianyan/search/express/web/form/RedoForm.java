@@ -25,13 +25,13 @@ public class RedoForm extends ActionForm {
      */
     private static final long serialVersionUID = -8953676454850539564L;
 
-    private String            msg;
+    private String msg;
 
     /** name property */
-    private String            name;
+    private String name;
 
     /** password property */
-    private String            password;
+    private String password;
 
     /*
      * Generated Methods
@@ -74,8 +74,7 @@ public class RedoForm extends ActionForm {
     }
 
     /**
-     * @param msg
-     *            the msg to set
+     * @param msg the msg to set
      */
     public void setMsg(String msg) {
         this.msg = msg;
@@ -84,8 +83,7 @@ public class RedoForm extends ActionForm {
     /**
      * Set the name.
      * 
-     * @param name
-     *            The name to set
+     * @param name The name to set
      */
     public void setName(String name) {
         this.name = name;
@@ -94,8 +92,7 @@ public class RedoForm extends ActionForm {
     /**
      * Set the password.
      * 
-     * @param password
-     *            The password to set
+     * @param password The password to set
      */
     public void setPassword(String password) {
         this.password = password;

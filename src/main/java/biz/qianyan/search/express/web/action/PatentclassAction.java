@@ -32,8 +32,8 @@ public class PatentclassAction extends Action {
      * @param response
      * @return ActionForward
      */
-    public ActionForward execute(ActionMapping mapping, ActionForm form,
-                                 HttpServletRequest request, HttpServletResponse response) {
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) {
         PatentclassForm patentclassForm = (PatentclassForm) form;// TODO Auto-generated method stub
         return null;
     }

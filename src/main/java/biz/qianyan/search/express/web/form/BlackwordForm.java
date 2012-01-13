@@ -63,8 +63,7 @@ public class BlackwordForm extends ActionForm {
     /**
      * Set the word.
      * 
-     * @param word
-     *            The word to set
+     * @param word The word to set
      */
     public void setWord(String word) {
         this.word = word;
@@ -82,8 +81,7 @@ public class BlackwordForm extends ActionForm {
     /**
      * Set the wordlist.
      * 
-     * @param wordlist
-     *            The wordlist to set
+     * @param wordlist The wordlist to set
      */
     public void setWordlist(String wordlist) {
         this.wordlist = wordlist;

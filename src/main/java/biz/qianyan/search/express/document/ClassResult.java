@@ -6,9 +6,9 @@ public class ClassResult implements java.io.Serializable {
      * 
      */
     private static final long serialVersionUID = 371891863009421958L;
-    private String            classname;
-    private int               num;
-    private String            shortname;
+    private String classname;
+    private int num;
+    private String shortname;
 
     public ClassResult(String classname, int num) {
         super();
@@ -49,16 +49,14 @@ public class ClassResult implements java.io.Serializable {
     }
 
     /**
-     * @param shortname
-     *            the shortname to set
+     * @param shortname the shortname to set
      */
     public void setShortname(String shortname) {
         this.shortname = shortname;
     }
 
     /**
-     * @param classname
-     *            the classname to set
+     * @param classname the classname to set
      */
     public void setClassname(String classname) {
         this.classname = classname;
@@ -66,8 +64,7 @@ public class ClassResult implements java.io.Serializable {
     }
 
     /**
-     * @param num
-     *            the num to set
+     * @param num the num to set
      */
     public void setNum(int num) {
         this.num = num;

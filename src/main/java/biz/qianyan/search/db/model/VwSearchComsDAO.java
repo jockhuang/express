@@ -12,15 +12,16 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
  * 
  * @author Jock
  */
-public class VwSearchComsDAO  extends SqlMapClientDaoSupport{
-    public List<VwSearchComs> findAll(int id){
-        return getSqlMapClientTemplate().queryForList("company.getCompanyList",id);
+public class VwSearchComsDAO extends SqlMapClientDaoSupport {
+    public List<VwSearchComs> findAll(int id) {
+        return getSqlMapClientTemplate().queryForList("company.getCompanyList", id);
     }
-    public List<VwSearchComs> findAll2(int id){
-        return getSqlMapClientTemplate().queryForList("company.getCompanyList2",id);
+
+    public List<VwSearchComs> findAll2(int id) {
+        return getSqlMapClientTemplate().queryForList("company.getCompanyList2", id);
     }
-   
-    public VwSearchComs findById(int id){
-        return (VwSearchComs)getSqlMapClientTemplate().queryForObject("company.getCompanyByID",id);
+
+    public VwSearchComs findById(int id) {
+        return (VwSearchComs) getSqlMapClientTemplate().queryForObject("company.getCompanyByID", id);
     }
 }

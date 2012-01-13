@@ -11,35 +11,35 @@ import java.util.Date;
 public class AdDocument {
 
     private Integer id;
-    private String  keyword;
-    private String  title;
-    private String  brief;
-    private String  picurl;
-    private String  url;
-    private String  itemname;
-    private String  itemurl;
+    private String keyword;
+    private String title;
+    private String brief;
+    private String picurl;
+    private String url;
+    private String itemname;
+    private String itemurl;
     private Integer ssid;
-    private Short   rank;
-    private Date    begindate;
-    private Date    enddate;
-    private Short   type;
-    private Short   searchtype;
-    private Short   infotype;
+    private Short rank;
+    private Date begindate;
+    private Date enddate;
+    private Short type;
+    private Short searchtype;
+    private Short infotype;
     private Integer payid;
     private Integer agentid;
     private Integer userid;
     private Integer yid;
-    private String  memo;
-    private Short   status;
-    private Date    createdate;
+    private String memo;
+    private Short status;
+    private Date createdate;
     private Integer comid;
-    private String  messageurl;
-    private String  fullPath;
-    private String  regionname;
-    private Short   configtype;
-    private Short   adtype;
+    private String messageurl;
+    private String fullPath;
+    private String regionname;
+    private Short configtype;
+    private Short adtype;
 
-    private String  comurl;
+    private String comurl;
 
     /**
      * @return the comurl
@@ -49,8 +49,7 @@ public class AdDocument {
     }
 
     /**
-     * @param comurl
-     *            the comurl to set
+     * @param comurl the comurl to set
      */
     public void setComurl(String comurl) {
         this.comurl = comurl;
@@ -64,8 +63,7 @@ public class AdDocument {
     }
 
     /**
-     * @param itemname
-     *            the itemname to set
+     * @param itemname the itemname to set
      */
     public void setItemname(String itemname) {
         this.itemname = itemname;
@@ -79,8 +77,7 @@ public class AdDocument {
     }
 
     /**
-     * @param adtype
-     *            the adtype to set
+     * @param adtype the adtype to set
      */
     public void setAdtype(Short adtype) {
         this.adtype = adtype;
@@ -94,8 +91,7 @@ public class AdDocument {
     }
 
     /**
-     * @param configtype
-     *            the configtype to set
+     * @param configtype the configtype to set
      */
     public void setConfigtype(Short configtype) {
         this.configtype = configtype;
@@ -109,8 +105,7 @@ public class AdDocument {
     }
 
     /**
-     * @param fullPath
-     *            the fullPath to set
+     * @param fullPath the fullPath to set
      */
     public void setFullPath(String fullPath) {
         this.fullPath = fullPath;
@@ -124,8 +119,7 @@ public class AdDocument {
     }
 
     /**
-     * @param regionname
-     *            the regionname to set
+     * @param regionname the regionname to set
      */
     public void setRegionname(String regionname) {
         this.regionname = regionname;
@@ -146,8 +140,7 @@ public class AdDocument {
     }
 
     /**
-     * @param searchtype
-     *            the searchtype to set
+     * @param searchtype the searchtype to set
      */
     public void setSearchtype(Short searchtype) {
         this.searchtype = searchtype;
@@ -161,16 +154,14 @@ public class AdDocument {
     }
 
     /**
-     * @param infotype
-     *            the infotype to set
+     * @param infotype the infotype to set
      */
     public void setInfotype(Short infotype) {
         this.infotype = infotype;
     }
 
     /**
-     * @param messageurl
-     *            the messageurl to set
+     * @param messageurl the messageurl to set
      */
     public void setMessageurl(String messageurl) {
         this.messageurl = messageurl;
@@ -184,8 +175,7 @@ public class AdDocument {
     }
 
     /**
-     * @param comid
-     *            the comid to set
+     * @param comid the comid to set
      */
     public void setComid(Integer comid) {
         this.comid = comid;
@@ -199,8 +189,7 @@ public class AdDocument {
     }
 
     /**
-     * @param id
-     *            the id to set
+     * @param id the id to set
      */
     public final void setId(Integer id) {
         this.id = id;
@@ -214,8 +203,7 @@ public class AdDocument {
     }
 
     /**
-     * @param keyword
-     *            the keyword to set
+     * @param keyword the keyword to set
      */
     public final void setKeyword(String keyword) {
         this.keyword = keyword;
@@ -229,8 +217,7 @@ public class AdDocument {
     }
 
     /**
-     * @param title
-     *            the title to set
+     * @param title the title to set
      */
     public final void setTitle(String title) {
         this.title = title;
@@ -244,8 +231,7 @@ public class AdDocument {
     }
 
     /**
-     * @param brief
-     *            the brief to set
+     * @param brief the brief to set
      */
     public final void setBrief(String brief) {
         this.brief = brief;
@@ -259,8 +245,7 @@ public class AdDocument {
     }
 
     /**
-     * @param picurl
-     *            the picurl to set
+     * @param picurl the picurl to set
      */
     public final void setPicurl(String picurl) {
         this.picurl = picurl;
@@ -274,8 +259,7 @@ public class AdDocument {
     }
 
     /**
-     * @param url
-     *            the url to set
+     * @param url the url to set
      */
     public final void setUrl(String url) {
         this.url = url;
@@ -289,8 +273,7 @@ public class AdDocument {
     }
 
     /**
-     * @param itemurl
-     *            the itemurl to set
+     * @param itemurl the itemurl to set
      */
     public final void setItemurl(String itemurl) {
         this.itemurl = itemurl;
@@ -304,12 +287,12 @@ public class AdDocument {
     }
 
     /**
-     * @param ssid
-     *            the ssid to set
+     * @param ssid the ssid to set
      */
     public final void setSsid(Integer ssid) {
         this.ssid = ssid;
-        if (ssid != null && ssid > 0) this.url = "http://www.qianyan.biz/sshow-" + ssid + ".html";
+        if (ssid != null && ssid > 0)
+            this.url = "http://www.qianyan.biz/sshow-" + ssid + ".html";
     }
 
     /**
@@ -320,8 +303,7 @@ public class AdDocument {
     }
 
     /**
-     * @param rank
-     *            the rank to set
+     * @param rank the rank to set
      */
     public final void setRank(Short rank) {
         this.rank = rank;
@@ -335,8 +317,7 @@ public class AdDocument {
     }
 
     /**
-     * @param begindate
-     *            the begindate to set
+     * @param begindate the begindate to set
      */
     public final void setBegindate(Date begindate) {
         this.begindate = begindate;
@@ -350,8 +331,7 @@ public class AdDocument {
     }
 
     /**
-     * @param enddate
-     *            the enddate to set
+     * @param enddate the enddate to set
      */
     public final void setEnddate(Date enddate) {
         this.enddate = enddate;
@@ -365,8 +345,7 @@ public class AdDocument {
     }
 
     /**
-     * @param type
-     *            the type to set
+     * @param type the type to set
      */
     public final void setType(Short type) {
         this.type = type;
@@ -380,8 +359,7 @@ public class AdDocument {
     }
 
     /**
-     * @param payid
-     *            the payid to set
+     * @param payid the payid to set
      */
     public final void setPayid(Integer payid) {
         this.payid = payid;
@@ -395,8 +373,7 @@ public class AdDocument {
     }
 
     /**
-     * @param agentid
-     *            the agentid to set
+     * @param agentid the agentid to set
      */
     public final void setAgentid(Integer agentid) {
         this.agentid = agentid;
@@ -410,8 +387,7 @@ public class AdDocument {
     }
 
     /**
-     * @param userid
-     *            the userid to set
+     * @param userid the userid to set
      */
     public final void setUserid(Integer userid) {
         this.userid = userid;
@@ -425,8 +401,7 @@ public class AdDocument {
     }
 
     /**
-     * @param yid
-     *            the yid to set
+     * @param yid the yid to set
      */
     public final void setYid(Integer yid) {
         this.yid = yid;
@@ -440,8 +415,7 @@ public class AdDocument {
     }
 
     /**
-     * @param memo
-     *            the memo to set
+     * @param memo the memo to set
      */
     public final void setMemo(String memo) {
         this.memo = memo;
@@ -455,8 +429,7 @@ public class AdDocument {
     }
 
     /**
-     * @param status
-     *            the status to set
+     * @param status the status to set
      */
     public final void setStatus(Short status) {
         this.status = status;
@@ -470,8 +443,7 @@ public class AdDocument {
     }
 
     /**
-     * @param createdate
-     *            the createdate to set
+     * @param createdate the createdate to set
      */
     public final void setCreatedate(Date createdate) {
         this.createdate = createdate;

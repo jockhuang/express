@@ -12,8 +12,8 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
  * 
  * @author Jock
  */
-public class ForbidKeywordsDAO  extends SqlMapClientDaoSupport{
-    public List<ForbidKeywords> findAll(){
+public class ForbidKeywordsDAO extends SqlMapClientDaoSupport {
+    public List<ForbidKeywords> findAll() {
         return null;
     }
 }

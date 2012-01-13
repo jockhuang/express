@@ -12,8 +12,8 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
  * 
  * @author Jock
  */
-public class VwSearchProductDelDAO extends SqlMapClientDaoSupport  implements DeleteItemDAO{
-    public List<DeleteItem> findAll(long id){
+public class VwSearchProductDelDAO extends SqlMapClientDaoSupport implements DeleteItemDAO {
+    public List<DeleteItem> findAll(long id) {
         return null;
     }
 }

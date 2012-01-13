@@ -13,40 +13,40 @@ public class VwSearchPatent implements java.io.Serializable {
     // Fields
 
     private Integer id;
-    private String  c1;
-    private String  c2;
-    private String  c3;
-    private String  c4;
-    private String  c5;
-    private String  c6;
-    private String  c7;
-    private String  c8;
-    private String  c9;
-    private String  c10;
-    private String  c11;
-    private String  c12;
-    private String  c13;
-    private String  c14;
-    private String  c15;
-    private String  c16;
-    private String  c17;
-    private String  c18;
-    private String  c19;
-    private String  c20;
-    private String  c21;
-    private String  c22;
-    private String  c23;
-    private String  c24;
-    private String  c25;
-    private String  c26;
-    private String  c27;
-    private String  c28;
-    private String  c29;
-    private String  c30;
-    private String  c31;
-    private String  c32;
-    private String  c33;
-    private Date    createdate;
+    private String c1;
+    private String c2;
+    private String c3;
+    private String c4;
+    private String c5;
+    private String c6;
+    private String c7;
+    private String c8;
+    private String c9;
+    private String c10;
+    private String c11;
+    private String c12;
+    private String c13;
+    private String c14;
+    private String c15;
+    private String c16;
+    private String c17;
+    private String c18;
+    private String c19;
+    private String c20;
+    private String c21;
+    private String c22;
+    private String c23;
+    private String c24;
+    private String c25;
+    private String c26;
+    private String c27;
+    private String c28;
+    private String c29;
+    private String c30;
+    private String c31;
+    private String c32;
+    private String c33;
+    private Date createdate;
 
     // Constructors
 
@@ -61,12 +61,10 @@ public class VwSearchPatent implements java.io.Serializable {
     }
 
     /** full constructor */
-    public VwSearchPatent(String c1, String c2, String c3, String c4, String c5, String c6,
-                          String c7, String c8, String c9, String c10, String c11, String c12,
-                          String c13, String c14, String c15, String c16, String c17, String c18,
-                          String c19, String c20, String c21, String c22, String c23, String c24,
-                          String c25, String c26, String c27, String c28, String c29, String c30,
-                          String c31, String c32, String c33, Date createdate) {
+    public VwSearchPatent(String c1, String c2, String c3, String c4, String c5, String c6, String c7, String c8,
+            String c9, String c10, String c11, String c12, String c13, String c14, String c15, String c16, String c17,
+            String c18, String c19, String c20, String c21, String c22, String c23, String c24, String c25, String c26,
+            String c27, String c28, String c29, String c30, String c31, String c32, String c33, Date createdate) {
         this.c1 = c1;
         this.c2 = c2;
         this.c3 = c3;

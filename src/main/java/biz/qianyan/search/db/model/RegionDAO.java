@@ -13,10 +13,11 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
  * @author Jock
  */
 public class RegionDAO extends SqlMapClientDaoSupport {
-    public List<Region> findProvince(){
+    public List<Region> findProvince() {
         return getSqlMapClientTemplate().queryForList("region.getProvinceList");
     }
-    public List<Region> findCity(String key){
-        return getSqlMapClientTemplate().queryForList("region.getCityList",key);
+
+    public List<Region> findCity(String key) {
+        return getSqlMapClientTemplate().queryForList("region.getCityList", key);
     }
 }

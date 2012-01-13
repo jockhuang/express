@@ -34,8 +34,8 @@ public class BlackwordAction extends Action {
      * @param response
      * @return ActionForward
      */
-    public ActionForward execute(ActionMapping mapping, ActionForm form,
-                                 HttpServletRequest request, HttpServletResponse response) {
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) {
         BlackwordForm f = (BlackwordForm) form;
         if (f.getWord() != null && !"".equals(f.getWord())) {
             KeywordFormat.add(f.getWord());

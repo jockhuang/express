@@ -12,10 +12,9 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
  * 
  * @author Jock
  */
-public class VwSearchPatentDAO  extends SqlMapClientDaoSupport{
-    public List<VwSearchPatent> findAll(int id){
-        return getSqlMapClientTemplate().queryForList("patent.getPatentList",id);
+public class VwSearchPatentDAO extends SqlMapClientDaoSupport {
+    public List<VwSearchPatent> findAll(int id) {
+        return getSqlMapClientTemplate().queryForList("patent.getPatentList", id);
     }
-    
 
 }

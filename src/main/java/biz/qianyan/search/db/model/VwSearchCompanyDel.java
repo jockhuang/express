@@ -8,12 +8,12 @@ import java.util.Date;
  * @author MyEclipse Persistence Tools
  */
 
-public class VwSearchCompanyDel implements DeleteItem , java.io.Serializable {
+public class VwSearchCompanyDel implements DeleteItem, java.io.Serializable {
 
     // Fields
 
     private Integer id;
-    private Date    deldate;
+    private Date deldate;
 
     // Constructors
 

@@ -28,26 +28,24 @@ public class ReleateForm extends ActionForm {
     private Integer ln;
 
     /** t property */
-    private String  t;
+    private String t;
 
     /** ftc property */
-    private String  ftc;
+    private String ftc;
 
     /** bc property */
-    private String  bc;
+    private String bc;
 
     /** fc property */
-    private String  fc;
+    private String fc;
 
     private int s;
-    
+
     private String img;
-    
+
     private int th;
-    
+
     private int u;
-    
-    
 
     /*
      * Generated Methods
@@ -93,9 +91,9 @@ public class ReleateForm extends ActionForm {
         ln = 10;
         w = 200;
         s = 1;
-        th=22;
-        img="con2.gif";
-        u=1;
+        th = 22;
+        img = "con2.gif";
+        u = 1;
     }
 
     /**
@@ -129,8 +127,7 @@ public class ReleateForm extends ActionForm {
     }
 
     /**
-     * @param s
-     *            the s to set
+     * @param s the s to set
      */
     public void setS(int s) {
         this.s = s;
@@ -139,8 +136,7 @@ public class ReleateForm extends ActionForm {
     /**
      * Set the fts.
      * 
-     * @param fts
-     *            The fts to set
+     * @param fts The fts to set
      */
     public void setFts(Integer fts) {
         this.fts = fts;
@@ -158,8 +154,7 @@ public class ReleateForm extends ActionForm {
     /**
      * Set the w.
      * 
-     * @param w
-     *            The w to set
+     * @param w The w to set
      */
     public void setW(Integer w) {
         this.w = w;
@@ -177,8 +172,7 @@ public class ReleateForm extends ActionForm {
     /**
      * Set the ln.
      * 
-     * @param ln
-     *            The ln to set
+     * @param ln The ln to set
      */
     public void setLn(Integer ln) {
         this.ln = ln;
@@ -196,8 +190,7 @@ public class ReleateForm extends ActionForm {
     /**
      * Set the t.
      * 
-     * @param t
-     *            The t to set
+     * @param t The t to set
      */
     public void setT(String t) {
         this.t = t;
@@ -215,8 +208,7 @@ public class ReleateForm extends ActionForm {
     /**
      * Set the ftc.
      * 
-     * @param ftc
-     *            The ftc to set
+     * @param ftc The ftc to set
      */
     public void setFtc(String ftc) {
         this.ftc = ftc;
@@ -234,8 +226,7 @@ public class ReleateForm extends ActionForm {
     /**
      * Set the bc.
      * 
-     * @param bc
-     *            The bc to set
+     * @param bc The bc to set
      */
     public void setBc(String bc) {
         this.bc = bc;
@@ -253,8 +244,7 @@ public class ReleateForm extends ActionForm {
     /**
      * Set the fc.
      * 
-     * @param fc
-     *            The fc to set
+     * @param fc The fc to set
      */
     public void setFc(String fc) {
         this.fc = fc;

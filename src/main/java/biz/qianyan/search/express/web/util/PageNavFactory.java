@@ -10,8 +10,8 @@ import biz.qianyan.search.express.web.form.PatentForm;
 import biz.qianyan.search.express.web.form.SearchForm;
 
 public class PageNavFactory {
-	private static final int MAXPAGE=20;
-    private static String baseurl       = "/search.do?q=";
+    private static final int MAXPAGE = 20;
+    private static String baseurl = "/search.do?q=";
     private static String patentbaseurl = "/patent.do?q=";
 
     public static List<PageNav> getPagenav(SearchForm s, Navbar n) {
@@ -39,7 +39,8 @@ public class PageNavFactory {
         if (end > n.getTotalpage()) {
             end = n.getTotalpage();
         }
-        if (end > MAXPAGE) end = MAXPAGE;
+        if (end > MAXPAGE)
+            end = MAXPAGE;
         for (int i = start; i <= end; i++) {
             PageNav p = new PageNav();
             p.setLink(getUrl(s) + "&p=" + i);
@@ -91,32 +92,31 @@ public class PageNavFactory {
             sb.append("&t=");
             sb.append(s.getT());
         }
-        if(s.getF()>0){
+        if (s.getF() > 0) {
             sb.append("&f=");
             sb.append(s.getF());
         }
-        if(s.getN()>0){
+        if (s.getN() > 0) {
             sb.append("&n=");
             sb.append(s.getN());
         }
         if (s.getCapitalCN() != null && (!"null".equals(s.getCapitalCN()))) {
             sb.append("&capitalCN=");
             try {
-				sb.append(URLEncoder.encode(s.getCapitalCN(), "GBK"));
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
-        else if (s.getProvinceCN() != null && (!"null".equals(s.getProvinceCN()))) {
+                sb.append(URLEncoder.encode(s.getCapitalCN(), "GBK"));
+            } catch (UnsupportedEncodingException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else if (s.getProvinceCN() != null && (!"null".equals(s.getProvinceCN()))) {
             sb.append("&provinceCN=");
-            
+
             try {
-				sb.append(URLEncoder.encode(s.getProvinceCN(), "GBK"));
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                sb.append(URLEncoder.encode(s.getProvinceCN(), "GBK"));
+            } catch (UnsupportedEncodingException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         return sb.toString();
     }
@@ -146,7 +146,8 @@ public class PageNavFactory {
         if (end > n.getTotalpage()) {
             end = n.getTotalpage();
         }
-        if (end > MAXPAGE) end = MAXPAGE;
+        if (end > MAXPAGE)
+            end = MAXPAGE;
         for (int i = start; i <= end; i++) {
             PageNav p = new PageNav();
             p.setLink(getUrl(s) + "&p=" + i);
@@ -198,9 +199,8 @@ public class PageNavFactory {
     private static String transfer(PageNav p, boolean link) {
         String url = null;
         if (link)
-            url = "<span class=\"style2\">[</span><span class=\"rr14\"><a href=\"" + p.getLink()
-                    + "\" class=\"rr14\">" + p.getLinkname()
-                    + "</a></span><span class=\"style2\">]</span> ";
+            url = "<span class=\"style2\">[</span><span class=\"rr14\"><a href=\"" + p.getLink() + "\" class=\"rr14\">"
+                    + p.getLinkname() + "</a></span><span class=\"style2\">]</span> ";
         else
             url = "<span class=\"b14\">" + p.getLinkname() + "</span>";
         return url;

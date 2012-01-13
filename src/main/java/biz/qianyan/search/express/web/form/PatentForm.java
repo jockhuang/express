@@ -25,28 +25,28 @@ public class PatentForm extends ActionForm {
      */
     private Vector<LabelValueBean> provinceselect;
 
-    private String                 province;
+    private String province;
 
     /** q property */
-    private String                 q;
+    private String q;
 
     /** p property */
-    private Integer                p;
+    private Integer p;
     /** class */
-    private int                    c;
-    private String                 sc;
+    private int c;
+    private String sc;
     /** encoded query */
-    private String                 eq;
+    private String eq;
     /** sort flag */
-    private int                    s = 1;
+    private int s = 1;
     /** type */
-    private int                    t;
+    private int t;
 
-    private int                    r;
+    private int r;
 
-    private int                    opend;
+    private int opend;
 
-    private int                    applyd;
+    private int applyd;
 
     private Vector<LabelValueBean> openselect;
     private Vector<LabelValueBean> applyselect;
@@ -158,8 +158,7 @@ public class PatentForm extends ActionForm {
     /**
      * Set the q.
      * 
-     * @param q
-     *            The q to set
+     * @param q The q to set
      */
     public void setQ(String q) {
         this.q = q;
@@ -182,8 +181,7 @@ public class PatentForm extends ActionForm {
     /**
      * Set the p.
      * 
-     * @param p
-     *            The p to set
+     * @param p The p to set
      */
     public void setP(Integer p) {
         this.p = p;
@@ -224,24 +222,24 @@ public class PatentForm extends ActionForm {
 
     private void setSc(int t) {
         switch (t) {
-            case 0:
-                sc = "所有专利";
-                break;
-            case 1:
-                sc = "发明专利";
-                break;
-            case 2:
-                sc = "实用新型专利";
-                break;
-            case 3:
-                sc = "外观专利";
-                break;
-            case 8:
-                sc = "国外发明专利";
-                break;
-            default:
-                sc = "所有专利";
-                break;
+        case 0:
+            sc = "所有专利";
+            break;
+        case 1:
+            sc = "发明专利";
+            break;
+        case 2:
+            sc = "实用新型专利";
+            break;
+        case 3:
+            sc = "外观专利";
+            break;
+        case 8:
+            sc = "国外发明专利";
+            break;
+        default:
+            sc = "所有专利";
+            break;
 
         }
     }

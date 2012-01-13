@@ -34,14 +34,13 @@ public class RedoAction extends Action {
      * @return ActionForward
      */
     @Override
-    public ActionForward execute(ActionMapping mapping, ActionForm form,
-                                 HttpServletRequest request, HttpServletResponse response) {
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) {
         RedoForm redoForm = (RedoForm) form;// TODO Auto-generated method stub
         if ("jock".equals(redoForm.getName())) {
             searcher.reOpen();
             redoForm.setMsg("SUCCESS!");
-        }
-        else {
+        } else {
             redoForm.setMsg("FAILURE!");
         }
         return mapping.findForward("RESULT");
@@ -52,8 +51,7 @@ public class RedoAction extends Action {
      */
 
     /**
-     * @param searcher
-     *            the searcher to set
+     * @param searcher the searcher to set
      */
     public final void setSearcher(ExpressSearcher searcher) {
         this.searcher = searcher;

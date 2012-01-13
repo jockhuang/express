@@ -9,7 +9,7 @@ package biz.qianyan.search.patent.document;
 public class PatentDocument {
 
     /** id */
-    private int    id;
+    private int id;
     /** url */
     private String url;
     /** …Í«Î∫≈ */
@@ -119,8 +119,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param id
-     *            the id to set
+     * @param id the id to set
      */
     public void setId(int id) {
         this.id = id;
@@ -134,8 +133,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param applyno
-     *            the applyno to set
+     * @param applyno the applyno to set
      */
     public void setApplyno(String applyno) {
         this.applyno = applyno;
@@ -150,8 +148,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param title
-     *            the title to set
+     * @param title the title to set
      */
     public void setTitle(String title) {
         this.title = title;
@@ -165,8 +162,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param brief
-     *            the brief to set
+     * @param brief the brief to set
      */
     public void setBrief(String brief) {
         this.brief = brief;
@@ -180,8 +176,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param rightrequest
-     *            the rightrequest to set
+     * @param rightrequest the rightrequest to set
      */
     public void setRightrequest(String rightrequest) {
         this.rightrequest = rightrequest;
@@ -195,8 +190,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param internationalno
-     *            the internationalno to set
+     * @param internationalno the internationalno to set
      */
     public void setInternationalno(String internationalno) {
         this.internationalno = internationalno;
@@ -210,8 +204,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param categoryno
-     *            the categoryno to set
+     * @param categoryno the categoryno to set
      */
     public void setCategoryno(String categoryno) {
         this.categoryno = categoryno;
@@ -225,8 +218,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param proposer
-     *            the proposer to set
+     * @param proposer the proposer to set
      */
     public void setProposer(String proposer) {
         this.proposer = proposer;
@@ -240,8 +232,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param country
-     *            the country to set
+     * @param country the country to set
      */
     public void setCountry(String country) {
         this.country = country;
@@ -255,8 +246,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param address
-     *            the address to set
+     * @param address the address to set
      */
     public void setAddress(String address) {
         this.address = address;
@@ -270,8 +260,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param zip
-     *            the zip to set
+     * @param zip the zip to set
      */
     public void setZip(String zip) {
         this.zip = zip;
@@ -285,8 +274,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param agent
-     *            the agent to set
+     * @param agent the agent to set
      */
     public void setAgent(String agent) {
         this.agent = agent;
@@ -300,8 +288,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param agentorg
-     *            the agentorg to set
+     * @param agentorg the agentorg to set
      */
     public void setAgentorg(String agentorg) {
         this.agentorg = agentorg;
@@ -315,8 +302,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param agentorgaddress
-     *            the agentorgaddress to set
+     * @param agentorgaddress the agentorgaddress to set
      */
     public void setAgentorgaddress(String agentorgaddress) {
         this.agentorgaddress = agentorgaddress;
@@ -330,8 +316,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param originator
-     *            the originator to set
+     * @param originator the originator to set
      */
     public void setOriginator(String originator) {
         this.originator = originator;
@@ -345,8 +330,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param applydate
-     *            the applydate to set
+     * @param applydate the applydate to set
      */
     public void setApplydate(String applydate) {
         this.applydate = applydate;
@@ -360,8 +344,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param publicno
-     *            the publicno to set
+     * @param publicno the publicno to set
      */
     public void setPublicno(String publicno) {
         this.publicno = publicno;
@@ -375,8 +358,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param publicdate
-     *            the publicdate to set
+     * @param publicdate the publicdate to set
      */
     public void setPublicdate(String publicdate) {
         this.publicdate = publicdate;
@@ -390,8 +372,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param commisionbulletindate
-     *            the commisionbulletindate to set
+     * @param commisionbulletindate the commisionbulletindate to set
      */
     public void setCommisionbulletindate(String commisionbulletindate) {
         this.commisionbulletindate = commisionbulletindate;
@@ -405,8 +386,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param bulletindate
-     *            the bulletindate to set
+     * @param bulletindate the bulletindate to set
      */
     public void setBulletindate(String bulletindate) {
         this.bulletindate = bulletindate;
@@ -420,8 +400,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param commisiondate
-     *            the commisiondate to set
+     * @param commisiondate the commisiondate to set
      */
     public void setCommisiondate(String commisiondate) {
         this.commisiondate = commisiondate;
@@ -435,8 +414,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param bulletinno
-     *            the bulletinno to set
+     * @param bulletinno the bulletinno to set
      */
     public void setBulletinno(String bulletinno) {
         this.bulletinno = bulletinno;
@@ -450,8 +428,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param priority
-     *            the priority to set
+     * @param priority the priority to set
      */
     public void setPriority(String priority) {
         this.priority = priority;
@@ -465,8 +442,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param approvehistory
-     *            the approvehistory to set
+     * @param approvehistory the approvehistory to set
      */
     public void setApprovehistory(String approvehistory) {
         this.approvehistory = approvehistory;
@@ -480,8 +456,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param attachedpicno
-     *            the attachedpicno to set
+     * @param attachedpicno the attachedpicno to set
      */
     public void setAttachedpicno(String attachedpicno) {
         this.attachedpicno = attachedpicno;
@@ -495,8 +470,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param pagenum
-     *            the pagenum to set
+     * @param pagenum the pagenum to set
      */
     public void setPagenum(String pagenum) {
         this.pagenum = pagenum;
@@ -510,8 +484,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param askrightnum
-     *            the askrightnum to set
+     * @param askrightnum the askrightnum to set
      */
     public void setAskrightnum(String askrightnum) {
         this.askrightnum = askrightnum;
@@ -525,8 +498,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param interpublicno
-     *            the interpublicno to set
+     * @param interpublicno the interpublicno to set
      */
     public void setInterpublicno(String interpublicno) {
         this.interpublicno = interpublicno;
@@ -540,8 +512,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param interpublicdate
-     *            the interpublicdate to set
+     * @param interpublicdate the interpublicdate to set
      */
     public void setInterpublicdate(String interpublicdate) {
         this.interpublicdate = interpublicdate;
@@ -555,8 +526,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param interpubliclang
-     *            the interpubliclang to set
+     * @param interpubliclang the interpubliclang to set
      */
     public void setInterpubliclang(String interpubliclang) {
         this.interpubliclang = interpubliclang;
@@ -570,8 +540,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param interapplyno
-     *            the interapplyno to set
+     * @param interapplyno the interapplyno to set
      */
     public void setInterapplyno(String interapplyno) {
         this.interapplyno = interapplyno;
@@ -585,8 +554,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param interapplydate
-     *            the interapplydate to set
+     * @param interapplydate the interapplydate to set
      */
     public void setInterapplydate(String interapplydate) {
         this.interapplydate = interapplydate;
@@ -600,8 +568,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param internationalizationdate
-     *            the internationalizationdate to set
+     * @param internationalizationdate the internationalizationdate to set
      */
     public void setInternationalizationdate(String internationalizationdate) {
         this.internationalizationdate = internationalizationdate;
@@ -615,8 +582,7 @@ public class PatentDocument {
     }
 
     /**
-     * @param pct
-     *            the pct to set
+     * @param pct the pct to set
      */
     public void setPct(String pct) {
         this.pct = pct;

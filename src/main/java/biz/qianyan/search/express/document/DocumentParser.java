@@ -58,18 +58,15 @@ public final class DocumentParser {
                 if (comid > 0)
                     edoc.setMessageurl("http://www.qianyan.biz/qy/item.do?i=7&yid=" + str);
                 else
-                    edoc.setMessageurl("http://www.qianyan.biz/message.do?n=" + doc.get("id")
-                            + "&c=" + doc.get("title"));
+                    edoc.setMessageurl("http://www.qianyan.biz/message.do?n=" + doc.get("id") + "&c="
+                            + doc.get("title"));
 
             } catch (Exception e) {
-                edoc.setMessageurl("http://www.qianyan.biz/message.do?n=" + doc.get("id") + "&c="
-                        + doc.get("title"));
+                edoc.setMessageurl("http://www.qianyan.biz/message.do?n=" + doc.get("id") + "&c=" + doc.get("title"));
             }
 
-        }
-        else {
-            edoc.setMessageurl("http://www.qianyan.biz/message.do?n=" + doc.get("id") + "&c="
-                    + doc.get("title"));
+        } else {
+            edoc.setMessageurl("http://www.qianyan.biz/message.do?n=" + doc.get("id") + "&c=" + doc.get("title"));
         }
 
         return edoc;
@@ -108,7 +105,7 @@ public final class DocumentParser {
             str = "0";
         }
         edoc.setQuantity(str);
-        
+
         edoc.setBuilddate(doc.get("builddate"));
 
         edoc.setItemname(doc.get("itemname"));
@@ -125,18 +122,15 @@ public final class DocumentParser {
                 if (comid > 0)
                     edoc.setMessageurl("http://www.qianyan.biz/qy/item.do?i=7&yid=" + str);
                 else
-                    edoc.setMessageurl("http://www.qianyan.biz/message.do?n=" + doc.get("id")
-                            + "&c=" + doc.get("title"));
+                    edoc.setMessageurl("http://www.qianyan.biz/message.do?n=" + doc.get("id") + "&c="
+                            + doc.get("title"));
 
             } catch (Exception e) {
-                edoc.setMessageurl("http://www.qianyan.biz/message.do?n=" + doc.get("id") + "&c="
-                        + doc.get("title"));
+                edoc.setMessageurl("http://www.qianyan.biz/message.do?n=" + doc.get("id") + "&c=" + doc.get("title"));
             }
 
-        }
-        else {
-            edoc.setMessageurl("http://www.qianyan.biz/message.do?n=" + doc.get("id") + "&c="
-                    + doc.get("title"));
+        } else {
+            edoc.setMessageurl("http://www.qianyan.biz/message.do?n=" + doc.get("id") + "&c=" + doc.get("title"));
         }
         str = doc.get("type");
 
@@ -167,14 +161,11 @@ public final class DocumentParser {
         int days = (int) (now - date) / (1000 * 60 * 60 * 24);
         if (days < 31) {
             boost = 10;
-        }
-        else if (days < 180) {
+        } else if (days < 180) {
             boost = 5f;
-        }
-        else if (days < 365) {
+        } else if (days < 365) {
             boost = 2f;
-        }
-        else if (days > 731) {
+        } else if (days > 731) {
             boost = 0.1F;
         }
         return boost;
@@ -183,76 +174,52 @@ public final class DocumentParser {
     public static Document parse(ExpressDocument sdoc) {
         log.debug("parse to lucene document");
         Document doc = new Document();
-        doc
-                .add(new Field("id", sdoc.getId().toString(), Field.Store.YES,
-                        Field.Index.NOT_ANALYZED_NO_NORMS));
+        doc.add(new Field("id", sdoc.getId().toString(), Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
         doc.add(new Field("url", sdoc.getUrl(), Field.Store.YES, Field.Index.NO));
-        
-        Field title = new Field("title", sdoc.getTitle() == null ? "" : sdoc.getTitle(),
-                Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS);
+
+        Field title = new Field("title", sdoc.getTitle() == null ? "" : sdoc.getTitle(), Field.Store.YES,
+                Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS);
         title.setBoost(4F);
         doc.add(title);
-        
+        Field brief = new Field("brief", sdoc.getBrief() == null ? "" : sdoc.getBrief(), Field.Store.YES,
+                Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS);
+        brief.setBoost(1.5F);
+        doc.add(brief);
         doc.add(new Field("itemname", sdoc.getItemname(), Field.Store.YES, Field.Index.ANALYZED_NO_NORMS));
-        doc.add(new Field("address", sdoc.getAddress() == null ? "" : sdoc.getAddress(),
-                Field.Store.NO, Field.Index.ANALYZED_NO_NORMS));
-        doc.add(new Field("classkey", sdoc.getClasskey() == null ? "" : sdoc.getClasskey(),
-                Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
-        // doc.add(new Field("classname", , Field.Store.YES, Field.Index.UN_TOKENIZED));
-        doc.add(new Field("comurl", sdoc.getComurl() == null ? "" : sdoc.getComurl(),
-                Field.Store.YES, Field.Index.NO));
-        doc.add(new Field("contact", sdoc.getContact() == null ? "" : sdoc.getContact(),
-                Field.Store.NO, Field.Index.ANALYZED_NO_NORMS));
-        // doc.add(new Field("content", sdoc.getContent(), Field.Store.NO, Field.Index.TOKENIZED));
-        doc.add(new Field("email", sdoc.getEmail() == null ? "" : sdoc.getEmail(), Field.Store.NO,
+        doc.add(new Field("address", sdoc.getAddress() == null ? "" : sdoc.getAddress(), Field.Store.NO,
                 Field.Index.ANALYZED_NO_NORMS));
-        String fax = sdoc.getFaxarea() == null ? "" : sdoc.getFaxarea();
+        doc.add(new Field("classkey", sdoc.getClasskey() == null ? "" : sdoc.getClasskey(), Field.Store.YES,
+                Field.Index.NOT_ANALYZED_NO_NORMS));
 
-        fax = fax + " " + (sdoc.getFax() == null ? "" : sdoc.getFax());
-        fax = fax.trim();
-        doc.add(new Field("fax", fax, Field.Store.NO, Field.Index.NOT_ANALYZED_NO_NORMS));
-        doc.add(new Field("mobile", sdoc.getMobile() == null ? "" : sdoc.getMobile(),
-                Field.Store.NO, Field.Index.NOT_ANALYZED_NO_NORMS));
-        doc.add(new Field("msncode", sdoc.getMsncode() == null ? "" : sdoc.getMsncode(),
-                Field.Store.NO, Field.Index.NOT_ANALYZED_NO_NORMS));
+        doc.add(new Field("comurl", sdoc.getComurl() == null ? "" : sdoc.getComurl(), Field.Store.YES, Field.Index.NO));
+        doc.add(new Field("contact", sdoc.getContact() == null ? "" : sdoc.getContact(), Field.Store.NO,
+                Field.Index.ANALYZED_NO_NORMS));
+
         doc.add(new Field("picurl", sdoc.getPicurl(), Field.Store.YES, Field.Index.NO));
 
         doc.add(new Field("price", sdoc.getPrice(), Field.Store.YES, Field.Index.NO));
         doc.add(new Field("comid", sdoc.getComid() + "", Field.Store.YES, Field.Index.NO));
-        doc.add(new Field("qqcode", sdoc.getQqcode() == null ? "" : sdoc.getQqcode(),
-                Field.Store.NO, Field.Index.NOT_ANALYZED_NO_NORMS));
-        doc.add(new Field("zip", sdoc.getZipcode() == null ? "" : sdoc.getZipcode(),
-                Field.Store.NO, Field.Index.NOT_ANALYZED_NO_NORMS));
-        doc.add(new Field("address", sdoc.getAddress() == null ? "" : sdoc.getAddress(),
-                Field.Store.NO, Field.Index.ANALYZED_NO_NORMS));
-        doc.add(new Field("regionname", sdoc.getRegionname() == null ? "" : sdoc.getRegionname(),
-                Field.Store.YES, Field.Index.ANALYZED_NO_NORMS));
-        doc.add(new Field("itemurl", sdoc.getItemurl() == null ? "" : sdoc.getItemurl(),
-                Field.Store.YES, Field.Index.NO));
-        doc.add(new Field("regionkey", sdoc.getRegionkey() == null ? "" : sdoc.getRegionkey(),
-                Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
-        doc.add(new Field("quantity", sdoc.getQuantity(), Field.Store.YES, Field.Index.NO));
-        doc.add(new Field("route", sdoc.getRoute() == null ? "" : sdoc.getRoute(), Field.Store.NO,
-                Field.Index.ANALYZED_NO_NORMS));
-        doc.add(new Field("fullpath", sdoc.getFullPath() == null ? "" : sdoc.getFullPath(),
-                Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
-        String tel = sdoc.getPhonearea() == null ? "" : sdoc.getPhonearea();
-        tel = tel + " " + (sdoc.getTel() == null ? "" : sdoc.getTel());
-        tel = tel.trim();
 
-        doc.add(new Field("tel", tel, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS));
+        doc.add(new Field("regionname", sdoc.getRegionname() == null ? "" : sdoc.getRegionname(), Field.Store.YES,
+                Field.Index.ANALYZED_NO_NORMS));
+        doc.add(new Field("itemurl", sdoc.getItemurl() == null ? "" : sdoc.getItemurl(), Field.Store.YES,
+                Field.Index.NO));
+        doc.add(new Field("regionkey", sdoc.getRegionkey() == null ? "" : sdoc.getRegionkey(), Field.Store.YES,
+                Field.Index.NOT_ANALYZED_NO_NORMS));
+        doc.add(new Field("quantity", sdoc.getQuantity(), Field.Store.YES, Field.Index.NO));
+
+        doc.add(new Field("fullpath", sdoc.getFullPath() == null ? "" : sdoc.getFullPath(), Field.Store.YES,
+                Field.Index.NOT_ANALYZED_NO_NORMS));
+
         // doc.add(new Field("search", sdoc.getTitle() + sdoc.getBrief() + sdoc.getKeywords() +
         // sdoc.getContent(), Field.Store.NO, Field.Index.TOKENIZED));
         doc.add(new Field("createdate", DateTools.timeToString(sdoc.getCreatedate().getTime(),
-                                                               DateTools.Resolution.MINUTE),
-                Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
-        doc.add(new Field("mainmode", sdoc.getMainmode() + "", Field.Store.YES,
-                Field.Index.NOT_ANALYZED_NO_NORMS));
+                DateTools.Resolution.MINUTE), Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
+        doc.add(new Field("mainmode", sdoc.getMainmode() + "", Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
         doc.add(new Field("type", sdoc.getType() + "", Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
-        doc.add(new Field("infotype", sdoc.getInfotype() + "", Field.Store.YES,
+        doc.add(new Field("infotype", sdoc.getInfotype() + "", Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
+        doc.add(new Field("builddate", sdoc.getBuilddate() == null ? "" : sdoc.getBuilddate(), Field.Store.YES,
                 Field.Index.NOT_ANALYZED_NO_NORMS));
-        doc.add(new Field("builddate", sdoc.getBuilddate() == null ? "" : sdoc.getBuilddate(),
-                Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
         doc.setBoost(getBoost(sdoc.getCreatedate().getTime()));
         log.debug("parse end");
         return doc;
@@ -261,29 +228,23 @@ public final class DocumentParser {
     public static Document parse(AdDocument sdoc) {
         log.debug("parse to lucene document");
         Document doc = new Document();
-        doc
-                .add(new Field("id", sdoc.getId().toString(), Field.Store.YES,
-                        Field.Index.NOT_ANALYZED_NO_NORMS));
-        doc.add(new Field("url", sdoc.getUrl() == null ? "" : sdoc.getUrl(), Field.Store.YES,
+        doc.add(new Field("id", sdoc.getId().toString(), Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
+        doc.add(new Field("url", sdoc.getUrl() == null ? "" : sdoc.getUrl(), Field.Store.YES, Field.Index.NO));
+        doc.add(new Field("itemname", sdoc.getItemname() == null ? "" : sdoc.getItemname(), Field.Store.YES,
                 Field.Index.NO));
-        doc.add(new Field("itemname", sdoc.getItemname() == null ? "" : sdoc.getItemname(),
-                Field.Store.YES, Field.Index.NO));
-        doc.add(new Field("itemurl", sdoc.getItemurl() == null ? "" : sdoc.getItemurl(),
-                Field.Store.YES, Field.Index.NO));
+        doc.add(new Field("itemurl", sdoc.getItemurl() == null ? "" : sdoc.getItemurl(), Field.Store.YES,
+                Field.Index.NO));
         doc.add(new Field("title", sdoc.getTitle(), Field.Store.YES, Field.Index.NO));
         doc.add(new Field("brief", sdoc.getBrief(), Field.Store.YES, Field.Index.NO));
         doc.add(new Field("picurl", sdoc.getPicurl(), Field.Store.YES, Field.Index.NO));
         doc.add(new Field("adtype", sdoc.getAdtype() + "", Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
-        doc.add(new Field("searchtype", sdoc.getSearchtype() + "", Field.Store.YES,
-                Field.Index.NOT_ANALYZED_NO_NORMS));
-        doc.add(new Field("infotype", sdoc.getInfotype() + "", Field.Store.YES,
-                Field.Index.NOT_ANALYZED_NO_NORMS));
+        doc.add(new Field("searchtype", sdoc.getSearchtype() + "", Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
+        doc.add(new Field("infotype", sdoc.getInfotype() + "", Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
         doc.add(new Field("type", sdoc.getType() + "", Field.Store.YES, Field.Index.NO));
         doc.add(new Field("comid", sdoc.getComid() + "", Field.Store.YES, Field.Index.NO));
-        doc.add(new Field("comurl", sdoc.getComurl() == null ? "" : sdoc.getComurl(),
-                Field.Store.YES, Field.Index.NO));
-        doc.add(new Field("rank", sdoc.getRank() == null ? "0" : sdoc.getRank().toString(),
-                Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
+        doc.add(new Field("comurl", sdoc.getComurl() == null ? "" : sdoc.getComurl(), Field.Store.YES, Field.Index.NO));
+        doc.add(new Field("rank", sdoc.getRank() == null ? "0" : sdoc.getRank().toString(), Field.Store.YES,
+                Field.Index.NOT_ANALYZED_NO_NORMS));
         String key = sdoc.getKeyword();
         if ((key == null || "".equals(key.trim()))) {
             key = "jock";
@@ -291,16 +252,15 @@ public final class DocumentParser {
         log.info("keyword=" + key);
         Field keyword = new Field("keyword", key, Field.Store.YES, Field.Index.ANALYZED);
         doc.add(keyword);
-        doc.add(new Field("date", DateTools.timeToString(sdoc.getCreatedate().getTime(),
-                                                         DateTools.Resolution.MINUTE),
+        doc.add(new Field("date", DateTools.timeToString(sdoc.getCreatedate().getTime(), DateTools.Resolution.MINUTE),
                 Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
-        doc.add(new Field("createdate", DateTools.timeToString(System.currentTimeMillis(),
-                                                               DateTools.Resolution.MINUTE),
-                Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
-        doc.add(new Field("fullpath", sdoc.getFullPath() == null ? "" : sdoc.getFullPath(),
-                Field.Store.YES, Field.Index.NO));
-        doc.add(new Field("regionname", sdoc.getRegionname() == null ? "" : sdoc.getRegionname(),
-                Field.Store.YES, Field.Index.NO));
+        doc.add(new Field("createdate",
+                DateTools.timeToString(System.currentTimeMillis(), DateTools.Resolution.MINUTE), Field.Store.YES,
+                Field.Index.NOT_ANALYZED_NO_NORMS));
+        doc.add(new Field("fullpath", sdoc.getFullPath() == null ? "" : sdoc.getFullPath(), Field.Store.YES,
+                Field.Index.NO));
+        doc.add(new Field("regionname", sdoc.getRegionname() == null ? "" : sdoc.getRegionname(), Field.Store.YES,
+                Field.Index.NO));
 
         log.debug("parse end");
         return doc;
@@ -309,8 +269,7 @@ public final class DocumentParser {
     public static Document parse(ReleatedKeyword rk) {
         log.debug("parse to lucene document");
         Document doc = new Document();
-        Field keyword = new Field("keyword", rk.getKeyword(), Field.Store.YES,
-                Field.Index.ANALYZED);
+        Field keyword = new Field("keyword", rk.getKeyword(), Field.Store.YES, Field.Index.ANALYZED);
         doc.add(keyword);
         log.debug("parse end");
         return doc;

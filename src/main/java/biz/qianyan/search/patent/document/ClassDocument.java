@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class ClassDocument {
     private Integer id;
-    private String  mainclass;
-    private String  subclass;
-    private String  classname;
-    private Date    createdate;
+    private String mainclass;
+    private String subclass;
+    private String classname;
+    private Date createdate;
 
     public Integer getId() {
         return id;

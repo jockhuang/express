@@ -23,8 +23,7 @@ public class SupplyIndexBuild {
         IndexMaker index = (IndexMaker) ctx.getBean("SupplyIndexDescBuild");
         if (args.length > 0) {
             index.indexBuild(true);
-        }
-        else {
+        } else {
             index.indexBuild(false);
         }
     }

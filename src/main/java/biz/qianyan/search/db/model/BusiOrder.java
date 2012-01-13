@@ -13,30 +13,30 @@ public class BusiOrder implements java.io.Serializable {
     // Fields
 
     private Integer id;
-    private String  keyword;
-    private String  title;
-    private String  brief;
-    private String  picurl;
-    private String  itemurl;
-    private String  companyname;
-    private String  comurl;
-    private String  province;
-    private String  classname;
+    private String keyword;
+    private String title;
+    private String brief;
+    private String picurl;
+    private String itemurl;
+    private String companyname;
+    private String comurl;
+    private String province;
+    private String classname;
     private Integer ssid;
-    private Short   rank;
-    private Date    begindate;
-    private Date    enddate;
-    private Short   type;
-    private Short   searchtype;
-    private Short   infotype;
-    private Short   configtype;
+    private Short rank;
+    private Date begindate;
+    private Date enddate;
+    private Short type;
+    private Short searchtype;
+    private Short infotype;
+    private Short configtype;
     private Integer payid;
     private Integer agentid;
     private Integer userid;
     private Integer yid;
-    private String  memo;
-    private Short   status;
-    private Date    createdate;
+    private String memo;
+    private Short status;
+    private Date createdate;
 
     // Constructors
 
@@ -45,10 +45,9 @@ public class BusiOrder implements java.io.Serializable {
     }
 
     /** minimal constructor */
-    public BusiOrder(String keyword, String title, String brief, Integer ssid, Short rank,
-                     Date begindate, Date enddate, Short type, Short infotype, Integer payid,
-                     Integer agentid, Integer userid, Integer yid, String memo, Short status,
-                     Date createdate) {
+    public BusiOrder(String keyword, String title, String brief, Integer ssid, Short rank, Date begindate,
+            Date enddate, Short type, Short infotype, Integer payid, Integer agentid, Integer userid, Integer yid,
+            String memo, Short status, Date createdate) {
         this.keyword = keyword;
         this.title = title;
         this.brief = brief;
@@ -68,12 +67,10 @@ public class BusiOrder implements java.io.Serializable {
     }
 
     /** full constructor */
-    public BusiOrder(String keyword, String title, String brief, String picurl, String itemurl,
-                     String companyname, String comurl, String province, String classname,
-                     Integer ssid, Short rank, Date begindate, Date enddate, Short type,
-                     Short searchtype, Short infotype, Short configtype, Integer payid,
-                     Integer agentid, Integer userid, Integer yid, String memo, Short status,
-                     Date createdate) {
+    public BusiOrder(String keyword, String title, String brief, String picurl, String itemurl, String companyname,
+            String comurl, String province, String classname, Integer ssid, Short rank, Date begindate, Date enddate,
+            Short type, Short searchtype, Short infotype, Short configtype, Integer payid, Integer agentid,
+            Integer userid, Integer yid, String memo, Short status, Date createdate) {
         this.keyword = keyword;
         this.title = title;
         this.brief = brief;

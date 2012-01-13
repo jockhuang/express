@@ -21,8 +21,7 @@ public class AdIndexBuild {
         IndexMaker index = (IndexMaker) ctx.getBean("AdIndexBuild");
         if (args.length > 0) {
             index.indexBuild(true);
-        }
-        else {
+        } else {
             index.indexBuild(false);
         }
 

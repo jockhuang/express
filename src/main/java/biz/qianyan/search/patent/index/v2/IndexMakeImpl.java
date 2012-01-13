@@ -58,6 +58,8 @@ public class IndexMakeImpl implements IndexMake {
             id = readId();
             IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_35, analyzer);
             iwc.setOpenMode(OpenMode.CREATE_OR_APPEND);
+            if (id == 0)
+                iwc.setOpenMode(OpenMode.CREATE);
             iwc.setRAMBufferSizeMB(512.0);
 
             // writer = new IndexWriter(indexdir, analyzer, true);
@@ -66,7 +68,7 @@ public class IndexMakeImpl implements IndexMake {
             // writer.setMaxBufferedDocs(10000);
             // writer.setMaxMergeDocs(20000);
             // writer.setMergeFactor(10000);
-            for(int j=0;j<Config.INDEX;j++){
+            for (int j = 0; j < Config.INDEX; j++) {
                 List<VwSearchPatent> list = dao.findAll(id);
                 if (list.size() == 0) {
                     break;
@@ -80,10 +82,9 @@ public class IndexMakeImpl implements IndexMake {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                   
 
                 }
-                
+
             }
 
             writeId(id);

@@ -29,8 +29,7 @@ public class ReleatedKeyword {
     }
 
     /**
-     * @param keyword
-     *            the keyword to set
+     * @param keyword the keyword to set
      */
     public final void setKeyword(String keyword) {
         this.keyword = keyword;

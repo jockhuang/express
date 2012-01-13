@@ -5,11 +5,11 @@ package biz.qianyan.search.express.web;
  */
 public class Navbar {
 
-    public  int PAGESIZE = 10;
-    private int       allrows;
-    private int       currpage;
-    private int       start;
-    private int       totalpage;
+    public int PAGESIZE = 10;
+    private int allrows;
+    private int currpage;
+    private int start;
+    private int totalpage;
 
     /**
      * @param currpage
@@ -48,8 +48,7 @@ public class Navbar {
     }
 
     /**
-     * @param allrows
-     *            the allrows to set
+     * @param allrows the allrows to set
      */
     public void setAllrows(int allrows) {
         this.allrows = allrows;
@@ -63,20 +62,17 @@ public class Navbar {
         if ((currpage > 1) && (currpage > totalpage)) {
             currpage = totalpage;
             start = (totalpage - 1) * PAGESIZE;
-        }
-        else if (currpage <= 1) {
+        } else if (currpage <= 1) {
             currpage = 1;
             start = 0;
-        }
-        else {
+        } else {
             start = (currpage - 1) * PAGESIZE;
         }
 
     }
 
     /**
-     * @param currpage
-     *            the currpage to set
+     * @param currpage the currpage to set
      */
     public void setCurrpage(int currpage) {
         this.currpage = currpage;

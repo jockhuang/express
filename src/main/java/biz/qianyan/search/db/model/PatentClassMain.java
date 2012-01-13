@@ -11,10 +11,10 @@ public class PatentClassMain implements java.io.Serializable {
     // Fields
 
     private Integer id;
-    private String  classkey;
-    private String  patentcode;
-    private String  mainclass;
-    private String  subclass;
+    private String classkey;
+    private String patentcode;
+    private String mainclass;
+    private String subclass;
 
     // Constructors
 

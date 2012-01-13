@@ -14,8 +14,7 @@ public class IndexBuild {
         IndexMake index = (IndexMake) ctx.getBean("PatentIndexBuild");
         if (args.length > 0) {
             index.indexBuild(true);
-        }
-        else {
+        } else {
             index.indexBuild(false);
         }
 

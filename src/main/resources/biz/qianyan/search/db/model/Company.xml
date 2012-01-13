@@ -45,11 +45,11 @@
 	</resultMap>
 
 	<select id="getCompanyList" parameterClass="int" resultMap="companyBean">
-		select top 500 * from supply.dbo.vw_search_coms where <![CDATA[  id>#id# ]]>
+		select top 500 * from supply.dbo.vw_search_coms where <![CDATA[  id>#id#  and id<10000000  ]]>
 		order by id
 	</select>
 	<select id="getCompanyList2" parameterClass="int" resultMap="companyBean">
-		select top 500 * from supply.dbo.vw_search_coms where <![CDATA[  id>#id# ]]> and id>=10000000 
+		select top 500 * from supply.dbo.vw_search_coms where <![CDATA[  id>#id# and id>=10000000  ]]> 
 		order by id
 	</select>
 	<select id="getCompanyByID" parameterClass="int" resultMap="companyBean">

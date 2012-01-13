@@ -18,11 +18,10 @@ import biz.qianyan.search.db.model.ForbidKeywordsDAO;
 public class BlackWords {
 
     private ForbidKeywordsDAO dao;
-    private static String     file = "/data/search/WEB-INF/blackword.txt";
+    private static String file = "/data/search/WEB-INF/blackword.txt";
 
     /**
-     * @param dao
-     *            the dao to set
+     * @param dao the dao to set
      */
     public void setDao(ForbidKeywordsDAO dao) {
         this.dao = dao;

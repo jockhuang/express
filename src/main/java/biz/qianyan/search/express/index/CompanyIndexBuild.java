@@ -15,8 +15,7 @@ public class CompanyIndexBuild {
         if (args.length > 0) {
             IndexMaker index = (IndexMaker) ctx.getBean("ComIndexBuild2");
             index.indexBuild(true);
-        }
-        else {
+        } else {
             IndexMaker index = (IndexMaker) ctx.getBean("ComIndexBuild");
             index.indexBuild(true);
         }

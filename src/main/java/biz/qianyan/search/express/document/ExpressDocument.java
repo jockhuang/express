@@ -10,47 +10,47 @@ import java.util.Date;
  */
 public final class ExpressDocument {
 
-    private String  address;
-    private String  brief;
-    private String  builddate;
-    private String  classkey;
-    private String  itemname;
-    private String  comurl;
-    private String  contact;
-    private String  content;
-    private Date    createdate;
-    private Short   credit;
-    private String  email;
-    private String  fax;
-    private String  faxarea;
-    private String  faxcountry;
-    private String  fullPath;
+    private String address;
+    private String brief;
+    private String builddate;
+    private String classkey;
+    private String itemname;
+    private String comurl;
+    private String contact;
+    private String content;
+    private Date createdate;
+    private Short credit;
+    private String email;
+    private String fax;
+    private String faxarea;
+    private String faxcountry;
+    private String fullPath;
     private Integer id;
-    private Short   infotype;
-    private String  keywords;
-    private short   mainmode;
-    private String  mobile;
-    private String  msncode;
-    private String  phonearea;
-    private String  phonecountry;
-    private String  picurl;
-    private String  price;
-    private String  qqcode;
-    private String  quantity;
-    private String  regionkey;
-    private String  regionname;
-    private String  route;
-    private String  tel;
-    private String  title;
-    private String  orititle;
-    private int     type;
-    private String  url;
-    private String  zipcode;
-    private int     comid;
-    private String  shortpath;
-    private String  messageurl;
-    private String  itemurl;
-    private String  bgcolor;
+    private Short infotype;
+    private String keywords;
+    private short mainmode;
+    private String mobile;
+    private String msncode;
+    private String phonearea;
+    private String phonecountry;
+    private String picurl;
+    private String price;
+    private String qqcode;
+    private String quantity;
+    private String regionkey;
+    private String regionname;
+    private String route;
+    private String tel;
+    private String title;
+    private String orititle;
+    private int type;
+    private String url;
+    private String zipcode;
+    private int comid;
+    private String shortpath;
+    private String messageurl;
+    private String itemurl;
+    private String bgcolor;
 
     /**
      * @return the orititle
@@ -74,8 +74,7 @@ public final class ExpressDocument {
     }
 
     /**
-     * @param bgcolor
-     *            the bgcolor to set
+     * @param bgcolor the bgcolor to set
      */
     public void setBgcolor(String bgcolor) {
         this.bgcolor = bgcolor;
@@ -89,8 +88,7 @@ public final class ExpressDocument {
     }
 
     /**
-     * @param itemurl
-     *            the itemurl to set
+     * @param itemurl the itemurl to set
      */
     public void setItemurl(String itemurl) {
         this.itemurl = itemurl;
@@ -131,16 +129,14 @@ public final class ExpressDocument {
     }
 
     /**
-     * @param messageurl
-     *            the messageurl to set
+     * @param messageurl the messageurl to set
      */
     public final void setMessageurl(String messageurl) {
         this.messageurl = messageurl;
     }
 
     /**
-     * @param comid
-     *            the comid to set
+     * @param comid the comid to set
      */
     public void setComid(int comid) {
         this.comid = comid;
@@ -378,32 +374,28 @@ public final class ExpressDocument {
     }
 
     /**
-     * @param address
-     *            the address to set
+     * @param address the address to set
      */
     public final void setAddress(String address) {
         this.address = address;
     }
 
     /**
-     * @param brief
-     *            the brief to set
+     * @param brief the brief to set
      */
     public final void setBrief(String brief) {
         this.brief = brief;
     }
 
     /**
-     * @param builddate
-     *            the builddate to set
+     * @param builddate the builddate to set
      */
     public void setBuilddate(String builddate) {
         this.builddate = builddate;
     }
 
     /**
-     * @param classkey
-     *            the classkey to set
+     * @param classkey the classkey to set
      */
     public final void setClasskey(String classkey) {
         this.classkey = classkey;
@@ -417,88 +409,77 @@ public final class ExpressDocument {
     }
 
     /**
-     * @param itemname
-     *            the itemname to set
+     * @param itemname the itemname to set
      */
     public void setItemname(String itemname) {
         this.itemname = itemname;
     }
 
     /**
-     * @param comurl
-     *            the comurl to set
+     * @param comurl the comurl to set
      */
     public final void setComurl(String comurl) {
         this.comurl = comurl;
     }
 
     /**
-     * @param contact
-     *            the contact to set
+     * @param contact the contact to set
      */
     public final void setContact(String contact) {
         this.contact = contact;
     }
 
     /**
-     * @param content
-     *            the content to set
+     * @param content the content to set
      */
     public final void setContent(String content) {
         this.content = content;
     }
 
     /**
-     * @param createdate
-     *            the createdate to set
+     * @param createdate the createdate to set
      */
     public final void setCreatedate(Date createdate) {
         this.createdate = createdate;
     }
 
     /**
-     * @param credit
-     *            the credit to set
+     * @param credit the credit to set
      */
     public final void setCredit(Short credit) {
         this.credit = credit;
     }
 
     /**
-     * @param email
-     *            the email to set
+     * @param email the email to set
      */
     public final void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * @param fax
-     *            the fax to set
+     * @param fax the fax to set
      */
     public final void setFax(String fax) {
         this.fax = fax;
     }
 
     /**
-     * @param faxarea
-     *            the faxarea to set
+     * @param faxarea the faxarea to set
      */
     public final void setFaxarea(String faxarea) {
         this.faxarea = faxarea;
     }
 
     /**
-     * @param faxcountry
-     *            the faxcountry to set
+     * @param faxcountry the faxcountry to set
      */
     public final void setFaxcountry(String faxcountry) {
         this.faxcountry = faxcountry;
     }
 
     /**
-     * @param fullPath
-     *            the fullPath to set
+     * @param fullPath the fullPath to set
      */
     public void setFullPath(String fullPath) {
 
@@ -514,160 +495,140 @@ public final class ExpressDocument {
     }
 
     /**
-     * @param id
-     *            the id to set
+     * @param id the id to set
      */
     public final void setId(Integer id) {
         this.id = id;
     }
 
     /**
-     * @param infotype
-     *            the infotype to set
+     * @param infotype the infotype to set
      */
     public final void setInfotype(Short infotype) {
         this.infotype = infotype;
     }
 
     /**
-     * @param keywords
-     *            the keywords to set
+     * @param keywords the keywords to set
      */
     public final void setKeywords(String keywords) {
         this.keywords = keywords;
     }
 
     /**
-     * @param mainmode
-     *            the mainmode to set
+     * @param mainmode the mainmode to set
      */
     public void setMainmode(short mainmode) {
         this.mainmode = mainmode;
     }
 
     /**
-     * @param mobile
-     *            the mobile to set
+     * @param mobile the mobile to set
      */
     public final void setMobile(String mobile) {
         this.mobile = mobile;
     }
 
     /**
-     * @param msncode
-     *            the msncode to set
+     * @param msncode the msncode to set
      */
     public final void setMsncode(String msncode) {
         this.msncode = msncode;
     }
 
     /**
-     * @param phonearea
-     *            the phonearea to set
+     * @param phonearea the phonearea to set
      */
     public final void setPhonearea(String phonearea) {
         this.phonearea = phonearea;
     }
 
     /**
-     * @param phonecountry
-     *            the phonecountry to set
+     * @param phonecountry the phonecountry to set
      */
     public final void setPhonecountry(String phonecountry) {
         this.phonecountry = phonecountry;
     }
 
     /**
-     * @param picurl
-     *            the picurl to set
+     * @param picurl the picurl to set
      */
     public final void setPicurl(String picurl) {
         this.picurl = picurl;
     }
 
     /**
-     * @param price
-     *            the price to set
+     * @param price the price to set
      */
     public final void setPrice(String price) {
         this.price = price;
     }
 
     /**
-     * @param qqcode
-     *            the qqcode to set
+     * @param qqcode the qqcode to set
      */
     public final void setQqcode(String qqcode) {
         this.qqcode = qqcode;
     }
 
     /**
-     * @param quantity
-     *            the quantity to set
+     * @param quantity the quantity to set
      */
     public final void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
     /**
-     * @param regionkey
-     *            the regionkey to set
+     * @param regionkey the regionkey to set
      */
     public final void setRegionkey(String regionkey) {
         this.regionkey = regionkey;
     }
 
     /**
-     * @param regionname
-     *            the regionname to set
+     * @param regionname the regionname to set
      */
     public final void setRegionname(String regionname) {
         this.regionname = regionname;
     }
 
     /**
-     * @param route
-     *            the route to set
+     * @param route the route to set
      */
     public final void setRoute(String route) {
         this.route = route;
     }
 
     /**
-     * @param tel
-     *            the tel to set
+     * @param tel the tel to set
      */
     public final void setTel(String tel) {
         this.tel = tel;
     }
 
     /**
-     * @param title
-     *            the title to set
+     * @param title the title to set
      */
     public final void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * @param type
-     *            the type to set
+     * @param type the type to set
      */
     public void setType(int type) {
         this.type = type;
     }
 
     /**
-     * @param url
-     *            the url to set
+     * @param url the url to set
      */
     public final void setUrl(String url) {
         this.url = url;
     }
 
     /**
-     * @param zipcode
-     *            the zipcode to set
+     * @param zipcode the zipcode to set
      */
     public final void setZipcode(String zipcode) {
         this.zipcode = zipcode;

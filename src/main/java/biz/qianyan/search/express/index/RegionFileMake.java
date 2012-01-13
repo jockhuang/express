@@ -24,13 +24,12 @@ import biz.qianyan.search.util.Config;
  */
 public final class RegionFileMake {
 
-    private static final Log                          log           = LogFactory
-                                                                            .getLog(RegionFileMake.class);
-    private RegionDAO                         dao;
+    private static final Log log = LogFactory.getLog(RegionFileMake.class);
+    private RegionDAO dao;
 
-    private Vector<LabelValueBean>                    provinces     = new Vector<LabelValueBean>(34);
-    private Vector<LabelValueBean>                    provincesname = new Vector<LabelValueBean>(34);
-    private Hashtable<String, Vector<LabelValueBean>> citys         = new Hashtable<String, Vector<LabelValueBean>>();
+    private Vector<LabelValueBean> provinces = new Vector<LabelValueBean>(34);
+    private Vector<LabelValueBean> provincesname = new Vector<LabelValueBean>(34);
+    private Hashtable<String, Vector<LabelValueBean>> citys = new Hashtable<String, Vector<LabelValueBean>>();
 
     /**
      * @return the dao
@@ -40,8 +39,7 @@ public final class RegionFileMake {
     }
 
     /**
-     * @param dao
-     *            the dao to set
+     * @param dao the dao to set
      */
     public void setDao(RegionDAO dao) {
         this.dao = dao;
@@ -55,8 +53,7 @@ public final class RegionFileMake {
     }
 
     /**
-     * @param provinces
-     *            the provinces to set
+     * @param provinces the provinces to set
      */
     public void setProvinces(Vector<LabelValueBean> provinces) {
         this.provinces = provinces;
@@ -70,8 +67,7 @@ public final class RegionFileMake {
     }
 
     /**
-     * @param citys
-     *            the citys to set
+     * @param citys the citys to set
      */
     public void setCitys(Hashtable<String, Vector<LabelValueBean>> citys) {
         this.citys = citys;
@@ -103,8 +99,7 @@ public final class RegionFileMake {
             citys.put(r.getClasskey(), slist);
         }
         try {
-            ObjectOutputStream re = new ObjectOutputStream(new FileOutputStream(
-                    Config.REGIONFILE));
+            ObjectOutputStream re = new ObjectOutputStream(new FileOutputStream(Config.REGIONFILE));
 
             re.writeObject(provinces);
             re.writeUTF("\n");

@@ -13,10 +13,10 @@ public class PatentClass implements java.io.Serializable {
     // Fields
 
     private Integer id;
-    private String  mainclass;
-    private String  subclass;
-    private String  classname;
-    private Date    createdate;
+    private String mainclass;
+    private String subclass;
+    private String classname;
+    private Date createdate;
 
     // Constructors
 

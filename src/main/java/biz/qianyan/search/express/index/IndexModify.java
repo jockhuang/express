@@ -18,8 +18,8 @@ import biz.qianyan.search.db.model.DeleteItem;
 import biz.qianyan.search.db.model.DeleteItemDAO;
 
 public class IndexModify {
-    private String[]      indexdir;
-    private Analyzer      analyzer;
+    private String[] indexdir;
+    private Analyzer analyzer;
     private DeleteItemDAO dao;
 
     public void setDao(DeleteItemDAO dao) {
@@ -36,7 +36,7 @@ public class IndexModify {
         iwc.setOpenMode(OpenMode.CREATE_OR_APPEND);
         iwc.setRAMBufferSizeMB(256.0);
         for (int i = 0; i < indexdir.length; i++) {
-            reader[i] = new IndexWriter(FSDirectory.open(new File(indexdir[i])),iwc);
+            reader[i] = new IndexWriter(FSDirectory.open(new File(indexdir[i])), iwc);
         }
         long id = readId(dao.getClass().getName());
         List<DeleteItem> l = dao.findAll(id);
@@ -65,7 +65,7 @@ public class IndexModify {
     }
 
     private long readId(String file) throws Exception {
-    	long id = 0;
+        long id = 0;
         try {
             RandomAccessFile rf = new RandomAccessFile(file, "r");
             id = rf.readLong();

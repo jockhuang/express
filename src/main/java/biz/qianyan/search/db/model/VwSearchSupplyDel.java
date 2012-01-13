@@ -6,7 +6,7 @@ package biz.qianyan.search.db.model;
  * @author MyEclipse Persistence Tools
  */
 
-public class VwSearchSupplyDel implements DeleteItem , java.io.Serializable {
+public class VwSearchSupplyDel implements DeleteItem, java.io.Serializable {
 
     // Fields
 
@@ -41,7 +41,7 @@ public class VwSearchSupplyDel implements DeleteItem , java.io.Serializable {
     public void setIdid(Long idid) {
         this.idid = idid;
     }
-    
+
     public void setIdid(Integer idid) {
         this.idid = idid.longValue();
     }

@@ -32,7 +32,7 @@ public class RegionSelect {
             ObjectInputStream re = new ObjectInputStream(new FileInputStream(Config.REGIONFILE));
 
             provinces = (Vector<LabelValueBean>) re.readObject();
-            
+
             re.readUTF();
             citys = (Hashtable<String, Vector<LabelValueBean>>) re.readObject();
             re.readUTF();

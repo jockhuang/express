@@ -18,11 +18,12 @@ public class PatentQueryParser {
 
     public PatentQueryParser(Analyzer analyzer) {
 
-        parser = new MultiFieldQueryParser(Version.LUCENE_35,new String[] { "applyno", "title", "brief", "proposer",
+        parser = new MultiFieldQueryParser(Version.LUCENE_35, new String[] { "applyno", "title", "brief", "proposer",
                 "originator", "agent", "agentorg", "country", "address" }, analyzer);
         parser.setDefaultOperator(Operator.AND);
 
-        titleparser = new MultiFieldQueryParser(Version.LUCENE_35,new String[] {"applyno", "proposer","title" }, analyzer);
+        titleparser = new MultiFieldQueryParser(Version.LUCENE_35, new String[] { "applyno", "proposer", "title" },
+                analyzer);
         titleparser.setDefaultOperator(Operator.AND);
     }
 

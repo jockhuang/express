@@ -24,8 +24,7 @@ public class IndexBuild {
         IndexMaker index = (IndexMaker) ctx.getBean("SupplyIndexBuild");
         if (args.length > 0) {
             index.indexBuild(true);
-        }
-        else {
+        } else {
             index.indexBuild(false);
         }
 

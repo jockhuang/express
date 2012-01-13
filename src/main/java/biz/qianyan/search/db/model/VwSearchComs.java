@@ -13,42 +13,42 @@ public class VwSearchComs implements java.io.Serializable {
     // Fields
 
     private Integer id;
-    private String  url;
-    private String  title;
-    private String  classkey;
-    private String  regionkey;
-    private Short   infotype;
-    private Date    createdate;
-    private String  itemname;
-    private String  picurl;
-    private String  comurl;
-    private String  brief;
-    private String  content;
-    private String  keywords;
-    private Short   credit;
-    private String  regionname;
-    private String  contact;
-    private String  address;
-    private String  zipcode;
-    private String  phonecountry;
-    private String  phonearea;
-    private String  tel;
-    private String  faxcountry;
-    private String  faxarea;
-    private String  fax;
-    private String  email;
-    private String  route;
-    private String  mobile;
-    private String  price;
-    private String  quantity;
-    private String  qqcode;
-    private String  msncode;
-    private String  fullPath;
+    private String url;
+    private String title;
+    private String classkey;
+    private String regionkey;
+    private Short infotype;
+    private Date createdate;
+    private String itemname;
+    private String picurl;
+    private String comurl;
+    private String brief;
+    private String content;
+    private String keywords;
+    private Short credit;
+    private String regionname;
+    private String contact;
+    private String address;
+    private String zipcode;
+    private String phonecountry;
+    private String phonearea;
+    private String tel;
+    private String faxcountry;
+    private String faxarea;
+    private String fax;
+    private String email;
+    private String route;
+    private String mobile;
+    private String price;
+    private String quantity;
+    private String qqcode;
+    private String msncode;
+    private String fullPath;
     private Integer comid;
-    private Short   mainmode;
-    private Short   maintrade;
-    private String  builddate;
-    private String  itemurl;
+    private Short mainmode;
+    private Short maintrade;
+    private String builddate;
+    private String itemurl;
 
     // Constructors
 
@@ -62,15 +62,12 @@ public class VwSearchComs implements java.io.Serializable {
     }
 
     /** full constructor */
-    public VwSearchComs(Integer id, String url, String title, String classKey, String regionkey,
-                        Short infotype, Date createdate, String itemname, String picurl,
-                        String comurl, String brief, String content, String keywords, Short credit,
-                        String regionname, String contact, String address, String zipcode,
-                        String phonecountry, String phonearea, String tel, String faxcountry,
-                        String faxarea, String fax, String email, String route, String mobile,
-                        String price, String quantity, String qqcode, String msncode,
-                        String fullPath, Integer comid, Short mainmode, Short maintrade,
-                        String builddate, String itemurl) {
+    public VwSearchComs(Integer id, String url, String title, String classKey, String regionkey, Short infotype,
+            Date createdate, String itemname, String picurl, String comurl, String brief, String content,
+            String keywords, Short credit, String regionname, String contact, String address, String zipcode,
+            String phonecountry, String phonearea, String tel, String faxcountry, String faxarea, String fax,
+            String email, String route, String mobile, String price, String quantity, String qqcode, String msncode,
+            String fullPath, Integer comid, Short mainmode, Short maintrade, String builddate, String itemurl) {
         this.id = id;
         this.url = url;
         this.title = title;

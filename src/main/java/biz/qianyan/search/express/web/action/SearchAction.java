@@ -39,18 +39,16 @@ public class SearchAction extends Action {
     /*
      * Generated Methods
      */
-    private ExpressSearcher  searcher;
+    private ExpressSearcher searcher;
 
-    private AdSearcher       adsearcher;
+    private AdSearcher adsearcher;
 
     private ReleatedSearcher releatedsearcher;
 
-    private RegionSelect     regionselect;
+    private RegionSelect regionselect;
 
-    
-	/**
-     * @param regionselect
-     *            the regionselect to set
+    /**
+     * @param regionselect the regionselect to set
      */
     public void setRegionselect(RegionSelect regionselect) {
         this.regionselect = regionselect;
@@ -66,16 +64,15 @@ public class SearchAction extends Action {
      * @return ActionForward
      */
     @Override
-    public ActionForward execute(ActionMapping mapping, ActionForm form,
-                                 HttpServletRequest request, HttpServletResponse response) {
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) {
         SearchForm searchForm = (SearchForm) form;
         searchForm.setProvinceselect(regionselect.getProvinces());
         if (searchForm.getProvinceCN() != null && (!"".equals(searchForm.getProvinceCN().trim()))
                 && (!"null".equals(searchForm.getProvinceCN().trim()))) {
             log.info("get citys:" + searchForm.getProvinceCN());
             searchForm.setCitysselect(regionselect.getCitys(searchForm.getProvinceCN()));
-        }
-        else {
+        } else {
             log.info("get citys default" + regionselect.getCitys("null"));
             searchForm.setCitysselect(regionselect.getCitys("null"));
         }
@@ -86,24 +83,24 @@ public class SearchAction extends Action {
         if (searchForm.getQ() == null || "".equals(searchForm.getQ().trim())) {
             return mapping.findForward("index");
         }
-        
-        ExpressSearcher  mysearcher;
 
-        	mysearcher = searcher;
+        ExpressSearcher mysearcher;
+
+        mysearcher = searcher;
         // log.info("CapitalCN:"+searchForm.getCapitalCN());
         // log.info("ProvinceCN:"+searchForm.getProvinceCN());
         Navbar page = new Navbar(curpage);
         page.PAGESIZE = searchForm.getNum();
-        log.info("pagesize="+page.PAGESIZE);
+        log.info("pagesize=" + page.PAGESIZE);
         List<ExpressDocument> list = mysearcher.search(searchForm, page);
-        log.info(searchForm.getQ()+" mini size:" + list.size());
-        if(list.size()==0&&searchForm.getN()==1){
-        	mysearcher = searcher;
-        	list = mysearcher.search(searchForm, page);
-        	log.info(searchForm.getQ()+"max size:" + list.size());
+        log.info(searchForm.getQ() + " mini size:" + list.size());
+        if (list.size() == 0 && searchForm.getN() == 1) {
+            mysearcher = searcher;
+            list = mysearcher.search(searchForm, page);
+            log.info(searchForm.getQ() + "max size:" + list.size());
         }
-        if(list.size()<page.PAGESIZE&&searchForm.getN()==1){
-        	request.setAttribute("showmore", "true");
+        if (list.size() < page.PAGESIZE && searchForm.getN() == 1) {
+            request.setAttribute("showmore", "true");
         }
         if (searchForm.getR() == 1) {
             for (ExpressDocument ed : list) {
@@ -115,9 +112,9 @@ public class SearchAction extends Action {
             return mapping.findForward("left");
         }
         int cn = searchForm.getCn();
-        if(cn<0)
+        if (cn < 0)
             cn = 1;
-        if(searchForm.getR() == 2){
+        if (searchForm.getR() == 2) {
             for (ExpressDocument ed : list) {
                 if (ed.getBrief().length() > cn) {
                     ed.setBrief(ed.getBrief().substring(0, cn) + "..");
@@ -130,8 +127,7 @@ public class SearchAction extends Action {
         List<ClassResult> clist = mysearcher.searchClass(searchForm, page);
         if (searchForm.getC() != null && searchForm.getC().trim().length() > 0) {
             request.setAttribute("filter", 1);
-        }
-        else {
+        } else {
             request.setAttribute("filter", 0);
         }
         List<AdDocument> textlist = adsearcher.searchText(searchForm, page);
@@ -162,7 +158,7 @@ public class SearchAction extends Action {
             }
         }
         request.setAttribute("pic", piclist);
-        
+
         request.setAttribute("textadnum", textlist.size());
         request.setAttribute("text", textlist);
         request.setAttribute("page", page);
@@ -179,24 +175,21 @@ public class SearchAction extends Action {
     }
 
     /**
-     * @param searcher
-     *            the searcher to set
+     * @param searcher the searcher to set
      */
     public final void setSearcher(ExpressSearcher searcher) {
         this.searcher = searcher;
     }
 
     /**
-     * @param adsearcher
-     *            the adsearcher to set
+     * @param adsearcher the adsearcher to set
      */
     public final void setAdsearcher(AdSearcher adsearcher) {
         this.adsearcher = adsearcher;
     }
 
     /**
-     * @param releatedsearcher
-     *            the releatedsearcher to set
+     * @param releatedsearcher the releatedsearcher to set
      */
     public final void setReleatedsearcher(ReleatedSearcher releatedsearcher) {
         this.releatedsearcher = releatedsearcher;

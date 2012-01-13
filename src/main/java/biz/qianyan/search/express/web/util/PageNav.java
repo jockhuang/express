@@ -24,8 +24,7 @@ public class PageNav {
     }
 
     /**
-     * @param link
-     *            the link to set
+     * @param link the link to set
      */
     public void setLink(String link) {
         this.link = link;
@@ -33,8 +32,7 @@ public class PageNav {
     }
 
     /**
-     * @param linkname
-     *            the linkname to set
+     * @param linkname the linkname to set
      */
     public void setLinkname(String linkname) {
         this.linkname = linkname;
@@ -49,8 +47,7 @@ public class PageNav {
     }
 
     /**
-     * @param url
-     *            the url to set
+     * @param url the url to set
      */
     public void setUrl(String url) {
         this.url = url;

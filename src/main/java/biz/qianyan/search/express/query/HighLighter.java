@@ -13,9 +13,9 @@ public class HighLighter {
 
     private static final Log log = LogFactory.getLog(HighLighter.class);
 
-    private String           color;
+    private String color;
 
-    private int              length;
+    private int length;
 
     public String highlight(String source, String query, boolean cut) {
         query = query.replaceAll(" && ", " ");
@@ -29,8 +29,7 @@ public class HighLighter {
             int intPos = source.indexOf(senre[0]);
             if (intPos != -1) {
                 tmpPos = (intPos - 30) < 0 ? 0 : (intPos - 30);
-            }
-            else {
+            } else {
                 tmpPos = 0;
             }
             endPos = (tmpPos + length) > source.length() ? source.length() : (tmpPos + length);
@@ -39,17 +38,14 @@ public class HighLighter {
             strRe = source.substring(tmpPos, endPos);
             strRe = strRe + "...";
 
-        }
-        else {
+        } else {
             strRe = source;
         }
 
         for (int i = 0; i < senre.length; i++) {
             // System.out.println("senre[i].trim()="+senre[i].trim());
-            if ((!"|".equals(senre[i].trim())) && (!"-".equals(senre[i].trim()))
-                    && (!"".equals(senre[i].trim()))) {
-                strRe = strRe.replaceAll(senre[i], "<font color=\"" + color + "\">" + senre[i]
-                        + "</font>");
+            if ((!"|".equals(senre[i].trim())) && (!"-".equals(senre[i].trim())) && (!"".equals(senre[i].trim()))) {
+                strRe = strRe.replaceAll(senre[i], "<font color=\"" + color + "\">" + senre[i] + "</font>");
             }
         }
 
@@ -57,16 +53,14 @@ public class HighLighter {
     }
 
     /**
-     * @param color
-     *            the color to set
+     * @param color the color to set
      */
     public void setColor(String color) {
         this.color = color;
     }
 
     /**
-     * @param length
-     *            the length to set
+     * @param length the length to set
      */
     public void setLength(int length) {
         this.length = length;

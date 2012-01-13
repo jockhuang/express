@@ -59,8 +59,7 @@ public class PatentclassForm extends ActionForm {
     /**
      * Set the query.
      * 
-     * @param query
-     *            The query to set
+     * @param query The query to set
      */
     public void setQuery(String query) {
         this.query = query;

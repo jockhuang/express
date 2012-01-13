@@ -96,7 +96,6 @@ public class AdIndexMakeImpl implements IndexMaker {
 
             // writer.setMaxBufferedDocs(10000);
             // writer.setMaxMergeDocs(20000);
-            
 
             List<BusiOrder> list = dao.findAll();
 

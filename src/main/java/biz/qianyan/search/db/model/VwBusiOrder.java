@@ -11,20 +11,20 @@ public class VwBusiOrder implements java.io.Serializable {
     // Fields
 
     private Integer id;
-    private String  keyword;
-    private String  title;
-    private String  brief;
-    private String  picurl;
-    private String  itemurl;
+    private String keyword;
+    private String title;
+    private String brief;
+    private String picurl;
+    private String itemurl;
     private Integer ssid;
-    private Short   rank;
-    private Short   type;
+    private Short rank;
+    private Short type;
     private Integer comid;
-    private Short   status;
-    private String  companyname;
-    private String  comurl;
-    private String  province;
-    private String  classname;
+    private Short status;
+    private String companyname;
+    private String comurl;
+    private String province;
+    private String classname;
 
     // Constructors
 
@@ -38,10 +38,9 @@ public class VwBusiOrder implements java.io.Serializable {
     }
 
     /** full constructor */
-    public VwBusiOrder(Integer id, String keyword, String title, String brief, String picurl,
-                       String itemurl, Integer ssid, Short rank, Short type, Integer comid,
-                       Short status, String companyname, String comurl, String province,
-                       String classname) {
+    public VwBusiOrder(Integer id, String keyword, String title, String brief, String picurl, String itemurl,
+            Integer ssid, Short rank, Short type, Integer comid, Short status, String companyname, String comurl,
+            String province, String classname) {
         this.id = id;
         this.keyword = keyword;
         this.title = title;

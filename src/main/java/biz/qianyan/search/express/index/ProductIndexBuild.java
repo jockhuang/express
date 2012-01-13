@@ -15,8 +15,7 @@ public class ProductIndexBuild {
         IndexMaker index = (IndexMaker) ctx.getBean("ProductIndexBuild");
         if (args.length > 0) {
             index.indexBuild(true);
-        }
-        else {
+        } else {
             index.indexBuild(false);
         }
 

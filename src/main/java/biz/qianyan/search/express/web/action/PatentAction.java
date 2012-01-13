@@ -35,13 +35,12 @@ public class PatentAction extends Action {
     /*
      * Generated Methods
      */
-    private PatentSearcher   searcher;
+    private PatentSearcher searcher;
 
     private ReleatedSearcher releatedsearcher;
 
     /**
-     * @param releatedsearcher
-     *            the releatedsearcher to set
+     * @param releatedsearcher the releatedsearcher to set
      */
     public final void setReleatedsearcher(ReleatedSearcher releatedsearcher) {
         this.releatedsearcher = releatedsearcher;
@@ -54,8 +53,7 @@ public class PatentAction extends Action {
     private RegionSelect regionselect;
 
     /**
-     * @param regionselect
-     *            the regionselect to set
+     * @param regionselect the regionselect to set
      */
     public void setRegionselect(RegionSelect regionselect) {
         this.regionselect = regionselect;
@@ -70,8 +68,8 @@ public class PatentAction extends Action {
      * @param response
      * @return ActionForward
      */
-    public ActionForward execute(ActionMapping mapping, ActionForm form,
-                                 HttpServletRequest request, HttpServletResponse response) {
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) {
         PatentForm patentForm = (PatentForm) form;
         Integer curpage = patentForm.getP();
         patentForm.setProvinceselect(regionselect.getProvincesName());
