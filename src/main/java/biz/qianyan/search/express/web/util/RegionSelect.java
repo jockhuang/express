@@ -10,6 +10,7 @@ import java.util.Vector;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.util.LabelValueBean;
 
 /**
  * @author Jock

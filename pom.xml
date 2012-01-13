@@ -150,7 +150,7 @@
 						</projectnature>
 					</additionalProjectnatures>
 					<sourceExcludes>
-						<sourceExclude>**/.svn/</sourceExclude>
+						<sourceExclude>**/.git/</sourceExclude>
 					</sourceExcludes>
 					<downloadSources>true</downloadSources>
 				</configuration>

@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
-
-import biz.qianyan.search.express.web.util.LabelValueBean;
+import org.apache.struts.util.LabelValueBean;
 
 /**
  * MyEclipse Struts Creation date: 04-23-2008 XDoclet definition:

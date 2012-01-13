@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+	<data-sources />
+	<form-beans>
+		<form-bean name="searchForm"
+			type="biz.qianyan.search.express.web.form.SearchForm" />
+		<form-bean name="redoForm"
+			type="biz.qianyan.search.express.web.form.RedoForm" />
+		<form-bean name="blackwordForm"
+			type="biz.qianyan.search.express.web.form.BlackwordForm" />
+		<form-bean name="patentForm"
+			type="biz.qianyan.search.express.web.form.PatentForm" />
+		<form-bean name="patentclassForm"
+			type="biz.qianyan.search.express.web.form.PatentclassForm" />
+		<form-bean name="releateForm"
+			type="biz.qianyan.search.express.web.form.ReleateForm" />
+
+	</form-beans>
+	<global-exceptions />
+	<global-forwards />
+	<action-mappings>
+		<action attribute="searchForm" input="/search.jsp"
+			name="searchForm" path="/search" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="result" path="/search.jsp" />
+			<forward name="biz" path="/biz.jsp" />
+			<forward name="company" path="/company.jsp" />
+			<forward name="product" path="/product.jsp" />
+			<forward name="purchase" path="/purchase.jsp" />
+			<forward name="serve" path="/serve.jsp" />
+			<forward name="left" path="/left.jsp" />
+			<forward name="index" path="/index.html" />
+			<forward name="diy" path="/diy.jsp" />
+		</action>
+		<action attribute="redoForm" input="/redo.jsp" name="redoForm"
+			path="/redo" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="RESULT" path="/redo.jsp" />
+		</action>
+		<action attribute="blackwordForm" input="/blackword.jsp"
+			name="blackwordForm" path="/blackword" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="list" path="/blackword.jsp" />
+		</action>
+		<action attribute="patentForm" input="/patent.jsp"
+			name="patentForm" path="/patent" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="result" path="/patent.jsp" />
+			<forward name="left" path="/left.jsp" />
+			<forward name="index" path="/index.html" />
+		</action>
+		<action attribute="patentclassForm" input="/patentclass.jsp"
+			name="patentclassForm" path="/patentclass" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="result" path="/patentclass.jsp" />
+		</action>
+		<action attribute="releateForm" input="/releate.jsp"
+			name="releateForm" path="/releate" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="RESULT" path="/releate.jsp" />
+		</action>
+
+	</action-mappings>
+	<message-resources
+		parameter="biz.qianyan.search.express.web.ApplicationResources">
+	</message-resources>
+</struts-config>
+
