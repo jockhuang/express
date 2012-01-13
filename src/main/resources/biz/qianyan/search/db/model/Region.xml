@@ -12,7 +12,7 @@
    </resultMap>
   
   <select id="getProvinceList" resultMap="regionBean">
-	select * from supply.dbo.vw_search_region where classkey like 'p101___%' order by classkey
+	select * from supply.dbo.vw_search_region where classkey like 'p101___' order by classkey
   </select>
 	 	
   <select id="getCityList" parameterClass="String" resultMap="regionBean">

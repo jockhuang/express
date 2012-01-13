@@ -54,7 +54,7 @@ public class ReleateKeywordIndexImpl implements IndexMaker {
             Directory dir = FSDirectory.open(new File(indexdir));
 
             IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_35, analyzer);
-            iwc.setOpenMode(OpenMode.CREATE_OR_APPEND);
+            iwc.setOpenMode(OpenMode.CREATE);
             iwc.setRAMBufferSizeMB(512.0);
             writer = new IndexWriter(dir, iwc);
             RandomAccessFile rf = new RandomAccessFile(filename, "r");
