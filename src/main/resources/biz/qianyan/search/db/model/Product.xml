@@ -2,7 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="product">
 
-	<typeAlias type="com.qianyan.search.db.model.VwSearchProduct"
+	<typeAlias type="biz.qianyan.search.db.model.VwSearchProduct"
 		alias="Product" />
 
 	<resultMap id="productBean" class="Product">
@@ -45,7 +45,7 @@
 	</resultMap>
 
 	<select id="getProductList" parameterClass="int" resultMap="productBean">
-		select top 500 * from vw_search_product where <![CDATA[  id>=#id# ]]> order by id
+		select top 500 * from supply.dbo.vw_search_product where <![CDATA[  id>#id# ]]> order by id
 	</select>
 
 

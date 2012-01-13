@@ -22,6 +22,7 @@ import biz.qianyan.search.db.model.VwSearchComs;
 import biz.qianyan.search.db.model.VwSearchComsDAO;
 import biz.qianyan.search.express.document.DocumentParser;
 import biz.qianyan.search.express.index.IndexMaker;
+import biz.qianyan.search.util.Config;
 
 /**
  * 
@@ -72,9 +73,10 @@ public class CompanyIndexMakeImpl2 implements IndexMaker {
             writer = new IndexWriter(dir, iwc);
             // writer.setMaxBufferedDocs(10000);
             // writer.setMaxMergeDocs(20000);
-
-            List<VwSearchComs> list = dao.findAll2(id);
-            if (list.size() > 0) {
+            for (int j = 0; j < Config.INDEX; j++) {
+                List<VwSearchComs> list = dao.findAll2(id);
+                if (list.size() == 0)
+                    break;
 
                 for (VwSearchComs record : list) {
                     log.info("add recordid:" + record.getTitle());
@@ -90,8 +92,8 @@ public class CompanyIndexMakeImpl2 implements IndexMaker {
                     }
 
                 }
-            }
 
+            }
             writeId(id);
 
             log.info("add " + i + " records");

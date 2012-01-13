@@ -19,7 +19,5 @@ public class VwSearchProductDAO extends SqlMapClientDaoSupport {
     public List<VwSearchProduct> findBySsid(int ssid){
         return getSqlMapClientTemplate().queryForList("product.",ssid);
     }
-    public int count(){
-        return (Integer)getSqlMapClientTemplate().queryForObject("");
-    }
+    
 }

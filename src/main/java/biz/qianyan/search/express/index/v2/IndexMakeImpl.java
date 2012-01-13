@@ -22,6 +22,7 @@ import biz.qianyan.search.db.model.VwSearchSupply;
 import biz.qianyan.search.db.model.VwSearchSupplyDAO;
 import biz.qianyan.search.express.document.DocumentParser;
 import biz.qianyan.search.express.index.IndexMaker;
+import biz.qianyan.search.util.Config;
 
 /**
  * @author jock
@@ -74,21 +75,22 @@ public class IndexMakeImpl implements IndexMaker {
             // writer.setMaxBufferedDocs(10000);
             // writer.setMaxMergeDocs(20000);
             // writer.setMergeFactor(10000);
+            for (int j = 0; j < Config.INDEX; j++) {
+                List<VwSearchSupply> list = dao.findAll(id);
+                if (list.size() == 0)
+                    break;
+                for (VwSearchSupply record : list) {
+                    log.info("add recordid:" + record.getId());
+                    id = record.getId();
+                    try {
+                        writer.addDocument(DocumentParser.parse(DocumentParser.tranfer(record)));
+                        i++;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
-            List<VwSearchSupply> list = dao.findAll(id);
-
-            for (VwSearchSupply record : list) {
-                log.info("add recordid:" + record.getId());
-                id = record.getId();
-                try {
-                    writer.addDocument(DocumentParser.parse(DocumentParser.tranfer(record)));
-                    i++;
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
-
             }
-
             writeId(id);
 
             log.info("add " + i + " records");

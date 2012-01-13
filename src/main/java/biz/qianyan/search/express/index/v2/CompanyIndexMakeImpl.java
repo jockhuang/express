@@ -18,6 +18,7 @@ import biz.qianyan.search.db.model.VwSearchComs;
 import biz.qianyan.search.db.model.VwSearchComsDAO;
 import biz.qianyan.search.express.document.DocumentParser;
 import biz.qianyan.search.express.index.IndexMaker;
+import biz.qianyan.search.util.Config;
 
 public class CompanyIndexMakeImpl implements IndexMaker {
 
@@ -65,21 +66,22 @@ public class CompanyIndexMakeImpl implements IndexMaker {
             writer = new IndexWriter(dir, iwc);
             // writer.setMaxBufferedDocs(10000);
             // writer.setMaxMergeDocs(20000);
+            for (int j = 0; j < Config.INDEX; j++) {
+                List<VwSearchComs> list = dao.findAll(id);
+                if (list.size() == 0)
+                    break;
+                for (VwSearchComs record : list) {
+                    log.info("add recordid:" + record.getId());
+                    id = record.getId();
+                    try {
+                        writer.addDocument(DocumentParser.parse(DocumentParser.tranfer(record)));
+                        i++;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
-            List<VwSearchComs> list = dao.findAll(id);
-
-            for (VwSearchComs record : list) {
-                log.info("add recordid:" + record.getId());
-                id = record.getId();
-                try {
-                    writer.addDocument(DocumentParser.parse(DocumentParser.tranfer(record)));
-                    i++;
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
-
             }
-
             writeId(id);
 
             log.info("add " + i + " records");

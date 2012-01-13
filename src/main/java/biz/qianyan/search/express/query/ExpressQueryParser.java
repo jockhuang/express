@@ -16,12 +16,12 @@ public class ExpressQueryParser{
     private MultiFieldQueryParser titleparser;
     public ExpressQueryParser(Analyzer analyzer) {
 
-        parser = new MultiFieldQueryParser(Version.LUCENE_35,new String[] { "url", "itemurl", "title", "brief", "content", "keywords", "itemname",
-                "contact", "qqcode", "msncode", "comurl", "email", "tel", "fax", "mobile", "zip",
+        parser = new MultiFieldQueryParser(Version.LUCENE_35,new String[] { "url", "title",  "content", "itemname",
+                "contact", "qqcode",  "email", "tel", "fax", "mobile", "zip",
                 "address", "route" }, analyzer);
         parser.setDefaultOperator(Operator.AND);
         
-        titleparser = new MultiFieldQueryParser(Version.LUCENE_35,new String[] {  "title", "itemname" }, analyzer);
+        titleparser = new MultiFieldQueryParser(Version.LUCENE_35,new String[] {  "title" }, analyzer);
         titleparser.setDefaultOperator(Operator.AND);
     }
     public Query parse(String keyword) throws Exception {

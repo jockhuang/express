@@ -2,7 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="company" >
   	
-  <typeAlias type="com.qianyan.search.db.model.VwSearchComs" alias="Company" />
+  <typeAlias type="biz.qianyan.search.db.model.VwSearchComs" alias="Company" />
   	
   <resultMap id="companyBean" class="Company" >
     <result column="id" property="id"/>
@@ -44,7 +44,7 @@
   </resultMap>
   
   <select id="getCompanyList" parameterClass="int" resultMap="companyBean">
-	select top 500 * from vw_search_coms where <![CDATA[  id>=#id# ]]> order by id
+	select top 500 * from supply.dbo.vw_search_coms where <![CDATA[  id>#id# ]]> order by id
   </select>
 	 	
   

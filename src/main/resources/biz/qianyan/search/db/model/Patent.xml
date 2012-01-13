@@ -1,24 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
-<sqlMap namespace="patent" >
-  	
-  <typeAlias type="com.qianyan.search.db.model.VwSearchPatent" alias="Patent" />
-  	
-  <resultMap id="patentBean" class="Patent" >
-    <result column="region_id" property="c1"/>
-    <result column="name" property="c2"/>
-    <result column="fullname" property="c3"/>
-    <result column="parent_id" property="c4"/>
-    <result column="region_code" property="c5"/>
-    <result column="shop_num" property="c6"/>
-    <result column="max_shop_num" property="c7"/>
-    <result column="category_number" property="c8"/>
-  </resultMap>
-  
-  <select id="getSupplyList" parameterClass="int" resultMap="patentBean">
-	select top 500 * from region_tree where parent_id=#parentId#
-  </select>
-	 	
-  
-  
+<sqlMap namespace="patent">
+
+	<typeAlias type="biz.qianyan.search.db.model.VwSearchPatent"
+		alias="Patent" />
+
+	<resultMap id="patentBean" class="Patent">
+		<result column="id" property="id" />
+		<result column="c1" property="c1" />
+		<result column="c2" property="c2" />
+		<result column="c3" property="c3" />
+		<result column="c4" property="c4" />
+		<result column="c5" property="c5" />
+		<result column="c6" property="c6" />
+		<result column="c7" property="c7" />
+		<result column="c8" property="c8" />
+		<result column="c9" property="c8" />
+		<result column="c10" property="c10" />
+		<result column="c11" property="c11" />
+		<result column="c12" property="c12" />
+		<result column="c13" property="c13" />
+		<result column="c14" property="c14" />
+		<result column="c15" property="c15" />
+		<result column="c16" property="c16" />
+		<result column="c17" property="c17" />
+		<result column="c18" property="c18" />
+		<result column="c19" property="c19" />
+		<result column="c20" property="c20" />
+		<result column="c21" property="c21" />
+		<result column="c22" property="c22" />
+		<result column="c23" property="c23" />
+		<result column="c24" property="c24" />
+		<result column="c25" property="c25" />
+		<result column="c26" property="c26" />
+		<result column="c27" property="c27" />
+		<result column="c28" property="c28" />
+		<result column="c29" property="c29" />
+		<result column="c30" property="c30" />
+		<result column="c31" property="c31" />
+		<result column="c32" property="c32" />
+		<result column="c33" property="c33" />
+		<result column="createdate" property="createdate" />
+	</resultMap>
+
+	<select id="getPatentList" parameterClass="int" resultMap="patentBean">
+		select top 500 * from patent2.dbo.vw_search_patent where <![CDATA[  id>#id# ]]>
+		order by id
+	</select>
+
+
+
 </sqlMap>

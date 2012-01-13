@@ -17,6 +17,7 @@ import biz.qianyan.search.db.model.VwSearchPatent;
 import biz.qianyan.search.db.model.VwSearchPatentDAO;
 import biz.qianyan.search.patent.document.DocumentParser;
 import biz.qianyan.search.patent.index.IndexMake;
+import biz.qianyan.search.util.Config;
 
 /**
  * 
@@ -65,9 +66,7 @@ public class IndexMakeImpl implements IndexMake {
             // writer.setMaxBufferedDocs(10000);
             // writer.setMaxMergeDocs(20000);
             // writer.setMergeFactor(10000);
-            int allcount = dao.count();
-
-            while (i < allcount) {
+            for(int j=0;j<Config.INDEX;j++){
                 List<VwSearchPatent> list = dao.findAll(id);
                 if (list.size() == 0) {
                     break;
@@ -81,14 +80,10 @@ public class IndexMakeImpl implements IndexMake {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    if (i >= 200000) {
-                        break;
-                    }
+                   
 
                 }
-                if (i >= 200000) {
-                    break;
-                }
+                
             }
 
             writeId(id);
