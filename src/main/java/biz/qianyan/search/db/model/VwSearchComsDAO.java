@@ -17,10 +17,10 @@ public class VwSearchComsDAO  extends SqlMapClientDaoSupport{
         return getSqlMapClientTemplate().queryForList("company.getCompanyList",id);
     }
     public List<VwSearchComs> findAll2(int id){
-        return getSqlMapClientTemplate().queryForList("company.getCompanyList",id);
+        return getSqlMapClientTemplate().queryForList("company.getCompanyList2",id);
     }
    
     public VwSearchComs findById(int id){
-        return (VwSearchComs)getSqlMapClientTemplate().queryForObject("",id);
+        return (VwSearchComs)getSqlMapClientTemplate().queryForObject("company.getCompanyByID",id);
     }
 }

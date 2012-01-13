@@ -15,8 +15,9 @@ import org.apache.struts.util.LabelValueBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import biz.qianyan.search.db.model.VwSearchRegion;
-import biz.qianyan.search.db.model.VwSearchRegionDAO;
+import biz.qianyan.search.db.model.Region;
+import biz.qianyan.search.db.model.RegionDAO;
+import biz.qianyan.search.util.Config;
 
 /**
  * @author Jock
@@ -25,7 +26,7 @@ public final class RegionFileMake {
 
     private static final Log                          log           = LogFactory
                                                                             .getLog(RegionFileMake.class);
-    private VwSearchRegionDAO                         dao;
+    private RegionDAO                         dao;
 
     private Vector<LabelValueBean>                    provinces     = new Vector<LabelValueBean>(34);
     private Vector<LabelValueBean>                    provincesname = new Vector<LabelValueBean>(34);
@@ -34,7 +35,7 @@ public final class RegionFileMake {
     /**
      * @return the dao
      */
-    public VwSearchRegionDAO getDao() {
+    public RegionDAO getDao() {
         return dao;
     }
 
@@ -42,7 +43,7 @@ public final class RegionFileMake {
      * @param dao
      *            the dao to set
      */
-    public void setDao(VwSearchRegionDAO dao) {
+    public void setDao(RegionDAO dao) {
         this.dao = dao;
     }
 
@@ -77,23 +78,23 @@ public final class RegionFileMake {
     }
 
     public void initFile() {
-        List<VwSearchRegion> plist = dao.findProvince();
+        List<Region> plist = dao.findProvince();
         provinces.add(0, new LabelValueBean("国家或省份", "null"));
         provincesname.add(0, new LabelValueBean("国家或省份", "null"));
-        for (VwSearchRegion r : plist) {
+        for (Region r : plist) {
             LabelValueBean lv = new LabelValueBean(r.getClassname(), r.getClasskey());
             LabelValueBean lv1 = new LabelValueBean(r.getClassname(), r.getClassname());
             log.info("add province:" + r.getClassname());
             provinces.add(lv);
             provincesname.add(lv1);
-            List<VwSearchRegion> clist = dao.findCity(r.getClasskey());
+            List<Region> clist = dao.findCity(r.getClasskey());
             if (clist.size() == 1) {
-                VwSearchRegion vr = clist.get(0);
+                Region vr = clist.get(0);
                 clist = dao.findCity(vr.getClasskey());
             }
             Vector<LabelValueBean> slist = new Vector<LabelValueBean>(10);
             slist.add(0, new LabelValueBean("地级市", "null"));
-            for (VwSearchRegion c : clist) {
+            for (Region c : clist) {
 
                 LabelValueBean clv = new LabelValueBean(c.getClassname(), c.getClasskey());
                 log.info("add city:" + c.getClassname());
@@ -103,7 +104,7 @@ public final class RegionFileMake {
         }
         try {
             ObjectOutputStream re = new ObjectOutputStream(new FileOutputStream(
-                    "/data/search/WEB-INF/region.lib"));
+                    Config.REGIONFILE));
 
             re.writeObject(provinces);
             re.writeUTF("\n");

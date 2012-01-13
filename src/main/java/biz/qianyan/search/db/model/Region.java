@@ -6,7 +6,7 @@ package biz.qianyan.search.db.model;
  * @author MyEclipse Persistence Tools
  */
 
-public class VwSearchRegion implements java.io.Serializable {
+public class Region implements java.io.Serializable {
 
     // Fields
 
@@ -18,16 +18,16 @@ public class VwSearchRegion implements java.io.Serializable {
     // Constructors
 
     /** default constructor */
-    public VwSearchRegion() {
+    public Region() {
     }
 
     /** minimal constructor */
-    public VwSearchRegion(String classkey) {
+    public Region(String classkey) {
         this.classkey = classkey;
     }
 
     /** full constructor */
-    public VwSearchRegion(String classkey, String classname, String fullpath, String pointto) {
+    public Region(String classkey, String classname, String fullpath, String pointto) {
         this.classkey = classkey;
         this.classname = classname;
         this.fullpath = fullpath;

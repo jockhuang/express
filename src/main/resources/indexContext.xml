@@ -316,7 +316,7 @@
 	<bean id="BusiOrderDAO" class="biz.qianyan.search.db.model.BusiOrderDAO">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
-	<bean id="VwSearchRegionDAO" class="biz.qianyan.search.db.model.VwSearchRegionDAO">
+	<bean id="RegionDAO" class="biz.qianyan.search.db.model.RegionDAO">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
 	<bean id="VwSearchPatentDAO" class="biz.qianyan.search.db.model.VwSearchPatentDAO">
@@ -324,7 +324,7 @@
 	</bean>
 	<bean id="RegionFileMake" class="biz.qianyan.search.express.index.RegionFileMake">
 		<property name="dao">
-			<ref bean="VwSearchRegionDAO" />
+			<ref bean="RegionDAO" />
 		</property>
 	</bean>
 	<bean id="ForbidKeywordsDAO" class="biz.qianyan.search.db.model.ForbidKeywordsDAO">

@@ -12,15 +12,16 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.util.LabelValueBean;
 
+import biz.qianyan.search.util.Config;
+
 /**
  * @author Jock
  */
 public class RegionSelect {
-    private static final Log                          log           = LogFactory
-                                                                            .getLog(RegionSelect.class);
-    private Vector<LabelValueBean>                    provinces     = new Vector<LabelValueBean>(34);
-    private Vector<LabelValueBean>                    provincesname = new Vector<LabelValueBean>(34);
-    private Hashtable<String, Vector<LabelValueBean>> citys         = new Hashtable<String, Vector<LabelValueBean>>();
+    private static final Log log = LogFactory.getLog(RegionSelect.class);
+    private Vector<LabelValueBean> provinces = new Vector<LabelValueBean>(34);
+    private Vector<LabelValueBean> provincesname = new Vector<LabelValueBean>(34);
+    private Hashtable<String, Vector<LabelValueBean>> citys = new Hashtable<String, Vector<LabelValueBean>>();
 
     public RegionSelect() {
         init();
@@ -28,13 +29,10 @@ public class RegionSelect {
 
     private void init() {
         try {
-            ObjectInputStream re = new ObjectInputStream(new FileInputStream(
-                    "/data/search/WEB-INF/region.lib"));
+            ObjectInputStream re = new ObjectInputStream(new FileInputStream(Config.REGIONFILE));
 
             provinces = (Vector<LabelValueBean>) re.readObject();
-            for (LabelValueBean lv : provinces) {
-                log.info("Pro:" + lv.getLabel());
-            }
+            
             re.readUTF();
             citys = (Hashtable<String, Vector<LabelValueBean>>) re.readObject();
             re.readUTF();
@@ -60,8 +58,7 @@ public class RegionSelect {
     }
 
     /**
-     * @param provinces
-     *            the provinces to set
+     * @param provinces the provinces to set
      */
     public void setProvinces(Vector<LabelValueBean> provinces) {
         this.provinces = provinces;

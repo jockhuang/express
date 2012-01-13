@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="order" >
+  	
+  <typeAlias type="biz.qianyan.search.db.model.BusiOrder" alias="Order" />
+  	
+  <resultMap id="orderBean" class="Order" >
+    <result column="id" property="id"/>
+    <result column="keyword" property="keyword"/>
+    <result column="title" property="title"/>
+    <result column="brief" property="brief"/>
+    <result column="picurl" property="picurl"/>
+    <result column="itemurl" property="itemurl"/>
+    <result column="companyname" property="companyname"/>
+    <result column="comurl" property="comurl"/>
+    <result column="province" property="province"/>
+    <result column="classname" property="classname"/>
+    <result column="ssid" property="ssid"/>
+    <result column="rank" property="rank"/>
+    <result column="begindate" property="begindate"/>
+    <result column="enddate" property="enddate"/>
+    <result column="type" property="type"/>
+    <result column="searchtype" property="searchtype"/>
+    <result column="infotype" property="infotype"/>
+    <result column="configtype" property="configtype"/>
+    <result column="payid" property="payid"/>
+    <result column="agentid" property="agentid"/>
+    <result column="userid" property="userid"/>
+    <result column="yid" property="yid"/>
+    <result column="memo" property="memo"/>
+    <result column="status" property="status"/>
+    <result column="createdate" property="createdate"/>
+    
+  </resultMap>
+  
+  <select id="getOrderList" resultMap="orderBean">
+	select top 500 * from supply.dbo.busi_order where status=1 order by rank
+  </select>
+	 	
+  
+  
+</sqlMap>

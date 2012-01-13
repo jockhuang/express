@@ -48,6 +48,8 @@
 		select top 500 * from supply.dbo.vw_search_product where <![CDATA[  id>#id# ]]> order by id
 	</select>
 
-
+	<select id="getProductListBySsid" parameterClass="int" resultMap="productBean">
+		select top 500 * from supply.dbo.vw_search_product where ssid=#id#  order by id
+	</select>
 
 </sqlMap>

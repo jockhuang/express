@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="region" >
+  	
+  <typeAlias type="biz.qianyan.search.db.model.Region" alias="Region" />
+  	
+  <resultMap id="regionBean" class="Region" >
+    <result column="classkey" property="classkey"/>
+    <result column="classname" property="classname"/>
+    <result column="fullpath" property="fullpath"/>
+    <result column="pointto" property="pointto"/>
+   </resultMap>
+  
+  <select id="getProvinceList" resultMap="regionBean">
+	select * from supply.dbo.vw_search_region where classkey like 'p101___%' order by classkey
+  </select>
+	 	
+  <select id="getCityList" parameterClass="String" resultMap="regionBean">
+	select * from supply.dbo.vw_search_region where classkey like '$province$%' and pointto=''  order by classkey
+  </select>
+  
+</sqlMap>

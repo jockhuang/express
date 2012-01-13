@@ -10,5 +10,6 @@ package biz.qianyan.search.util;
  */
 public final class Config {
     public final static int INDEX=1000;
+    public final static String REGIONFILE="/data/search2/WEB-INF/region.lib";
 
 }

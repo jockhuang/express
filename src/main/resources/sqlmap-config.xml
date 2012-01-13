@@ -12,5 +12,6 @@ PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
 	<sqlMap resource="biz/qianyan/search/db/model/Supply.xml" />
 	<sqlMap resource="biz/qianyan/search/db/model/Product.xml" />
 	<sqlMap resource="biz/qianyan/search/db/model/Patent.xml" />
-
+	<sqlMap resource="biz/qianyan/search/db/model/Order.xml" />
+	<sqlMap resource="biz/qianyan/search/db/model/Region.xml" />
 </sqlMapConfig>
