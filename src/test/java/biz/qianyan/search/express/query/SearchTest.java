@@ -1,11 +1,14 @@
 package biz.qianyan.search.express.query;
 
 import java.io.File;
+import java.io.StringReader;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
@@ -22,6 +25,10 @@ import org.apache.lucene.search.grouping.SearchGroup;
 import org.apache.lucene.search.grouping.TermFirstPassGroupingCollector;
 import org.apache.lucene.search.grouping.TermSecondPassGroupingCollector;
 import org.apache.lucene.search.grouping.TopGroups;
+import org.apache.lucene.search.highlight.Highlighter;
+import org.apache.lucene.search.highlight.QueryScorer;
+import org.apache.lucene.search.highlight.SimpleFragmenter;
+import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
@@ -43,20 +50,20 @@ public class SearchTest {
 
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-            Directory directory = FSDirectory.open(new File("/Users/jock/work/express/index/comindex2"));
+            Directory directory = FSDirectory.open(new File("/Users/jock/work/express/index/index0"));
             IndexReader reader = IndexReader.open(directory);
 
             IndexSearcher searcher = new IndexSearcher(reader);
+            Analyzer analyzer = new SmartChineseAnalyzer(Version.LUCENE_35);
+            QueryParser parser = new QueryParser(Version.LUCENE_35, "title",analyzer
+                    );
 
-            QueryParser parser = new QueryParser(Version.LUCENE_35, "title",
-                    new SmartChineseAnalyzer(Version.LUCENE_35));
-
-            Query query = parser.parse("公司");
+            Query query = parser.parse("电子集团");
             Sort sort = new Sort(new SortField[] { new SortField("createdate", SortField.STRING, true) });
+            long begin = System.currentTimeMillis();
 
             String field = "fullpath";
-            long begin = System.currentTimeMillis();
-            int topNGroups = 1000;
+            int topNGroups = 100;
             int groupOffset = 0;
             int maxDocsPerGroup = 10;
             int withinGroupOffset = 0;
@@ -103,12 +110,28 @@ public class SearchTest {
             TopDocs topDocs = searcher.search(query, 50, sort);
             System.out.println(topDocs.totalHits);
             ScoreDoc scoreDocs[] = topDocs.scoreDocs;
-
+            SimpleHTMLFormatter simpleHtmlFormatter = new SimpleHTMLFormatter("<font color=\"red\">","</font>");//设定高亮显示的格式，也就是对高亮显示的词组加上前缀后缀  
+            Highlighter highlighter = new Highlighter(simpleHtmlFormatter,new QueryScorer(query));  
+            highlighter.setTextFragmenter(new SimpleFragmenter(150));//设置每次返回的字符数.想必大家在使用搜索引擎的时候也没有一并把全部数据展示出来吧，当然这里也是设定只展示部分数据  
+            
             for (ScoreDoc scoreDoc : scoreDocs) {
 
                 Document doc = searcher.doc(scoreDoc.doc);
                 ExpressDocument ad = DocumentParser.convert(doc);
-                System.out.println(ad.getTitle() + "  " + sdf.format(ad.getCreatedate()));
+                TokenStream tokenStream = analyzer.tokenStream("",new StringReader(ad.getTitle()));  
+                String str = highlighter.getBestFragment(tokenStream, ad.getTitle()); 
+                if (str != null) {
+                    ad.setTitle(str);
+                }
+                 tokenStream = analyzer.tokenStream("",new StringReader(doc.get("brief")));  
+                String brief = highlighter.getBestFragment(tokenStream, doc.get("brief")); 
+//                String brief = highlighter.highlight(doc.get("brief"), keyword, true);
+
+                if (brief != null) {
+                    ad.setBrief(brief);
+                }
+                System.out.println(ad.getTitle() + "  " + ad.getBrief());
+                
 
             }
 

@@ -15,7 +15,7 @@ import org.apache.lucene.util.Version;
 public class PatentQueryParser {
     private MultiFieldQueryParser parser;
     private MultiFieldQueryParser titleparser;
-
+    public Analyzer analyzer;
     public PatentQueryParser(Analyzer analyzer) {
 
         parser = new MultiFieldQueryParser(Version.LUCENE_35, new String[] { "applyno", "title", "brief", "proposer",
@@ -25,6 +25,7 @@ public class PatentQueryParser {
         titleparser = new MultiFieldQueryParser(Version.LUCENE_35, new String[] { "applyno", "proposer", "title" },
                 analyzer);
         titleparser.setDefaultOperator(Operator.AND);
+        this.analyzer = analyzer;
     }
 
     public Query parse(String keyword) throws Exception {

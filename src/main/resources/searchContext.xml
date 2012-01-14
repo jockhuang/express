@@ -14,11 +14,6 @@
 			<value>LUCENE_35</value>
 		</constructor-arg>
 	</bean>
-	<bean id="HighLighter"
-		class="biz.qianyan.search.express.query.HighLighter">
-		<property name="color" value="#FF0000" />
-		<property name="length" value="78" />
-	</bean>
 	<bean id="DocumentParser"
 		class="biz.qianyan.search.express.document.DocumentParser">
 	</bean>
@@ -55,9 +50,6 @@
 		<constructor-arg index="2">
 			<ref bean="DocumentParser" />
 		</constructor-arg>
-		<constructor-arg index="3">
-			<ref bean="HighLighter" />
-		</constructor-arg>
 	</bean>
 	
 	<bean id="PatentSearcher"
@@ -74,9 +66,7 @@
 		<constructor-arg index="2">
 			<ref bean="PatentParser" />
 		</constructor-arg>
-		<constructor-arg index="3">
-			<ref bean="HighLighter" />
-		</constructor-arg>
+
 	</bean>
 	<bean id="RegionSelect"
 		class="biz.qianyan.search.express.web.util.RegionSelect">

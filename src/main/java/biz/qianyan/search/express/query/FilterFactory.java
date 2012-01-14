@@ -9,6 +9,7 @@ import org.apache.lucene.document.DateTools;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.search.ChainedFilter;
 import org.apache.lucene.search.Filter;
+import org.apache.lucene.search.NumericRangeFilter;
 import org.apache.lucene.search.PrefixFilter;
 import org.apache.lucene.search.TermRangeFilter;
 
@@ -54,14 +55,15 @@ public class FilterFactory {
         }
         if (s.getD() > 0) {
             Date now = new Date();
-            String start = getStart(s.getD());
-            String end = DateTools.timeToString(now.getTime(), DateTools.Resolution.MINUTE);
-            TermRangeFilter filter = new TermRangeFilter("createdate", start, end, true, true);
+            long start = getStart(s.getD());
+            long end = now.getTime();
+            Filter filter = NumericRangeFilter.newLongRange("createdate",  start,  end, true, true);
 
             filterslist.add(filter);
         }
         if (s.getM() > 0) {
-            ExactFilter filter = new ExactFilter("mainmode", s.getM() + "");
+            Filter filter = NumericRangeFilter.newIntRange("mainmode",  s.getM(),  s.getM(), true, true);
+            
             filterslist.add(filter);
         }
 
@@ -88,32 +90,32 @@ public class FilterFactory {
         if (s.getT() > 0) {
             switch (s.getT()) {
             case 1:
-                ExactFilter filter1 = new ExactFilter("type", 3 + "");
+                Filter filter1 = NumericRangeFilter.newIntRange("type",  3,  3, true, true);
                 filterslist.add(filter1);
                 break;
             case 2:
-                ExactFilter filter2 = new ExactFilter("type", 1 + "");
+                Filter filter2 = NumericRangeFilter.newIntRange("type",  1,  1, true, true);
                 filterslist.add(filter2);
                 break;
             case 3:
 
-                ExactFilter filter3 = new ExactFilter("type", 2 + "");
+                Filter filter3 = NumericRangeFilter.newIntRange("type",  2,  2, true, true);
                 filterslist.add(filter3);
                 break;
             case 4:
 
-                ExactFilter filter4 = new ExactFilter("type", 3 + "");
+                Filter filter4 = NumericRangeFilter.newIntRange("type",  3,  3, true, true);
                 filterslist.add(filter4);
 
-                ExactFilter filter41 = new ExactFilter("infotype", 2 + "");
+                Filter filter41 = NumericRangeFilter.newIntRange("infotype",  2,  2, true, true);
                 filterslist.add(filter41);
                 break;
             case 5:
 
-                ExactFilter filter5 = new ExactFilter("type", 3 + "");
+                Filter filter5 = NumericRangeFilter.newIntRange("type",  3,  3, true, true);
                 filterslist.add(filter5);
 
-                ExactFilter filter51 = new ExactFilter("infotype", 1 + "");
+                Filter filter51 = NumericRangeFilter.newIntRange("infotype",  1,  1, true, true);
                 filterslist.add(filter51);
                 break;
             }
@@ -135,14 +137,14 @@ public class FilterFactory {
         }
         if (s.getD() > 0) {
             Date now = new Date();
-            String start = getStart(s.getD());
-            String end = DateTools.timeToString(now.getTime(), DateTools.Resolution.MINUTE);
-            TermRangeFilter filter = new TermRangeFilter("createdate", start, end, true, true);
+            long start = getStart(s.getD());
+            long end = now.getTime();
+            Filter filter = NumericRangeFilter.newLongRange("createdate",  start,  end, true, true);
 
             filterslist.add(filter);
         }
         if (s.getM() > 0) {
-            ExactFilter filter = new ExactFilter("mainmode", s.getM() + "");
+            Filter filter = NumericRangeFilter.newIntRange("mainmode",  s.getM(),  s.getM(), true, true);
             filterslist.add(filter);
         }
 
@@ -160,7 +162,7 @@ public class FilterFactory {
             PrefixFilter filter = new PrefixFilter(term);
             filterslist.add(filter);
         }
-        ExactFilter filter3 = new ExactFilter("type", 2 + "");
+        Filter filter3 = NumericRangeFilter.newIntRange("type",  2,  2, true, true);
         filterslist.add(filter3);
 
         if (filterslist.size() > 0) {
@@ -172,9 +174,9 @@ public class FilterFactory {
         }
     }
 
-    private static String getStart(int d) {
+    private static long getStart(int d) {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_MONTH, 0 - d);
-        return DateTools.timeToString(cal.getTimeInMillis(), DateTools.Resolution.MINUTE);
+        return cal.getTimeInMillis();
     }
 }

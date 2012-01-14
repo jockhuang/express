@@ -82,7 +82,7 @@ public class IndexMakeImpl implements IndexMaker {
                 if (list.size() == 0)
                     break;
                 for (VwSearchSupply record : list) {
-                    log.info("add recordid:" + record.getId());
+                    log.info("add record:" + record.getTitle()+"  "+record.getCreatedate());
                     id = record.getId();
                     try {
                         writer.addDocument(DocumentParser.parse(DocumentParser.tranfer(record)));
@@ -96,10 +96,10 @@ public class IndexMakeImpl implements IndexMaker {
             writeId(id);
 
             log.info("add " + i + " records");
-            if (op) {
+           
                 log.info("optimize index...");
                 writer.forceMerge(1);
-            }
+            
             writer.close();
 
             // VwSearchSupply ss = dao.findById(12000001);

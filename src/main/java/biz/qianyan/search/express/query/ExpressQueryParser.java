@@ -15,7 +15,7 @@ import org.apache.lucene.util.Version;
 public class ExpressQueryParser {
     private MultiFieldQueryParser parser;
     private MultiFieldQueryParser titleparser;
-
+    public Analyzer analyzer;
     public ExpressQueryParser(Analyzer analyzer) {
 
         parser = new MultiFieldQueryParser(Version.LUCENE_35, new String[] { "url", "title", "content", "itemname",
@@ -24,6 +24,7 @@ public class ExpressQueryParser {
 
         titleparser = new MultiFieldQueryParser(Version.LUCENE_35, new String[] { "title" }, analyzer);
         titleparser.setDefaultOperator(Operator.AND);
+        this.analyzer = analyzer;
     }
 
     public Query parse(String keyword) throws Exception {

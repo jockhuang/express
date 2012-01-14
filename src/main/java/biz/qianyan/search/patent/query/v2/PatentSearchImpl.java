@@ -1,11 +1,13 @@
 package biz.qianyan.search.patent.query.v2;
 
 import java.io.File;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.MultiReader;
@@ -17,11 +19,14 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.highlight.Highlighter;
+import org.apache.lucene.search.highlight.QueryScorer;
+import org.apache.lucene.search.highlight.SimpleFragmenter;
+import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.store.FSDirectory;
 
 import biz.qianyan.search.express.document.ClassResult;
 import biz.qianyan.search.express.query.FilterFactory;
-import biz.qianyan.search.express.query.HighLighter;
 import biz.qianyan.search.express.query.KeywordFormat;
 import biz.qianyan.search.express.web.Navbar;
 import biz.qianyan.search.express.web.form.PatentForm;
@@ -40,8 +45,6 @@ public class PatentSearchImpl implements PatentSearcher {
 
     private DocumentParser docparser;
 
-    private HighLighter highlighter;
-
     private String[] indexdir;
 
     // private String field;
@@ -55,12 +58,10 @@ public class PatentSearchImpl implements PatentSearcher {
 
     private MultiSearcher searcher;
 
-    public PatentSearchImpl(String[] indexdir, PatentQueryParser parser, DocumentParser docparser,
-            HighLighter highlighter) {
+    public PatentSearchImpl(String[] indexdir, PatentQueryParser parser, DocumentParser docparser) {
         this.parser = parser;
 
         this.indexdir = indexdir;
-        this.highlighter = highlighter;
         this.docparser = docparser;
         try {
             IndexSearcher[] searchers = new IndexSearcher[indexdir.length];
@@ -118,7 +119,9 @@ public class PatentSearchImpl implements PatentSearcher {
             int start = page.getStart();
 
             int end = Math.min(hits.totalHits, start + page.PAGESIZE);
-
+            SimpleHTMLFormatter simpleHtmlFormatter = new SimpleHTMLFormatter("<B>","</B>");//设定高亮显示的格式，也就是对高亮显示的词组加上前缀后缀  
+            Highlighter highlighter = new Highlighter(simpleHtmlFormatter,new QueryScorer(query));  
+            highlighter.setTextFragmenter(new SimpleFragmenter(150));//设置每次返回的字符数.想必大家在使用搜索引擎的时候也没有一并把全部数据展示出来吧，当然这里也是设定只展示部分数据  
             int i = 0;
             ScoreDoc scoreDocs[] = hits.scoreDocs;
             for (ScoreDoc scoreDoc : scoreDocs) {
@@ -128,14 +131,17 @@ public class PatentSearchImpl implements PatentSearcher {
                 PatentDocument im = DocumentParser.convert(doc);
                 try {
 
-                    String brief = highlighter.highlight(doc.get("brief"), keyword, true);
+                    TokenStream tokenStream = parser.analyzer.tokenStream("",new StringReader(im.getTitle()));  
+                    String str = highlighter.getBestFragment(tokenStream, im.getTitle()); 
+                    if (str != null) {
+                        im.setTitle(str);
+                    }
+                     tokenStream = parser.analyzer.tokenStream("",new StringReader(doc.get("brief")));  
+                    String brief = highlighter.getBestFragment(tokenStream, doc.get("brief")); 
+//                    String brief = highlighter.highlight(doc.get("brief"), keyword, true);
 
                     if (brief != null) {
                         im.setBrief(brief);
-                    }
-                    String title = highlighter.highlight(doc.get("title"), keyword, false);
-                    if (title != null) {
-                        im.setColortitle(title);
                     }
 
                 } catch (Exception e) {
