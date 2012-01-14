@@ -8,9 +8,9 @@
 		                   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		                   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		                   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
-	<context:property-placeholder location="classpath*:*-conf.properties" />
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource">
+
+	<import resource="application-common.xml" />
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName">
 			<value>${source.jdbc.driverClassName}</value>
 		</property>
@@ -28,19 +28,18 @@
 		<property name="configLocation" value="classpath:sqlmap-config.xml" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
-	<bean id="singleTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>	
+
+	<bean id="singleTransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 	<bean id="VwSearchSupplyDAO" class="biz.qianyan.search.db.model.VwSearchSupplyDAO">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
 
 	<bean id="SupplyIndexBuild" class="biz.qianyan.search.express.index.v2.IndexMakeImpl">
 		<constructor-arg index="0">
-			<value>
-				<![CDATA[/Users/jock/work/express/index/index0]]>
-			</value>
+			<value>${suply.index.dir1}</value>
 		</constructor-arg>
 		<constructor-arg index="1">
 			<ref bean="Analyzer" />
@@ -59,9 +58,7 @@
 	</bean>
 	<bean id="SupplyIndexDescBuild" class="biz.qianyan.search.express.index.v2.IndexMakeImpl">
 		<constructor-arg index="0">
-			<value>
-				<![CDATA[/Users/jock/work/express/index/index10]]>
-			</value>
+			<value>${suply.index.dir1}</value>
 		</constructor-arg>
 		<constructor-arg index="1">
 			<ref bean="Analyzer" />
@@ -80,9 +77,7 @@
 	</bean>
 	<bean id="PatentIndexBuild" class="biz.qianyan.search.patent.index.v2.IndexMakeImpl">
 		<constructor-arg index="0">
-			<value>
-				<![CDATA[/Users/jock/work/express/index/patent1]]>
-			</value>
+			<value>${patent.index.dir1}</value>
 		</constructor-arg>
 		<constructor-arg index="1">
 			<ref bean="Analyzer" />
@@ -102,9 +97,7 @@
 	<bean id="ComIndexBuild"
 		class="biz.qianyan.search.express.index.v2.CompanyIndexMakeImpl">
 		<constructor-arg index="0">
-			<value>
-				<![CDATA[/Users/jock/work/express/index/comindex1]]>
-			</value>
+			<value>${company.index.dir1}</value>
 		</constructor-arg>
 		<constructor-arg index="1">
 			<ref bean="Analyzer" />
@@ -124,9 +117,7 @@
 	<bean id="ComIndexBuild2"
 		class="biz.qianyan.search.express.index.v2.CompanyIndexMakeImpl2">
 		<constructor-arg index="0">
-			<value>
-				<![CDATA[/Users/jock/work/express/index/comindex2]]>
-			</value>
+			<value>${company.index.dir2}</value>
 		</constructor-arg>
 		<constructor-arg index="1">
 			<ref bean="Analyzer" />
@@ -146,9 +137,7 @@
 	<bean id="ProductIndexBuild"
 		class="biz.qianyan.search.express.index.v2.ProductIndexMakeImpl">
 		<constructor-arg index="0">
-			<value>
-				<![CDATA[/Users/jock/work/express/index/proindex]]>
-			</value>
+			<value>${product.index.dir1}</value>
 		</constructor-arg>
 		<constructor-arg index="1">
 			<ref bean="Analyzer" />
@@ -167,9 +156,7 @@
 	</bean>
 	<bean id="AdIndexBuild" class="biz.qianyan.search.express.index.v2.AdIndexMakeImpl">
 		<constructor-arg index="0">
-			<value>
-				<![CDATA[/Users/jock/work/express/index/adindex]]>
-			</value>
+			<value>${ad.index.dir1}</value>
 		</constructor-arg>
 		<constructor-arg index="1">
 			<ref bean="Analyzer" />
@@ -196,8 +183,8 @@
 		</property>
 		<property name="indexdir">
 			<list>
-				<value>/Users/jock/work/express/index/comindex1</value>
-				<value>/Users/jock/work/express/index/comindex2</value>
+				<value>${company.index.dir1}</value>
+				<value>${company.index.dir2}</value>
 			</list>
 		</property>
 		<property name="analyzer">
@@ -210,11 +197,11 @@
 		</property>
 		<property name="indexdir">
 			<list>
-				<value>/Users/jock/work/express/index/index0</value>
-				<value>/Users/jock/work/express/index/index1</value>
-				<value>/Users/jock/work/express/index/index2</value>
-				<value>/Users/jock/work/express/index/index3</value>
-				<value>/Users/jock/work/express/index/index4</value>
+				<value>${suply.index.dir1}</value>
+				<value>${suply.index.dir2}</value>
+				<value>${suply.index.dir3}</value>
+				<value>${suply.index.dir4}</value>
+				<value>${suply.index.dir5}</value>
 			</list>
 		</property>
 		<property name="analyzer">
@@ -227,7 +214,7 @@
 		</property>
 		<property name="indexdir">
 			<list>
-				<value>/Users/jock/work/express/index/proindex</value>
+				<value>${product.index.dir1}</value>
 			</list>
 		</property>
 		<property name="analyzer">
@@ -240,8 +227,8 @@
 		</property>
 		<property name="indexdir">
 			<list>
-				<value>/Users/jock/work/express/index/comindex1</value>
-				<value>/Users/jock/work/express/index/comindex2</value>
+				<value>${company.index.dir1}</value>
+				<value>${company.index.dir2}</value>
 			</list>
 		</property>
 		<property name="analyzer">
@@ -254,8 +241,8 @@
 		</property>
 		<property name="indexdir">
 			<list>
-				<value>/Users/jock/work/express/index/patent1</value>
-				<value>/Users/jock/work/express/index/patent2</value>
+				<value>${patent.index.dir1}</value>
+				<value>${patent.index.dir2}</value>
 			</list>
 		</property>
 		<property name="analyzer">
@@ -268,10 +255,11 @@
 		</property>
 		<property name="indexdir">
 			<list>
-				<value>/Users/jock/work/express/index/index0</value>
-				<value>/Users/jock/work/express/index/index1</value>
-				<value>/Users/jock/work/express/index/index2</value>
-				<value>/Users/jock/work/express/index/ndex3</value>
+				<value>${suply.index.dir1}</value>
+				<value>${suply.index.dir2}</value>
+				<value>${suply.index.dir3}</value>
+				<value>${suply.index.dir4}</value>
+				<value>${suply.index.dir5}</value>
 			</list>
 		</property>
 		<property name="analyzer">
@@ -284,7 +272,7 @@
 		</property>
 		<property name="indexdir">
 			<list>
-				<value>/Users/jock/work/express/index/proindex</value>
+				<value>${product.index.dir1}</value>
 			</list>
 		</property>
 		<property name="analyzer">
@@ -294,9 +282,7 @@
 	<bean id="ReleatedIndexBuild"
 		class="biz.qianyan.search.express.index.v2.ReleateKeywordIndexImpl">
 		<constructor-arg index="0">
-			<value>
-				<![CDATA[/Users/jock/work/express/index/releatedindex]]>
-			</value>
+			<value>${releate.index.dir1}</value>
 		</constructor-arg>
 		<constructor-arg index="1">
 			<ref bean="Analyzer" />

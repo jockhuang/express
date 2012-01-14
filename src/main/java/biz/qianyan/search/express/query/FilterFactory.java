@@ -5,13 +5,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.lucene.document.DateTools;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.search.ChainedFilter;
 import org.apache.lucene.search.Filter;
 import org.apache.lucene.search.NumericRangeFilter;
 import org.apache.lucene.search.PrefixFilter;
-import org.apache.lucene.search.TermRangeFilter;
 
 import biz.qianyan.search.express.web.form.PatentForm;
 import biz.qianyan.search.express.web.form.SearchForm;

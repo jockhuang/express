@@ -10,7 +10,7 @@ public class CompanyIndexBuild {
         String[] s = new String[2];
         s[0] = "searchContext.xml";
         s[1] = "indexContext.xml";
-        ApplicationContext ctx = new ClassPathXmlApplicationContext(s);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("indexContext.xml");
 
         if (args.length > 0) {
             IndexMaker index = (IndexMaker) ctx.getBean("ComIndexBuild2");

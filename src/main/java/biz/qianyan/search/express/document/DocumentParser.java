@@ -14,7 +14,6 @@ import org.apache.lucene.document.DateTools;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.NumericField;
-import org.apache.lucene.search.highlight.Highlighter;
 
 import biz.qianyan.search.db.model.BusiOrder;
 import biz.qianyan.search.db.model.VwSearchComs;
@@ -227,8 +226,8 @@ public final class DocumentParser {
         // sdoc.getContent(), Field.Store.NO, Field.Index.TOKENIZED));
         doc.add(new NumericField("createdate", Field.Store.YES, true).setLongValue(sdoc.getCreatedate().getTime()));
         doc.add(new NumericField("mainmode", Field.Store.YES, true).setIntValue(sdoc.getMainmode()));
-        doc.add(new NumericField("type", Field.Store.YES, true).setLongValue(sdoc.getType()));
-        doc.add(new NumericField("infotype", Field.Store.YES, true).setLongValue(sdoc.getInfotype()));
+        doc.add(new NumericField("type", Field.Store.YES, true).setIntValue(sdoc.getType()));
+        doc.add(new NumericField("infotype", Field.Store.YES, true).setIntValue(sdoc.getInfotype()));
 
         doc.add(new Field("builddate", sdoc.getBuilddate() == null ? "" : sdoc.getBuilddate(), Field.Store.YES,
                 Field.Index.NOT_ANALYZED_NO_NORMS));

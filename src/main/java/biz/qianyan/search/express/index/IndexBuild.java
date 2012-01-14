@@ -19,7 +19,7 @@ public class IndexBuild {
         String[] s = new String[2];
         s[0] = "searchContext.xml";
         s[1] = "indexContext.xml";
-        ApplicationContext ctx = new ClassPathXmlApplicationContext(s);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("indexContext.xml");
 
         IndexMaker index = (IndexMaker) ctx.getBean("SupplyIndexBuild");
         if (args.length > 0) {

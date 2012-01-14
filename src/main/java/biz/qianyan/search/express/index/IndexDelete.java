@@ -66,7 +66,7 @@ public class IndexDelete {
         String[] s = new String[2];
         s[0] = "searchContext.xml";
         s[1] = "indexContext.xml";
-        ApplicationContext ctx = new ClassPathXmlApplicationContext(s);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("indexContext.xml");
         if ("company".equals(args[0])) {
             IndexDelete im = (IndexDelete) ctx.getBean("CompanyFileDelete");
             try {

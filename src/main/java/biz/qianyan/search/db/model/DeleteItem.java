@@ -1,6 +1,5 @@
 package biz.qianyan.search.db.model;
 
-import java.util.Date;
 
 public interface DeleteItem {
     public Integer getId();

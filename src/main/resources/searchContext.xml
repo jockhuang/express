@@ -1,47 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-	<bean id="Analyzer"
-		class="org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer">
-		<constructor-arg>
-			<value>LUCENE_35</value>
-		</constructor-arg>
-	</bean>
-	<bean id="BinaryAnalyzer"
-		class="org.apache.lucene.analysis.cjk.CJKAnalyzer">
-		<constructor-arg>
-			<value>LUCENE_35</value>
-		</constructor-arg>
-	</bean>
-	<bean id="DocumentParser"
-		class="biz.qianyan.search.express.document.DocumentParser">
-	</bean>
-	<bean id="PatentParser"
-		class="biz.qianyan.search.patent.document.DocumentParser">
-	</bean>
-	<bean id="QueryParser"
-		class="biz.qianyan.search.express.query.ExpressQueryParser">
-		<constructor-arg index="0">
-			<ref bean="Analyzer" />
-		</constructor-arg>
-	</bean>
-	<bean id="PatentQueryParser"
-		class="biz.qianyan.search.patent.query.PatentQueryParser">
-
-		<constructor-arg index="0">
-			<ref bean="Analyzer" />
-		</constructor-arg>
-	</bean>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		                   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+		                   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		                   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		                   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	<import resource="application-common.xml"/>
 	<bean id="Searcher"
 		class="biz.qianyan.search.express.query.v2.ExpressSearcherImpl">
 		<constructor-arg index="0">
 			<list>
-				<value>/Users/jock/work/express/index/index0</value>
-				
-				<value>/Users/jock/work/express/index/comindex1</value>
-				<value>/Users/jock/work/express/index/comindex2</value>
-				<value>/Users/jock/work/express/index/proindex</value>
+				<value>${suply.index.dir1}</value>
+				<value>${company.index.dir1}</value>
+				<value>${company.index.dir2}</value>
+				<value>${procuct.index.dir1}</value>
 			</list>
 		</constructor-arg>
 		<constructor-arg index="1">
@@ -56,8 +31,8 @@
 		class="biz.qianyan.search.patent.query.v2.PatentSearchImpl">
 		<constructor-arg index="0">
 			<list>
-				<value>/Users/jock/work/express/index/patent1</value>
-				<value>/Users/jock/work/express/index/patent2</value>
+				<value>${patent.index.dir1}</value>
+				<value>${patent.index.dir2}</value>
 			</list>
 		</constructor-arg>
 		<constructor-arg index="1">
@@ -76,7 +51,7 @@
 		class="biz.qianyan.search.express.query.v2.AdSearcherImpl">
 		<constructor-arg index="0">
 			<list>
-				<value>/Users/jock/work/express/index/adindex</value>
+				<value>${ad.index.dir1}</value>
 			</list>
 		</constructor-arg>
 		<constructor-arg index="1">
@@ -90,7 +65,7 @@
 		class="biz.qianyan.search.express.query.v2.ReleatedSearcherImpl">
 		<constructor-arg index="0">
 			<list>
-				<value>/Users/jock/work/express/index/releatedindex</value>
+				<value>${releate.index.dir1}</value>
 			</list>
 		</constructor-arg>
 		<constructor-arg index="1">

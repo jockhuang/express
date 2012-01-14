@@ -25,11 +25,11 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
 import biz.qianyan.search.express.document.AdDocument;
+import biz.qianyan.search.express.document.DocumentParser;
 import biz.qianyan.search.express.query.AdSearcher;
 import biz.qianyan.search.express.query.ExactFilter;
 import biz.qianyan.search.express.web.Navbar;
 import biz.qianyan.search.express.web.form.SearchForm;
-import biz.qianyan.search.express.document.DocumentParser;
 
 /**
  * @author Jock
