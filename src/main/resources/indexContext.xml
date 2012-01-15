@@ -288,9 +288,7 @@
 			<ref bean="Analyzer" />
 		</constructor-arg>
 		<constructor-arg index="2">
-			<value>
-				<![CDATA[/Users/Jock/work/express/src/main/resources/comwordlib.lib]]>
-			</value>
+			<value>${comwordlib.dir}</value>
 		</constructor-arg>
 	</bean>
 	<bean id="VwSearchComsDAO" class="biz.qianyan.search.db.model.VwSearchComsDAO">

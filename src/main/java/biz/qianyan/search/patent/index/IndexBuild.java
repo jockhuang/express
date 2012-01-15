@@ -6,10 +6,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class IndexBuild {
     public static void main(String[] args) {
 
-        String[] s = new String[2];
-        s[0] = "searchContext.xml";
-        s[1] = "indexContext.xml";
-        ApplicationContext ctx = new ClassPathXmlApplicationContext(s);
+        
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("indexContext.xml");
 
         IndexMake index = (IndexMake) ctx.getBean("PatentIndexBuild");
         if (args.length > 0) {

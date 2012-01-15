@@ -10,6 +10,7 @@ import org.apache.lucene.search.ChainedFilter;
 import org.apache.lucene.search.Filter;
 import org.apache.lucene.search.NumericRangeFilter;
 import org.apache.lucene.search.PrefixFilter;
+import org.apache.lucene.search.TermsFilter;
 
 import biz.qianyan.search.express.web.form.PatentForm;
 import biz.qianyan.search.express.web.form.SearchForm;
@@ -18,7 +19,8 @@ public class FilterFactory {
     public static Filter getFilter(PatentForm s) {
         List<Filter> filterslist = new ArrayList<Filter>();
         if (s.getC() > 0) {
-            ExactFilter filter = new ExactFilter("classes", s.getC() + "");
+            TermsFilter filter = new TermsFilter();
+            filter.addTerm(new Term("classes", String.valueOf(s.getC())));
             filterslist.add(filter);
         }
         if (s.getProvince() != null && (!"-1".equals(s.getProvince())) && (!"null".equals(s.getProvince()))) {
@@ -48,7 +50,8 @@ public class FilterFactory {
     public static Filter getFilter(SearchForm s) {
         List<Filter> filterslist = new ArrayList<Filter>();
         if ((s.getC() != null) && (!"".equals(s.getC().trim()))) {
-            ExactFilter filter = new ExactFilter("fullpath", s.getC());
+            TermsFilter filter = new TermsFilter();
+            filter.addTerm(new Term("fullpath", s.getC()));
             filterslist.add(filter);
         }
         if (s.getD() > 0) {
@@ -67,7 +70,7 @@ public class FilterFactory {
 
         if (s.getCapitalCN() != null && (!"-1".equals(s.getCapitalCN()) && (!"null".equals(s.getCapitalCN())))) {
             Term term = new Term("regionkey", s.getCapitalCN());
-            PrefixFilter filter = new PrefixFilter(term);
+            Filter filter = new PrefixFilter(term);
             filterslist.add(filter);
         } else if (s.getProvinceCN() != null && (!"-1".equals(s.getProvinceCN()))
                 && (!"null".equals(s.getProvinceCN()))) {
@@ -130,7 +133,8 @@ public class FilterFactory {
     public static Filter getCompanyFilter(SearchForm s) {
         List<Filter> filterslist = new ArrayList<Filter>();
         if ((s.getC() != null) && (!"".equals(s.getC().trim()))) {
-            ExactFilter filter = new ExactFilter("fullpath", s.getC());
+            TermsFilter filter = new TermsFilter();
+            filter.addTerm(new Term("fullpath", s.getC()));
             filterslist.add(filter);
         }
         if (s.getD() > 0) {

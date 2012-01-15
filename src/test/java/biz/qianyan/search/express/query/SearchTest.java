@@ -9,7 +9,6 @@ import java.util.Comparator;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryParser.QueryParser;
@@ -32,6 +31,7 @@ import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import biz.qianyan.search.express.document.DocumentParser;
 import biz.qianyan.search.express.document.ExpressDocument;
@@ -54,7 +54,7 @@ public class SearchTest {
             IndexReader reader = IndexReader.open(directory);
 
             IndexSearcher searcher = new IndexSearcher(reader);
-            Analyzer analyzer = new SmartChineseAnalyzer(Version.LUCENE_35);
+            Analyzer analyzer = new IKAnalyzer();
             QueryParser parser = new QueryParser(Version.LUCENE_35, "title",analyzer
                     );
 
@@ -112,8 +112,8 @@ public class SearchTest {
             ScoreDoc scoreDocs[] = topDocs.scoreDocs;
             SimpleHTMLFormatter simpleHtmlFormatter = new SimpleHTMLFormatter("<font color=\"red\">","</font>");//设定高亮显示的格式，也就是对高亮显示的词组加上前缀后缀  
             Highlighter highlighter = new Highlighter(simpleHtmlFormatter,new QueryScorer(query));  
-            highlighter.setTextFragmenter(new SimpleFragmenter(150));//设置每次返回的字符数.想必大家在使用搜索引擎的时候也没有一并把全部数据展示出来吧，当然这里也是设定只展示部分数据  
-            
+            highlighter.setTextFragmenter(new SimpleFragmenter(80));//设置每次返回的字符数.想必大家在使用搜索引擎的时候也没有一并把全部数据展示出来吧，当然这里也是设定只展示部分数据  
+            System.out.println("=================================================");
             for (ScoreDoc scoreDoc : scoreDocs) {
 
                 Document doc = searcher.doc(scoreDoc.doc);
@@ -124,13 +124,13 @@ public class SearchTest {
                     ad.setTitle(str);
                 }
                  tokenStream = analyzer.tokenStream("",new StringReader(doc.get("brief")));  
-                String brief = highlighter.getBestFragment(tokenStream, doc.get("brief")); 
+                String brief = highlighter.getBestFragments(tokenStream, doc.get("brief"),1,"..."); 
 //                String brief = highlighter.highlight(doc.get("brief"), keyword, true);
 
                 if (brief != null) {
                     ad.setBrief(brief);
                 }
-                System.out.println(ad.getTitle() + "  " + ad.getBrief());
+                System.out.println(ad.getBrief());
                 
 
             }

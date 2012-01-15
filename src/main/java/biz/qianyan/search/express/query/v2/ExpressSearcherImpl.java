@@ -130,13 +130,13 @@ public class ExpressSearcherImpl implements ExpressSearcher {
         }
         log.info("search:" + keyword);
         Sort sort = null;
-        boolean needredo = true;
-        boolean needreload = true;
+        boolean needredo = false;
+       // boolean needreload = true;
         if (s.getS() == 1) {
-            sort = new Sort( new SortField("createdate", SortField.LONG, true) );
+            sort = new Sort(new SortField("createdate", SortField.LONG, true));
             // sort = new Sort("createdate", true);
-            if (s.getP() == 1 & s.getT() == 0)
-                needredo = true;
+
+            needredo = true;
         }
         try {
 
@@ -147,51 +147,45 @@ public class ExpressSearcherImpl implements ExpressSearcher {
                 query = parser.parse(keyword);
             }
             TopDocs hits = null;
-            TopDocs hits2 = null;
 
             Filter filter = FilterFactory.getFilter(s);
             Filter filter2 = FilterFactory.getCompanyFilter(s);
-            if (filter == null) {
-                hits = searcher.search(query, page.PAGESIZE, sort);
+            if (s.getT() == 3) {
                 if (needredo)
-                    hits2 = searcher.search(query, page.PAGESIZE);
+                    hits = searcher.search(query, filter2, page.getCurrpage()*page.PAGESIZE, sort);
+                else
+                    hits = searcher.search(query, filter2, page.getCurrpage()*page.PAGESIZE);
             } else {
-                hits = searcher.search(query, filter, page.PAGESIZE, sort);
                 if (needredo)
-                    hits2 = searcher.search(query, filter2, page.PAGESIZE);
+                    hits = searcher.search(query, filter, page.getCurrpage()*page.PAGESIZE, sort);
+                else
+                    hits = searcher.search(query, filter, page.getCurrpage()*page.PAGESIZE);
             }
 
             page.setAllrows(hits.totalHits);
             int start = page.getStart();
-
-            int end = Math.min(hits.totalHits, start + page.PAGESIZE);
-
-            int maxsearch = Math.min(hits.totalHits, 200);
-            int i = 0, j = 0;
-            int length = page.PAGESIZE;
-            HashMap<String, Integer> idtable = new HashMap<String, Integer>();
-            SimpleHTMLFormatter simpleHtmlFormatter = new SimpleHTMLFormatter("<B>","</B>");//设定高亮显示的格式，也就是对高亮显示的词组加上前缀后缀  
-            Highlighter highlighter = new Highlighter(simpleHtmlFormatter,new QueryScorer(query));  
-            highlighter.setTextFragmenter(new SimpleFragmenter(150));//设置每次返回的字符数.想必大家在使用搜索引擎的时候也没有一并把全部数据展示出来吧，当然这里也是设定只展示部分数据  
-            int size = list.size();
-            if (needreload || page.getCurrpage() > 1) {
+            int end = Math.min(page.getAllrows(), start + page.PAGESIZE);
+            SimpleHTMLFormatter simpleHtmlFormatter = new SimpleHTMLFormatter("<font color=\"red\">", "</font>");// 设定高亮显示的格式，也就是对高亮显示的词组加上前缀后缀
+            Highlighter highlighter = new Highlighter(simpleHtmlFormatter, new QueryScorer(query));
+            highlighter.setTextFragmenter(new SimpleFragmenter(80));// 设置每次返回的字符数.想必大家在使用搜索引擎的时候也没有一并把全部数据展示出来吧，当然这里也是设定只展示部分数据
+            
+            log.info(String.format("search:%s start:%d end:%d total:%d", keyword,start,end,hits.totalHits));
                 ScoreDoc scoreDocs[] = hits.scoreDocs;
-                for (ScoreDoc scoreDoc : scoreDocs) {
-                    Document doc = searcher.doc(scoreDoc.doc);
+                for (int i=start;i<end;i++) {
+                    Document doc = searcher.doc(scoreDocs[i].doc);
 
                     ExpressDocument im = DocumentParser.convert(doc);
                     try {
                         if (s.getR() == 0) {
-                            
-                            
-                            TokenStream tokenStream = parser.analyzer.tokenStream("",new StringReader(im.getTitle()));  
-                            String str = highlighter.getBestFragment(tokenStream, im.getTitle()); 
+
+                            TokenStream tokenStream = parser.analyzer.tokenStream("", new StringReader(im.getTitle()));
+                            String str = highlighter.getBestFragments(tokenStream, im.getTitle(),1,"...");
                             if (str != null) {
                                 im.setTitle(str);
                             }
-                             tokenStream = parser.analyzer.tokenStream("",new StringReader(doc.get("brief")));  
-                            String brief = highlighter.getBestFragment(tokenStream, doc.get("brief")); 
-//                            String brief = highlighter.highlight(doc.get("brief"), keyword, true);
+                            tokenStream = parser.analyzer.tokenStream("", new StringReader(doc.get("brief")));
+                            String brief = highlighter.getBestFragments(tokenStream, doc.get("brief"),1,"...");
+                            // String brief = highlighter.highlight(doc.get("brief"), keyword, true);
 
                             if (brief != null) {
                                 im.setBrief(brief);
@@ -202,20 +196,10 @@ public class ExpressSearcherImpl implements ExpressSearcher {
                         e.printStackTrace();
 
                     }
-                    if (needreload) {
-                        if (!idtable.containsKey(doc.get("id"))) {
-                            list.add(im);
-                            size++;
-
-                        }
-                    } else {
-                        list.add(im);
-                        size++;
-                    }
-                    if (size >= page.PAGESIZE)
-                        break;
+                    list.add(im);
+                    
                 }
-            }
+            
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e.fillInStackTrace());
@@ -241,12 +225,11 @@ public class ExpressSearcherImpl implements ExpressSearcher {
             } else {
                 query = parser.parse(keyword);
             }
-            
 
             Filter filter1 = FilterFactory.getFilter(s);
             Filter filter2 = FilterFactory.getCompanyFilter(s);
             Filter filter = null;
-            if(s.getT()==3)
+            if (s.getT() == 3)
                 filter = filter2;
             else
                 filter = filter1;
@@ -260,7 +243,7 @@ public class ExpressSearcherImpl implements ExpressSearcher {
             boolean cacheScores = true;
             double maxCacheRAMMB = 4.0;
             CachingCollector cachedCollector = CachingCollector.create(c1, cacheScores, maxCacheRAMMB);
-            searcher.search(query, filter,cachedCollector);
+            searcher.search(query, filter, cachedCollector);
             Collection<SearchGroup<String>> topGroups = c1.getTopGroups(groupOffset, true);
 
             TermSecondPassGroupingCollector c2 = new TermSecondPassGroupingCollector(field, topGroups, Sort.RELEVANCE,
@@ -270,23 +253,23 @@ public class ExpressSearcherImpl implements ExpressSearcher {
                 cachedCollector.replay(c2);
             } else {
                 // Cache was too large; must re-execute query:
-                searcher.search(query, filter,c2);
+                searcher.search(query, filter, c2);
             }
 
             TopGroups<String> tg = c2.getTopGroups(withinGroupOffset);
             GroupDocs<String>[] gds = tg.groups;
-            System.out.println("groups:"+gds.length);
-            class GroupComparator implements Comparator<GroupDocs>{
+            System.out.println("groups:" + gds.length);
+            class GroupComparator implements Comparator<GroupDocs> {
                 public int compare(GroupDocs pFirst, GroupDocs pSecond) {
-                    if(pFirst.totalHits>pSecond.totalHits)
+                    if (pFirst.totalHits > pSecond.totalHits)
                         return -1;
-                    else if(pFirst.totalHits<pSecond.totalHits)
+                    else if (pFirst.totalHits < pSecond.totalHits)
                         return 1;
                     else
                         return 0;
                 }
             }
-            Arrays.sort(gds,new GroupComparator());
+            Arrays.sort(gds, new GroupComparator());
             for (GroupDocs<String> gd : gds) {
                 ClassResult cr = new ClassResult(gd.groupValue, gd.totalHits);
                 list.add(cr);
@@ -294,7 +277,7 @@ public class ExpressSearcherImpl implements ExpressSearcher {
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } 
+        }
 
         return list;
     }

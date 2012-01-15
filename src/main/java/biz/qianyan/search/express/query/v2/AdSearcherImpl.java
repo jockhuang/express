@@ -11,15 +11,18 @@ import org.apache.lucene.analysis.SimpleAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.MultiReader;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.ChainedFilter;
 import org.apache.lucene.search.Filter;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.MultiSearcher;
+import org.apache.lucene.search.PrefixFilter;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.SortField;
+import org.apache.lucene.search.TermsFilter;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
@@ -27,7 +30,6 @@ import org.apache.lucene.util.Version;
 import biz.qianyan.search.express.document.AdDocument;
 import biz.qianyan.search.express.document.DocumentParser;
 import biz.qianyan.search.express.query.AdSearcher;
-import biz.qianyan.search.express.query.ExactFilter;
 import biz.qianyan.search.express.web.Navbar;
 import biz.qianyan.search.express.web.form.SearchForm;
 
@@ -138,14 +140,17 @@ public class AdSearcherImpl implements AdSearcher {
         List<AdDocument> list = new ArrayList<AdDocument>();
 
         try {
-            ExactFilter filter1 = new ExactFilter("searchtype", searchtype);
-            ExactFilter filter2 = new ExactFilter("searchtype", "0");
+            TermsFilter filter1 = new TermsFilter();
+            filter1.addTerm(new Term("searchtype", searchtype));
+            TermsFilter filter2 = new TermsFilter();
+            filter2.addTerm(new Term("searchtype", "0"));
             Filter searchfilter = new ChainedFilter(new Filter[] { filter1, filter2 }, ChainedFilter.OR);
-            ExactFilter typefilter = new ExactFilter("adtype", type);
+            TermsFilter typefilter = new TermsFilter();
+            typefilter.addTerm(new Term("adtype", type));
             Filter filter = new ChainedFilter(new Filter[] { searchfilter, typefilter }, ChainedFilter.AND);
             Sort sort = new Sort(new SortField[] { new SortField("date", SortField.STRING, false) });
             Query query = parser.parse(keyword);
-            TopDocs topDocs = searcher.search(query, 10, sort);
+            TopDocs topDocs = searcher.search(query, filter,10, sort);
 
             ScoreDoc scoreDocs[] = topDocs.scoreDocs;
             for (ScoreDoc scoreDoc : scoreDocs) {
@@ -159,14 +164,17 @@ public class AdSearcherImpl implements AdSearcher {
         }
 
         try {
-            ExactFilter filter1 = new ExactFilter("searchtype", searchtype);
-            ExactFilter filter2 = new ExactFilter("searchtype", "0");
+            TermsFilter filter1 = new TermsFilter();
+            filter1.addTerm(new Term("searchtype", searchtype));
+            TermsFilter filter2 = new TermsFilter();
+            filter2.addTerm(new Term("searchtype", "0"));
             Filter searchfilter = new ChainedFilter(new Filter[] { filter1, filter2 }, ChainedFilter.OR);
-            ExactFilter typefilter = new ExactFilter("adtype", type);
+            TermsFilter typefilter = new TermsFilter();
+            typefilter.addTerm(new Term("adtype", type));
             Filter filter = new ChainedFilter(new Filter[] { searchfilter, typefilter }, ChainedFilter.AND);
             Sort sort = new Sort(new SortField[] { new SortField("date", SortField.STRING, false) });
             Query query = parser.parse("jock");
-            TopDocs topDocs = searcher.search(query, 10, sort);
+            TopDocs topDocs = searcher.search(query, filter,10, sort);
 
             ScoreDoc scoreDocs[] = topDocs.scoreDocs;
             for (ScoreDoc scoreDoc : scoreDocs) {

@@ -14,9 +14,8 @@
 		<constructor-arg index="0">
 			<list>
 				<value>${suply.index.dir1}</value>
-				<value>${company.index.dir1}</value>
 				<value>${company.index.dir2}</value>
-				<value>${procuct.index.dir1}</value>
+				<value>${product.index.dir1}</value>
 			</list>
 		</constructor-arg>
 		<constructor-arg index="1">
@@ -32,7 +31,6 @@
 		<constructor-arg index="0">
 			<list>
 				<value>${patent.index.dir1}</value>
-				<value>${patent.index.dir2}</value>
 			</list>
 		</constructor-arg>
 		<constructor-arg index="1">
