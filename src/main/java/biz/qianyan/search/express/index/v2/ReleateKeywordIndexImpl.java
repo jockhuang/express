@@ -7,8 +7,6 @@ package biz.qianyan.search.express.index.v2;
 import java.io.File;
 import java.io.RandomAccessFile;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -16,6 +14,8 @@ import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import biz.qianyan.search.express.document.DocumentParser;
 import biz.qianyan.search.express.document.ReleatedKeyword;
@@ -26,7 +26,7 @@ import biz.qianyan.search.express.index.IndexMaker;
  */
 public class ReleateKeywordIndexImpl implements IndexMaker {
 
-    private static final Log log = LogFactory.getLog(ReleateKeywordIndexImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(ReleateKeywordIndexImpl.class);
     private String indexdir;
 
     private IndexWriter writer;

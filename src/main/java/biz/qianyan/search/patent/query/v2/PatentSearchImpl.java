@@ -5,8 +5,6 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
@@ -24,6 +22,8 @@ import org.apache.lucene.search.highlight.QueryScorer;
 import org.apache.lucene.search.highlight.SimpleFragmenter;
 import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.store.FSDirectory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import biz.qianyan.search.express.document.ClassResult;
 import biz.qianyan.search.express.query.FilterFactory;
@@ -41,7 +41,7 @@ import biz.qianyan.search.patent.query.PatentSearcher;
  * @author Jock
  */
 public class PatentSearchImpl implements PatentSearcher {
-    private static final Log log = LogFactory.getLog(PatentSearchImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(PatentSearchImpl.class);
 
     private DocumentParser docparser;
 
@@ -75,7 +75,7 @@ public class PatentSearchImpl implements PatentSearcher {
             searcher = new MultiSearcher(searchers);
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e.fillInStackTrace());
+            log.error(e.getLocalizedMessage());
         }
     }
 
@@ -155,7 +155,7 @@ public class PatentSearchImpl implements PatentSearcher {
 
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e.fillInStackTrace());
+            log.error(e.getLocalizedMessage());
         }
         return list;
     }

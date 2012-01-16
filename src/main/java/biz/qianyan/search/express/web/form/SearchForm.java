@@ -318,7 +318,12 @@ public class SearchForm extends ActionForm {
      * @param p the p to set
      */
     public void setP(int p) {
-        this.p = p;
+        if(p>50)
+            this.p=50;
+        else if(p<1)
+            this.p=1;
+        else
+            this.p = p;
     }
 
     /**

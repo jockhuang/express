@@ -4,14 +4,14 @@ import java.io.File;
 import java.io.RandomAccessFile;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import biz.qianyan.search.db.model.VwSearchPatent;
 import biz.qianyan.search.db.model.VwSearchPatentDAO;
@@ -24,7 +24,7 @@ import biz.qianyan.search.util.Config;
  * @author Jock
  */
 public class IndexMakeImpl implements IndexMake {
-    private static final Log log = LogFactory.getLog(IndexMakeImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(IndexMakeImpl.class);
 
     private Analyzer analyzer;
     private VwSearchPatentDAO dao;
@@ -101,7 +101,7 @@ public class IndexMakeImpl implements IndexMake {
             // writer.addDocument(docparser.parse(docparser.tranfer(ss)));
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e.fillInStackTrace());
+            log.error(e.getLocalizedMessage());
         }
 
     }

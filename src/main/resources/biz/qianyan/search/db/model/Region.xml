@@ -16,7 +16,7 @@
   </select>
 	 	
   <select id="getCityList" parameterClass="String" resultMap="regionBean">
-	select * from supply.dbo.vw_search_region where classkey like '$province$%' and pointto=''  order by classkey
+	select * from supply.dbo.vw_search_region where classkey like '$province$___' and pointto=''  order by classkey
   </select>
   
 </sqlMap>

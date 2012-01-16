@@ -7,13 +7,13 @@ import java.util.Date;
 import java.util.zip.DataFormatException;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.document.CompressionTools;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.NumericField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import biz.qianyan.search.db.model.BusiOrder;
 import biz.qianyan.search.db.model.VwSearchComs;
@@ -25,7 +25,7 @@ import biz.qianyan.search.db.model.VwSearchSupply;
  */
 public final class DocumentParser {
 
-    private static final Log log = LogFactory.getLog(DocumentParser.class);
+    private static final Logger log = LoggerFactory.getLogger(DocumentParser.class);
 
     public static AdDocument convertad(Document doc) {
         AdDocument edoc = new AdDocument();
@@ -96,12 +96,7 @@ public final class DocumentParser {
         edoc.setBrief(doc.get("brief"));
         edoc.setKeywords(doc.get("keywords"));
         edoc.setUrl(CompressionTools.decompressString(doc.getBinaryValue("url")));
-        String str;
-        try{
-            str = CompressionTools.decompressString(doc.getBinaryValue("picurl"));
-        }catch(Exception e){
-            str = null;
-        }
+        String str = doc.get("picurl");
         if (str == null || str.length() == 0) {
             str = "images/2-8.jpg";
         }

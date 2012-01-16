@@ -8,12 +8,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import biz.qianyan.search.express.document.ReleatedKeyword;
 import biz.qianyan.search.express.query.ReleatedSearcher;
@@ -30,7 +30,7 @@ import biz.qianyan.search.patent.query.PatentSearcher;
  * @struts.action path="/patent" name="patentForm" input="/patent.jsp" scope="request" validate="true"
  */
 public class PatentAction extends Action {
-    private static final Log log = LogFactory.getLog(PatentAction.class);
+    private static final Logger log = LoggerFactory.getLogger(PatentAction.class);
 
     /*
      * Generated Methods

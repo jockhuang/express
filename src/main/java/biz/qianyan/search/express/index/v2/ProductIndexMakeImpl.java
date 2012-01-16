@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.RandomAccessFile;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -13,6 +11,8 @@ import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import biz.qianyan.search.db.model.VwSearchProduct;
 import biz.qianyan.search.db.model.VwSearchProductDAO;
@@ -26,7 +26,7 @@ import biz.qianyan.search.util.Config;
  */
 public class ProductIndexMakeImpl implements IndexMaker {
 
-    private static final Log log = LogFactory.getLog(ProductIndexMakeImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(ProductIndexMakeImpl.class);
 
     private Analyzer analyzer;
     private VwSearchProductDAO dao;
@@ -77,7 +77,7 @@ public class ProductIndexMakeImpl implements IndexMaker {
                 if (list.size() == 0)
                     break;
                 for (VwSearchProduct record : list) {
-                    log.info("add recordid:" + record.getId());
+                    log.debug("add recordid:" + record.getId());
                     id = record.getId();
                     try {
                         writer.addDocument(DocumentParser.parse(DocumentParser.tranfer(record)));
@@ -87,6 +87,7 @@ public class ProductIndexMakeImpl implements IndexMaker {
                     }
 
                 }
+                log.info(j+" add 500 records. ");
             }
             writeId(id);
 
@@ -101,7 +102,7 @@ public class ProductIndexMakeImpl implements IndexMaker {
             // writer.addDocument(docparser.parse(docparser.tranfer(ss)));
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e.fillInStackTrace());
+            log.error(e.getLocalizedMessage());
         }
 
     }

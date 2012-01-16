@@ -6,11 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
@@ -34,6 +31,8 @@ import org.apache.lucene.search.highlight.QueryScorer;
 import org.apache.lucene.search.highlight.SimpleFragmenter;
 import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.store.FSDirectory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import biz.qianyan.search.express.document.ClassResult;
 import biz.qianyan.search.express.document.DocumentParser;
@@ -50,7 +49,7 @@ import biz.qianyan.search.express.web.form.SearchForm;
  */
 public class ExpressSearcherImpl implements ExpressSearcher {
 
-    private static final Log log = LogFactory.getLog(ExpressSearcherImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(ExpressSearcherImpl.class);
 
     private DocumentParser docparser;
 
@@ -91,7 +90,7 @@ public class ExpressSearcherImpl implements ExpressSearcher {
             searcher = new MultiSearcher(searchers);
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e.fillInStackTrace());
+            log.error(e.getLocalizedMessage());
         }
     }
 
@@ -108,7 +107,7 @@ public class ExpressSearcherImpl implements ExpressSearcher {
             searcher = new MultiSearcher(searchers);
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e.fillInStackTrace());
+            log.error(e.getLocalizedMessage());
         }
     }
 
@@ -179,14 +178,15 @@ public class ExpressSearcherImpl implements ExpressSearcher {
                         if (s.getR() == 0) {
 
                             TokenStream tokenStream = parser.analyzer.tokenStream("", new StringReader(im.getTitle()));
-                            String str = highlighter.getBestFragments(tokenStream, im.getTitle(),1,"...");
+                            String str = highlighter.getBestFragment(tokenStream, im.getTitle());
+                            log.info("title highlighter:"+str+"   origin title:"+im.getTitle());
                             if (str != null) {
                                 im.setTitle(str);
                             }
                             tokenStream = parser.analyzer.tokenStream("", new StringReader(doc.get("brief")));
                             String brief = highlighter.getBestFragments(tokenStream, doc.get("brief"),1,"...");
                             // String brief = highlighter.highlight(doc.get("brief"), keyword, true);
-
+                            
                             if (brief != null) {
                                 im.setBrief(brief);
                             }
@@ -202,7 +202,7 @@ public class ExpressSearcherImpl implements ExpressSearcher {
             
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e.fillInStackTrace());
+            log.error(e.getLocalizedMessage());
         }
         return list;
     }
@@ -234,7 +234,7 @@ public class ExpressSearcherImpl implements ExpressSearcher {
             else
                 filter = filter1;
             String field = "fullpath";
-            int topNGroups = 100;
+            int topNGroups = 500;
             int groupOffset = 0;
             int maxDocsPerGroup = 10;
             int withinGroupOffset = 0;

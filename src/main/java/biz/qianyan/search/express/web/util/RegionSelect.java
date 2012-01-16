@@ -8,8 +8,6 @@ import java.io.ObjectInputStream;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.util.LabelValueBean;
 
 import biz.qianyan.search.util.Config;
@@ -18,7 +16,7 @@ import biz.qianyan.search.util.Config;
  * @author Jock
  */
 public class RegionSelect {
-    private static final Log log = LogFactory.getLog(RegionSelect.class);
+    
     private Vector<LabelValueBean> provinces = new Vector<LabelValueBean>(34);
     private Vector<LabelValueBean> provincesname = new Vector<LabelValueBean>(34);
     private Hashtable<String, Vector<LabelValueBean>> citys = new Hashtable<String, Vector<LabelValueBean>>();

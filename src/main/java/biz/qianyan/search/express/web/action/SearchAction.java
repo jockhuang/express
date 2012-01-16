@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import biz.qianyan.search.express.document.AdDocument;
 import biz.qianyan.search.express.document.ClassResult;
@@ -35,7 +35,7 @@ import biz.qianyan.search.express.web.util.RegionSelect;
  */
 public class SearchAction extends Action {
 
-    private static final Log log = LogFactory.getLog(SearchAction.class);
+    private static final Logger log = LoggerFactory.getLogger(SearchAction.class);
     /*
      * Generated Methods
      */
@@ -67,6 +67,7 @@ public class SearchAction extends Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
             HttpServletResponse response) {
         SearchForm searchForm = (SearchForm) form;
+        log.info("ispic="+searchForm.isPic());
         searchForm.setProvinceselect(regionselect.getProvinces());
         if (searchForm.getProvinceCN() != null && (!"".equals(searchForm.getProvinceCN().trim()))
                 && (!"null".equals(searchForm.getProvinceCN().trim()))) {

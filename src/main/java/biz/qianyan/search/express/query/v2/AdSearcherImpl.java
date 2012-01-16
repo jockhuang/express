@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.SimpleAnalyzer;
 import org.apache.lucene.document.Document;
@@ -17,7 +15,6 @@ import org.apache.lucene.search.ChainedFilter;
 import org.apache.lucene.search.Filter;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.MultiSearcher;
-import org.apache.lucene.search.PrefixFilter;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.Sort;
@@ -26,6 +23,8 @@ import org.apache.lucene.search.TermsFilter;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import biz.qianyan.search.express.document.AdDocument;
 import biz.qianyan.search.express.document.DocumentParser;
@@ -38,7 +37,7 @@ import biz.qianyan.search.express.web.form.SearchForm;
  */
 public class AdSearcherImpl implements AdSearcher {
 
-    private static final Log log = LogFactory.getLog(AdSearcherImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(AdSearcherImpl.class);
     private DocumentParser docparser;
 
     private String[] indexdir;
@@ -71,7 +70,7 @@ public class AdSearcherImpl implements AdSearcher {
             searcher = new MultiSearcher(searchers);
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e.fillInStackTrace());
+            log.error(e.getLocalizedMessage());
         }
     }
 
